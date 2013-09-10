@@ -17,6 +17,7 @@ DEFAULT_LANG = u'en'
 
 # Social widget
 SOCIAL = (('twitter', 'http://twitter.com/joshua_r_smith'),
-          ('github', 'http://github.com/jrsmith3'),)
+          ('github', 'http://github.com/jrsmith3'),
+          ('email', 'mailto:joshua.r.smith@gmail.com'))
 
 DEFAULT_PAGINATION = False
