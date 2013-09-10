@@ -1,6 +1,6 @@
 Title: Hello World
 Date: 2013-09-10 17:37
-Category: BLog
+Category: Blog
 Author: Joshua Ryan Smith
 Summary: Introductions
 
@@ -10,4 +10,4 @@ Based on my experience as a working scientist, I've learned some practical lesso
 
 Regarding audience, I have a few people in mind to whom I'm writing this blog, both scientists and non. My goal is that colleagues in my field of research read this blog. Additionally, I want to write such that people from other fields find the material approachable and interesting.
 
-I'm aiming for about 1000 words per post and one post per week. I'm not going to have comments at first because I have no idea how to manage them. However, feel free to contact me via email: joshua.r.smith@gmail.com. I'm also on twitter: @joshua_r_smith.
+I'm aiming for about 1000 words per post and one post per week. I'm not going to have comments at first because I have no idea how to manage them. However, feel free to contact me via email: [joshua.r.smith@gmail.com](mailto:joshua.r.smith@gmail.com). I'm also on twitter: [@joshua_r_smith](https://twitter.com/joshua_r_smith/).
