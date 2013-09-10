@@ -2,8 +2,7 @@
 # -*- coding: utf-8 -*- #
 
 AUTHOR = u'Joshua Ryan Smith'
-# SITENAME = u'The Essential Beatfinger'
-SITENAME = u'Joshua Ryan Smith'
+SITENAME = u'Generic Surname'
 SITEURL = ''
 
 TIMEZONE = 'America/New_York'
