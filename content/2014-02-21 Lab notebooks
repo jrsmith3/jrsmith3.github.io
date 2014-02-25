@@ -1,0 +1,31 @@
+Title: Lab notebooks
+Date: 2014-02-21 17:26
+Category: Blog
+Author: Joshua Ryan Smith
+status: draft
+
+Lab notebooks are where the realtime narrative of science is recorded. Lab notebooks are indeed narrative, but have a partular structure so that people can understand the important details and sequence of scientific events at a later date. "People" includes both the person who wrote the notes, and others that didn't. The lab notebook should be written in such a way that even years or decades later, a reader can reliably reconstruct the events. Writers of lab notebooks should bearin mind that despite the regimented structure of a lab notebook vs. other types of written media (novels, screenplays, poems, etc.), a lab notebook should be readable and understandable by humans. The structure is to enhance the readability by making the information contained within more precise.
+
+In order to accomplish these goals, a lab notebook must have a precise structure. Information within the notebook should be precisely addressable. The lab notebook is a narrative log of what happens in a lab. It records the entire arc of experiments: the plan of experiments, any unique experimental apparatus configuration, experimental parameters, last-minute changes to an expreimental setup. Unexpected ways in which the experiment was carried out vs. what the experimental plan (deviations to the plan). Raw data that was collected. The location of the data (e.g. filenames, path, UIDs, etc.) for a particular experiment. Also any commentary that is necessary.
+
+Some obvious stuff: books are a finite collection of sheets of paper called pages. When referring to information in a lab book, you would refer to the specific lab book the info is in, and the specific page or range of pages.
+
+It will likely take longer than a single day to fill an entire lab notebook, so a good unique name for lab notebooks is the dat the notebook is started *and* the person to whom the notebook belongs. For example: "JRS Lab Notebook 2012.03.08". Since time moves forward, this naming scheme makes duplicate lab notebook names impossible. Including the owner of the notebook in the name gives people responsibility and traceablility: when it comes time to include authors on papers, the owner's name allows people to be cited properly. Also, it indicates the person to talk to if there are any questions about a specific experiment.
+
+Imposing this addressing scheme on lab notebooks in this way makes it easy to reference information contained in a lab notebook on a sample log sheet or other reports. In increases the auditability of the information produced by the organization.
+
+Lab notebooks can function as a type of abstract database, but they are also physical books. As such, they should include all of the organizational features that real technical boosk have evolved over the centuries: a title, a table of contents, page numbers and sectioning, and metadata. I'll take each in reverse order. Metadata is there to put the lab notebook in context: the start date gives readers a sense of a lab notebook's age and lets them put the information in context of their own understanding of history. The owner's name gives the owner responsibility for the contents of the notebook. Coordinates for the owner gives the lab notebook a fighting chance of being returned if it is lost: email, office, physical address, phone number.
+
+Sectioning means that each collection of info is uniquely bundled. Practically speaking, sectioning means each day is contained in its own entry. Every day that information is recorded, a new page in the lab notebook should be started. Each entry should have a date (YYYY-MM-DD) and a title describing the day's work Every time a new paragraph is added or a new bit of data or information is recorded, ti should be accompanied by a timestamp in 24h format (e.g. 15:27, not 3:27pm). In this way a reader can get a sense of the progression of events. Every new entry should begin on a new page, there's no advantage to trying to conserve paper in this way. Its false economy. If avoidable, entries *should not* span separate lab notebooks. If they do, make sure to include the necessary back-references.
+
+When starting a new lab notebook, reserve the first four pages for the table of contents. The actual table should have three columns: the left is the page number. Center: title of entry with sample numbers in parantheses. the right: date. The table of contents is an at-a-glance record of what is included in the notebook and makes hte reader's job of comprehending teh contents of the lab notebook much easier.
+
+Remember: you are writing your lab notebook for an audience. They will forgive incomplete sentences but won't forgive lack of structure.
+
+In order to avoid entries that span notebooks, archive your notebook when an entry cuts into the last 15 pages.
+
+Paper notebooks are better than electronic notebooks to date. Electronic notebooks have some advantages (publishing, copying) but paper's advantages outweigh them. Paper is a centuries-old technology that is eons more mature than any electronic format. Paper is malleable in that you can draw whatever you like. It is immediate: you don't have to power it up, log in, etc. so you are more likely to use it. Paper doesn't have DRM or legal restrictions/licensing fees, etc.
+
+If possible, pre-bound notebooks are preferrable to loose-leaf notebooks. Pre-bound notebooks show tampering. Also, they are better for patent claims and tech transfer (in a way that no attorney has sufficiently explained to me).
+
+Like samples and sample logs, lab notebooks should be stored in a central location. Their name should be written on their spine.
