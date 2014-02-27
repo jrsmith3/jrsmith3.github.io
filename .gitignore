@@ -12,6 +12,9 @@ obj
 # Pelican
 # =======
 output/
+*.pid
+*.pyc
+*.swp
 
 # =================================================
 # Python (from https://github.com/github/gitignore)
