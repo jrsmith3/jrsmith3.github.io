@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <title>Sample names</title>
+        <link rel="stylesheet" href="/theme/css/main.css" />
+        <link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Generic Surname Atom Feed" />
+
+        <!--[if IE]>
+            <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="/">Generic Surname </a></h1>
+                <nav><ul>
+                    <li><a href="/pages/about.html">About</a></li>
+                    <li class="active"><a href="/category/blog.html">Blog</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="/sample-names.html" rel="bookmark"
+           title="Permalink to Sample names">Sample names</a></h1>
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2014-02-21T17:17:00">
+                Fri 21 February 2014
+        </abbr>
+
+        <address class="vcard author">
+                By <a class="url fn" href="/author/joshua-ryan-smith.html">Joshua Ryan Smith</a>
+        </address>
+<p>In <a href="/category/blog.html">Blog</a>. </p>
+
+</footer><!-- /.post-info -->      <p>How should samples be named? The best answer is the simplest: with an integer. Generally speaking, so long as all samples have a unique name, the actual name is arbitrary. The real problem occurs when people try to name samples by using a contextual naming scheme, this approach always ends in ambiguity and enourages bias by focusing on the wrong thing. For example, someone may be inclined to try to include the name of hte material in the sample name, say the sample is gallium nitride on sapphire and the name is <code>GN0001</code>. This name distractingly elevates the gallium nitride part of the sample while ignoring the fac tthat the substrate is on sapphire. What happens if the substrate is SiC? What about HVPE GaN? What happens if metal is deposited on the sample or if the sample has AlGaN regrown on it? An argument could be made for all the following names for the same HEMT sample.</p>
+<p><picture></p>
+<div class="highlight"><pre><span class="o">*</span> <span class="mo">0001</span>
+<span class="o">*</span> <span class="n">GN0001</span>
+<span class="o">*</span> <span class="n">AlGaN</span><span class="o">-</span><span class="n">GaN</span><span class="o">-</span><span class="mi">500</span><span class="n">torrGaN</span><span class="o">-</span><span class="mi">100</span><span class="n">torrGaN</span><span class="o">-</span><span class="n">Nuc</span><span class="o">-</span><span class="n">Sap0001</span>
+</pre></div>
+
+
+<p>still another problem occurs: what if a sample is grown with a specific sequence of experiments in mind, but is put on a shelf for a few months. Later, its decided that the sample should be used for a different set of experiments, but the name has already been decided.</p>
+<p>The problem with every other naming scheme other than simple incremental is twofold: first, even under the best of circumstances, its very difficult to predict the trajectory of any particular sample. Second, naming schemes including anything other than an incremental interger explicity include various metadata that isn't necessariliy easily categorizable, finite, or orthogonal.</p>
+<p>Consider the GN naming scheme; there are actually two fields of information:</p>
+<div class="highlight"><pre><span class="n">GN0001</span>
+</pre></div>
+
+
+<p>Material/increment</p>
+<p>but is GN descriptive enough? Based on the above discussion, it isn't.</p>
+<p>The other inclination of people is to include the substrate in the sample name. For example:</p>
+<div class="highlight"><pre><span class="o">*</span> <span class="n">sapphire0001</span>
+<span class="o">*</span> <span class="n">SiC0001</span>
+<span class="o">*</span> <span class="n">GaN0001</span>
+</pre></div>
+
+
+<p>This approach introduces a host of new problems: is there a finite and unambiguous set of names for substrates? If not, you're hosed. What if 98% of all your samples are sapphire? Then your naming scheme includes a lot of superflous information. Finally, and worst of all, how do you deal with incrementing the samples? Does every substrate get its own set of increments?</p>
+<div class="highlight"><pre><span class="o">*</span> <span class="n">sapphire0001</span>
+<span class="o">*</span> <span class="n">sapphire0002</span>
+<span class="o">*</span> <span class="n">sapphire0003</span>
+<span class="o">*</span> <span class="n">sapphire0004</span>
+<span class="o">*</span> <span class="n">sapphire0005</span>
+<span class="o">*</span> <span class="n">SiC0001</span>
+<span class="o">*</span> <span class="n">SiC0002</span>
+<span class="o">*</span> <span class="n">GaN0001</span>
+<span class="o">*</span> <span class="n">GaN0002</span>
+<span class="o">*</span> <span class="n">GaN0003</span>
+</pre></div>
+
+
+<p>If so, it will be a nightmare trying to keep track of all these samples. If not, you are left with:</p>
+<p>sapphire0001    0001
+sapphire0002    0002
+sapphire0003    0003
+    SiC0004     0004
+        GaN0005 0005
+        GaN0006 0006
+sapphire0007    0007
+sapphire0008    0008
+        GaN0009 0009</p>
+<p>in which case the prefix of the substrate name is superfluous and we could achieve the same thing with a simple incremental integer as the sample name.</p>
+<p>The point is that the sample log necessarily records all of the infomation that would make a sample unique: the substrate, the recipe to deposit a film, etch steps, everything. There is a contextual fallacy of sample naming that is an almost invisible human weakness. A simple incremental integer naming scheme combined with a detailed sample log fully mitigates this weakness.</p>
+    </div><!-- /.entry-content -->
+
+  </article>
+</section>
+        <section id="extras" class="body">
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <li><a href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+
+                            <li><a href="http://twitter.com/joshua_r_smith">twitter</a></li>
+                            <li><a href="http://github.com/jrsmith3">github</a></li>
+                            <li><a href="mailto:joshua.r.smith@gmail.com">email</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>
