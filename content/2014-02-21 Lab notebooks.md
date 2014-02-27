@@ -3,7 +3,7 @@ Date: 2014-02-21 17:26
 Category: Blog
 Author: Joshua Ryan Smith
 Summary: Successful lab notebooks
-
+status: draft
 
 Summary
 =======
