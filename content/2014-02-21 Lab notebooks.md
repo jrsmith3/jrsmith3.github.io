@@ -10,7 +10,7 @@ Summary
 * Lab notebooks are collections of entries describing experiments performed in a lab.
 * Use a bound, paper [lab notebook](http://www.amazon.com/exec/obidos/ASIN/B00007LV4B). It needs to have page numbers.
 * Write in pen.
-* Give each new lab notebook a uniquely identifying label: <researcher's name> Lab Notebook <YYYY-MM-DD>.
+* Give each new lab notebook a uniquely identifying label: `<researcher's name> Lab Notebook <YYYY-MM-DD>`.
 * Put coordinates (email, phone, office) of the owner of the lab notebook on the cover of the notebook.
 * Create a table of contents in the front four pages.
 * Each new entry should have a date (YYYY-MM-DD), a title, and start on a new page.
@@ -66,6 +66,8 @@ After the plan comes the main record of the experiment. The goal is to note ever
 Once the experiment is over, I recommend writing a brief summary of what happened, how the results fit into your understanding of the bigger picture, and where you might go next. Again, don't short-change this subsection either. The present experiment's connection to all other aspects of your research will never be as clear in your mind as it is immediately after it is over.
 
 Despite the regimented structure I describe above, note well that above all else you are writing a narrative for an audience. Write what will be most helpful to your future readers (particularly your future self) and write it in a way that is readable (enjoyable, even). Writing good lab notebook entries is an art like all other writing exercises: you improve with practice. It is more important to write bad sentences than no sentences. Focus on recording your data and instrumentation settings accurately and eventually you will learn the appropriate level of narrative detail.
+
+(Pictures of lab notebook entry)
 
 Added Advantages
 ================
