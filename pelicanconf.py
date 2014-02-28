@@ -1,9 +1,9 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*- #
 
-AUTHOR = u'Joshua Ryan Smith'
-SITENAME = u'Generic Surname'
-SITEURL = ''
+AUTHOR = u"Joshua Ryan Smith"
+SITENAME = u"Generic Surname"
+SITEURL = u"https://jrsmith3.github.io"
 
 TIMEZONE = 'America/New_York'
 
