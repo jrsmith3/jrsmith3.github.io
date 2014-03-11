@@ -42,7 +42,7 @@ The first few things you might notice about this scheme is that this scheme does
 
 Time as an index (and other benefits)
 -------------------------------------
-The structure of the date/timestamp is a key part of this naming scheme, so I'm going to spend some time explaining the reasoning of using it. By specifying time to the resolution of minutes, one gets implicit indexing, even though the indices won't likely be sequential. I've found that sequential indexing with data filenames simply isn't that useful so long as every data file has a unique name. Moreover, manually indexing filenames is distracting for the experimenter; a small part of the experimenter's mind is occupied with the running index instead of focused on the experiment. Unless a computer is keeping track of the index, an experimenter may likely skip an index or repeat one which adds to confusion.
+The structure of the date/timestamp is a key part of this naming scheme, so I'm going to spend some time explaining the reasoning of using it. By specifying time to the resolution of minutes, one gets implicit indexing, even though the indices won't likely be sequential. I've found that sequential indexing with data filenames simply isn't that useful so long as every data file has a unique name. Moreover, manually indexing filenames is distracting for the experimenter; a small part of the experimenter's mind is occupied with the running index instead of focused on the experiment. Unless a computer is keeping track of the index, an experimenter may likely skip an index or repeat one which adds to the confusion.
 
 Typically experiments take longer than a minute to run, and so temporal resolution to the minute is usually sufficient to avoid name collisions. If higher temporal resolution is required, simply add seconds, etc. fields following the minutes.
 
@@ -58,7 +58,7 @@ The `sample` field gives the name of the sample, which should be unique. I'll wr
 
 Some advice and pitfalls to avoid
 =================================
-There were a few design criteria I was hoping to meet with this naming scheme. I wanted to have a rubric to generate a filename that were guaranteed to be unique. I also wanted to build in enough information so that a person could have a good idea of the contents and context of the file simply by looking at the name. Of course, you could always add even more metadata, but at some point the length of the filename will be unweildy and people won't follow the convention. To that end, the final design criterion was a convention that was long enough to be sufficiently descriptive, yet short enough that people would still use it. I would recommend that you not add additional metadata fields to this scheme.
+There were a few design criteria I was hoping to meet with this naming scheme. I wanted to have a rubric to generate a filename that was guaranteed to be unique. I also wanted to build in enough information so that a person could have a good idea of the contents and context of the file simply by looking at the name. Of course, you could always add even more metadata, but at some point the length of the filename will be unweildy and people won't follow the convention. To that end, the final design criterion was a convention that was long enough to be sufficiently descriptive, yet short enough that people would still use it. I would recommend that you not add additional metadata fields to this scheme.
 
 One last piece of advice, I recommend using all lowercase letters in your filenames.
 

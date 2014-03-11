@@ -13,13 +13,13 @@ Summary
 * Put coordinates (email, phone, office) of the owner of the lab notebook on the cover of the notebook.
 * Create a table of contents in the front four pages.
 * Each new entry should have a date (YYYY-MM-DD), a title, and start on a new page.
-* Entries should start with a plan of the experiments to be performed, contain notes and data as the experiment is performed, and at then end have a reflection of the experiment just performed.
+* Entries should start with a plan of the experiments to be performed, contain notes and data as the experiment is performed, and at the end have a reflection of the experiment just performed.
 
 Introduction
 ============
 Here are some notes on how to maintain a lab notebook based on my experience as a working scientist. I've found that this approach increases the value of my lab notebooks by giving a structure to the information I'm recording so I can spend more time thinking about the experiments I'm doing instead of what I should or shouldn't be writing down. Also, this system makes all the information recorded in your lab notebooks addressable and therefore easily cross-referenced. Finally, the information is recorded at several levels of detail, increasing the findability and contextualization of specific bits of information.
 
-Lab notebooks are where the realtime narrative of science is recorded. Lab notebooks are indeed narrative, but have a partular structure so that people can understand the important details and sequence of scientific events at a later date (note "people" includes the person who wrote the notes). The lab notebook should be written in such a way that even years or decades later, a reader can reliably reconstruct the events. The structure is to enhance the readability by making the information contained within more precise.
+Lab notebooks are where the realtime narrative of science is recorded. Lab notebooks are indeed narrative, but have a particular structure so that people can understand the important details and the sequence of scientific events at a later date (note "people" includes the person who wrote the notes). The lab notebook should be written in such a way that even years or decades later, a reader can reliably reconstruct the events. The structure serves to enhance the readability by making the information contained within more precise.
 
 Lab notebooks should include all of the organizational features that real technical books have evolved over the centuries: a name (a.k.a. title), a table of contents, and sectioning. The fundamental unit of a lab notebook is the entry.
 
