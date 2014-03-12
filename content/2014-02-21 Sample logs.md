@@ -9,16 +9,20 @@ Summary
 * Sample logs are necessary, especially if sample processing/analysis steps are preformed by different people.
 * The fundamental unit of a sample log is an entry.
 * Entries should be recorded at the time of event, not before or after.
-* Each entry should record a date/time stamp in [YYYY-MM-DD HH:MM format](https://en.wikipedia.org/wiki/ISO_8601), event name, brief description, and cross-references -- particularly lab notebooks and computer data files.
+* Each entry should record a date/time stamp in [YYYY-MM-DD HH:MM format](https://en.wikipedia.org/wiki/ISO_8601), the event name, a brief description, and cross-references -- particularly lab notebooks and computer data files.
 * Here's a [PDF sample log](https://github.com/jrsmith3/sample_log) you can print and use.
 
 Introduction
 ============
-A sample log is a record of all the events that a sample experiences. Samplel logs are just as necessary as lab notebooks because they capture a set of information that simply isn't captured in a lab notebook. The necessity of such a record is particularly clear in projects where samples undergo process and analysis steps by many different people.
+A sample log is a record of all the events that a sample experiences. Sample logs are just as necessary as lab notebooks because they capture a set of information that simply isn't captured in a lab notebook. The necessity of such a record is particularly clear in projects where samples undergo process and analysis steps by many different people.
 
-In contrast to a lab notbook, a sample log won't contain a long narrative description of an experiment; it only contains a list of brief records of every event the sample experiences. Each entry contains the bare minimum amount of information with generous cross-referencing to the relevant lab notebooks and computer data files. Because the samplel log and lab notebook contain different types of information and serve different purposes, they are good compliments to one another. The information in one is enhanced by the information in the other.
+You may think, "What purpose does a sample log serve? Isn't this information contained in lab notebooks?" A sample log provides a concentrated and comprehensive record of all the events a sample experiences, foregoing detailed description for cross-referencing. A glance at a sample log provides the reader the lifecycle of the sample with cross-references the reader can follow to understand more detail. There is not another source of information that provides these features. 
 
-Samples tend to move from place to place and from person to person having complex and eventful lifecycles. The sample log is not a prescription; it doesn't tell where the sample is going, only where the sample has been. The sample log is also not a lab notebook; we forego the full details of the history of the sample in order to get a digestable sense of the sample's history. Sample llogs work as a compliment to lab notebooks and data as a brief record of all the events a sample has experienced, whereas lab notebooks contained detailed descrptions of those events.
+In contrast to a lab notbook, a sample log won't contain a long narrative description of an experiment; it only contains a list of brief records of every event the sample experiences. Each entry contains the bare minimum amount of information with generous cross-referencing to the relevant lab notebooks and computer data files. 
+
+Sample logs and lab notebooks are good compliments to one another since they contain different types of information and serve different purposes -- the information in one is enhanced by the information in the other. In principle, a sample log could be constructed from the entries in a lab notebook, but in practice this task would be very time consuming -- especially since the records are likely split over multiple lab notebooks belonging to multiple people.
+
+Samples tend to move from place to place and from person to person; they have complex and eventful lifecycles. The sample log is not a prescription; it doesn't tell where the sample is going, only where the sample has been. 
 
 Sample logs have two components: metadata and the list of entries.
 
@@ -43,12 +47,6 @@ Exmample
 A sample log should be started every time a sample is created. You may wonder, what is a sample? In the type of science I do, a sample is an individual piece of material. Therefore, if a film is grown on a 2" sapphire wafer, that whole 2" wafer is a sample. I would suggest thinking of the virgin wafer as received from teh manufacterer as a sample, any film deposited on it would generate records in its sample log, as well as the grower's lab notebook, and likely computer files. Lets say that example 2" sapphire wafer is named "0001". When sample 0001 is removed from the supplier's package, it's sample log is created and the metadata recorded. If sample 0001 is diced into four separate pieces, sample 0001 ceases to exist and four new samples have been created, perhaps named 0001-1, 0001-2, 0001-3, and 0001-4. 
 
 I have a [repository](https://github.com/jrsmith3/sample_log) on github which contains a sample log that can be printed.
-
-What purpose does a sample log serve?
-=====================================
-A sample log provides a concentrated record of all the events a sample experiences, foregoing detailed description for cross-referencing. A brief look at a sample log provides the reader the lifecycle of the sample with references the reader can follow to unerstand more detail. In the space of a few pages and the span of a few minutes, the reader of the sample log will have a good idea of the trajectory of the sample's life.
-
-A sample log gives a comprehensive overview of a sample's life without extraneous detail but with sufficient cross-referencing to find out more. There is not another source of information that provides these features. In principle, a sample log could be constructed from the entries in a lab notebook, but in practice this task would be very time consuming -- especially since the records are likely split over multiple lab notebooks belonging to multiple people. This scenario is common in projects where sample handling, processing, and analysis is done by a group of people.
 
 Tips
 ====
