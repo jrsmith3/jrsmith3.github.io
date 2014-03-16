@@ -1,0 +1,3 @@
+[submodule "cv"]
+	path = cv
+	url = git@github.com:jrsmith3/cv.git
