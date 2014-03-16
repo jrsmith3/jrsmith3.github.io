@@ -3,7 +3,7 @@
 
 AUTHOR = u"Joshua Ryan Smith"
 SITENAME = u"Generic Surname"
-SITEURL = u"https://jrsmith3.github.io"
+# SITEURL = u"https://jrsmith3.github.io"
 
 TIMEZONE = 'America/New_York'
 
