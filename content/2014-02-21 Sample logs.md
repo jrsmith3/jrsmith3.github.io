@@ -39,16 +39,16 @@ Entries
 =======
 Entries are the fundamental unit of the sample log. Every time the sample experiences an event, an entry should be recorded. Each entry should have four components: date/time stamp, event name, brief description, and cross-reference. Entries should be recorded in pen. Each entry should be recorded on a new line.
 
-(picture of sample log entries on a p1 of the PDF)
+(picture of sample log entries on a p1 of the PDF)  
 (picture of sample log entries on a p1+n of the PDF)
 
 Date/time stamp
 ---------------
-Each entry should have a date and time in [YYYY-MM-DD HH:MM format](http://en.wikipedia.org/wiki/ISO_8601). The time should be in 24-hour format; this format eliminates ambiguity. It is equally plausible that "8:45" refers to something that happened in the morning or the evening. On the other hand, "20:45" can only mean the evening.
+Each entry should have a date and time in [YYYY-MM-DD HH:MM format](http://en.wikipedia.org/wiki/ISO_8601). The time should be in 24-hour format which eliminates ambiguity. It is equally plausible that "8:45" refers to something that happened in the morning or the evening. On the other hand, "20:45" can only mean the evening.
 
 Event name
 ----------
-The entry should name the event. Obviously, events that change the nature of the sample should be recorded: material deposition, material removal, annealing, and things of that sort. Additionally, experiments that characterize the sample should also be recorded: XPS, AFM, XRD, electronic characterization of devices, etc. Third, it is generally useful to record the location of the sample: mounting to a sample holder, loading and unloading into an instrument, etc.
+The entry should name the event. Obviously, events that change the nature of the sample should be recorded: material deposition, material removal, annealing, and things of that sort. Additionally, experiments that characterize the sample should also be recorded: e.g. [XPS](http://en.wikipedia.org/wiki/X-ray_photoelectron_spectroscopy), [AFM](http://en.wikipedia.org/wiki/atomic_force_microscope), [XRD](http://en.wikipedia.org/wiki/x-ray_diffraction), I-V characterization of devices, etc. Third, it is generally useful to record the location of the sample: mounting to a sample holder, loading and unloading into an instrument, etc.
 
 Event description
 -----------------
@@ -56,7 +56,9 @@ Every entry should also include any necessary, but brief, description. The descr
 
 Cross-reference
 ---------------
-Finally, the records should have a cross-reference, if applicable. Since the sample log should not be used as a lab notebook, the reference field should include a full cross-reference to a lab notebook and page number, e.g. `JRS Lab Notebook 2014-02-27 p14`. Additionally, since most instruments record data in a computer file, the reference field should include a cross-reference to the computer file(s). For example, `20140217-2355_stm_0001_jrs.dat`. Many times, an entry will have multiple cross-references. For example, the cross-reference for the lab notebook in which the experiment is recorded (`JRS Lab Notebook 2014-03-13 p17`), the data file used to initialize the instrument (`20110827-1310_ebeam-init_jrs.dat`), and the data file produced during the experiment (`20140313-0903_ebeam_jrs0001_jrs.dat`).
+Finally, the records should have one or more cross-references, if applicable. Cross-references usually point to a page in a lab notebook or a filename. Since your lab notebook has a [unique name](https://jrsmith3.github.io/http://localhost:8000/effective-lab-notebooks.html), the cross-reference might look something like `JRS Lab Notebook 2014-02-27 p14`. If the event you are recording results in a computer data file, the cross-reference to the [uniquely named](https://jrsmith3.github.io/naming-files-uniquely-to-reduce-confusion.html) computer file might look like `20140217-2355_stm_0001_jrs.dat`. 
+
+Many times, an entry will have multiple cross-references. Put each cross-reference on a new line.
 
 (picture of multiple cross-references)
 
