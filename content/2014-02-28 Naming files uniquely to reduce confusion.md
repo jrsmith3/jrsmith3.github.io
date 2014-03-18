@@ -2,6 +2,7 @@ Title: Naming files uniquely to reduce confusion
 Date: 2014-02-28 23:21
 Category: Blog
 Author: Joshua Ryan Smith
+Summary: How to choose metadata-rich, unique filenames.
 
 Summary
 =======
