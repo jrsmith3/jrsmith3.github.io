@@ -1,3 +1,3 @@
-[submodule "cv"]
-	path = cv
-	url = git@github.com:jrsmith3/cv.git
+[submodule "cait"]
+	path = cait
+	url = git@github.com:hdra/pelican-cait.git

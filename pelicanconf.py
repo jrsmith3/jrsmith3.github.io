@@ -21,3 +21,4 @@ SOCIAL = (('twitter', 'http://twitter.com/joshua_r_smith'),
           ('email', 'mailto:joshua.r.smith@gmail.com'))
 
 DEFAULT_PAGINATION = False
+THEME = "cait"
