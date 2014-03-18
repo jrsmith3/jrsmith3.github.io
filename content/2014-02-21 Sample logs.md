@@ -27,16 +27,16 @@ Sample logs and lab notebooks are good compliments to one another since they con
 
 Sample logs are composed of two components: metadata and the list of entries.
 
-Metadata
-========
+Sample log metadata
+===================
 The metadata section contains information about the sample. Obviously, the sample log should include the sample's name. The sample's name should be unique (a method for choosing unique sample names will appear in a later post). Using unique names for samples gives you the added bonus of getting a unique name for your sample log.
 
 Beyond sample name, required metadata depends on the needs of individual labs. I've found it useful to record the size of the sample, the substrate, the manufacturer/supplier, and the manufacturer's metadata (lot number, etc.). Doping, structure, etc. is appropriate to record here.
 
 (Picture of metadata fields of a sample log)
 
-Entries
-=======
+Sample log entries
+==================
 Entries are the fundamental unit of the sample log. Every time the sample experiences an event, an entry should be recorded. Each entry should have four components: date/time stamp, event name, brief description, and cross-reference. Entries should be recorded in pen. Each entry should be recorded on a new line.
 
 (picture of sample log entries on a p1 of the PDF)  
