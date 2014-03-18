@@ -1,8 +1,8 @@
-Title: Sample logs
+Title: Sample logs - the secret to managing multi-person projects
 Date: 2014-03-18 16:28
 Category: Blog
 Author: Joshua Ryan Smith
-
+Summary: How and why to keep sample logs to manage multi-person projects.
 
 Summary
 =======
