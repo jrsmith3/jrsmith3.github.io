@@ -16,9 +16,11 @@ DEFAULT_LANG = u'en'
 #           ('You can modify those links in your config file', '#'),)
 
 # Social widget
-SOCIAL = (('twitter', 'http://twitter.com/joshua_r_smith'),
-          ('github', 'http://github.com/jrsmith3'),
-          ('email', 'mailto:joshua.r.smith@gmail.com'))
+SOCIAL = (('twitter', 'https://twitter.com/joshua_r_smith'),
+          ('github', 'https://github.com/jrsmith3'),)
+
+CONTACT_EMAIL = "joshua.r.smith@gmail.com"
+CONTACTS = SOCIAL
 
 DEFAULT_PAGINATION = False
 THEME = "cait"
