@@ -21,7 +21,9 @@ Summary
 
 Introduction
 ============
-A sample log is a record of all the events that a sample experiences. Sample logs are just as necessary as lab notebooks because they capture a set of information that simply isn't captured in a lab notebook. The necessity of such a record is particularly clear in projects where samples undergo process and analysis steps by many different people. Samples tend to move from place to place and from person to person; they have complex and eventful lifecycles. 
+A sample log is a record of all the events that a sample experiences. Sample logs are just as necessary as lab notebooks because they capture a set of information that simply isn't captured in a lab notebook. The necessity of such a record is particularly clear in projects where samples undergo process and analysis steps by many different people. Samples tend to move from place to place and from person to person; they have complex and eventful lifecycles.
+
+(Picture of a sample log)
 
 You may think, "What purpose does a sample log serve? Isn't this information contained in lab notebooks?" In contrast to a lab notbook, a sample log won't contain a long narrative description of an experiment; it only contains a list of brief records of every event the sample experiences. Each entry contains the bare minimum amount of information with generous cross-referencing to the relevant lab notebooks and computer data files. In this way a reader of the sample log can comprehend the entire lifecycle of a sample, and the reader can follow the cross-references to find more details about particular events. There is not another source of information that provides these features. 
 
