@@ -1,40 +1,63 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-        <meta charset="utf-8" />
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <title>Generic Surname</title>
-        <link rel="stylesheet" href="http://jrsmith3.github.io/theme/css/main.css" />
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width">
+            <link rel="stylesheet" href="http://jrsmith3.github.io/theme/css/normalize.css">
+        <link href='//fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
+        <link href='//fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=PT+Mono' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="http://jrsmith3.github.io/theme/css/font-awesome.min.css">
+        <link rel="stylesheet" href="http://jrsmith3.github.io/theme/css/main.css">
+
+    <link rel="stylesheet" href="http://jrsmith3.github.io/theme/css/blog.css">
+    <link rel="stylesheet" href="http://jrsmith3.github.io/theme/css/github.css">
         <link href="http://jrsmith3.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Generic Surname Atom Feed" />
-
-        <!--[if IE]>
-            <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <script src="http://jrsmith3.github.io/theme/js/vendor/modernizr-2.6.2.min.js"></script>
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
         <![endif]-->
-</head>
 
-<body id="index" class="home">
-        <header id="banner" class="body">
-                <h1><a href="http://jrsmith3.github.io/">Generic Surname </a></h1>
-                <nav><ul>
-                    <li><a href="http://jrsmith3.github.io/pages/about.html">About</a></li>
-                    <li><a href="http://jrsmith3.github.io/pages/curriculum-vitae.html">Curriculum Vitae</a></li>
-                    <li><a href="http://jrsmith3.github.io/category/blog.html">Blog</a></li>
-                </ul></nav>
-        </header><!-- /#banner -->
-
-            <aside id="featured" class="body">
-                <article>
-                    <h1 class="entry-title"><a href="http://jrsmith3.github.io/naming-files-uniquely-to-reduce-confusion.html">Naming files uniquely to reduce confusion</a></h1>
-<footer class="post-info">
-        <abbr class="published" title="2014-02-28T23:21:00">
-                Fri 28 February 2014
-        </abbr>
-
-        <address class="vcard author">
-                By <a class="url fn" href="http://jrsmith3.github.io/author/joshua-ryan-smith.html">Joshua Ryan Smith</a>
-        </address>
-<p>In <a href="http://jrsmith3.github.io/category/blog.html">Blog</a>. </p>
-
-</footer><!-- /.post-info --><h1>Summary</h1>
+        <div id="wrapper">
+<header id="sidebar" class="side-shadow">
+    <hgroup id="site-header">
+        <a id="site-title" href="http://jrsmith3.github.io"><h1><i class="icon-coffee"></i> Generic Surname</h1></a>
+        <p id="site-desc"></p>
+    </hgroup>
+    <nav>
+        <ul id="nav-links">
+                <li><a href="http://jrsmith3.github.io/pages/about.html">About</a></li>
+                <li><a href="http://jrsmith3.github.io/pages/curriculum-vitae.html">Curriculum Vitae</a></li>
+        </ul>
+    </nav>
+<footer id="site-info">
+    <p>
+        Proudly powered by <a href="http://getpelican.com/">Pelican</a> and <a href="http://python.org/">Python</a>. Theme by<a href="https://github.com/hdra/pelican-cait">hndr</a>.
+    </p>
+    <p>
+        Textures by <a href="http://subtlepatterns.com/">Subtle Pattern</a>. Font Awesome by <a href="http://fortawesome.github.io/Font-Awesome/">Dave Grandy</a>.
+    </p>
+</footer></header>
+    <div id="post-container">
+        <ol id="post-list">
+            <li>
+                <article class="post-entry">
+                    <header class="entry-header">
+                        <time class="post-time" datetime="2014-02-28T23:21:00" pubdate>
+                            Fri 28 February 2014
+                        </time>
+                        <a href="http://jrsmith3.github.io/naming-files-uniquely-to-reduce-confusion.html" rel="bookmark"><h1>Naming files uniquely to reduce confusion</h1></a>
+                    </header>
+                    <section class="post-content">
+                        <h1>Summary</h1>
 <ul>
 <li>Every filename should be unique.</li>
 <li>
@@ -47,130 +70,50 @@
 </li>
 </ul>
 <h1>Introduction</h1>
-<p>It seems like most groups have an ad-hoc and byzantine approach to managing computer data files that are generated by instruments in the course of research. Different researchers often have conflicting categorizational schemes using many levels of nested folders. These schemes likely aren't even self-consistent. Various versions of data are scattered across many different computers and have inconsistent names, all of which are at various stages of analysis or processing. Some are in the original format, some have been combined with other data files in MS Excel sheets, and the original pristine copies of some have been overwritten during processing.</p>
-<p>Herein I describe a scheme to eliminate those problems I just described that are caused by non-uniform or conflicting naming schemes for computer data files. This scheme will work for a small group (10 to 20 people, perhaps more). This scheme assumes the files aren't too big, tens to perhaps a few hundred <a href="https://en.wikipedia.org/wiki/MiB">MiB</a> on the high end, and that up to tens of data files are produced per day. This scheme is based on the use of unique identifiers (UIDs) and combinations of disjoint sets of metadata.</p>
-<h1>File naming</h1>
-<p>The nut; files should be named using the following format:</p>
-<p><code>YYYYMMDD-HHMM_experiment_sample_experimenter.extension</code></p>
-<p>Filenames are thus constructed from several pieces of disjoint kinds of metadata, separated by the underscore (_) character. Each component is described below:</p>
-<ul>
-<li>YYYY: four-digit year (e.g. 2014, not 14)</li>
-<li>MM: two-digit month (e.g. 02, not 2)</li>
-<li>DD: two-digit day (e.g. 05, not 5)</li>
-<li>HH: two-digit hour in 24 hour format (e.g. 14, not 2pm. 09, not 9.)</li>
-<li>MM: two-digit minute</li>
-<li>experiment: name of technique (e.g. xps, afm, iv, etc.)</li>
-<li>sample: unique identifier of the sample</li>
-<li>experimenter: initials of the person who took the data (e.g. jrs).</li>
-<li>extension: the file extension (e.g. .tif, .dat).</li>
-</ul>
-<p>The first few things you might notice about this scheme is that this scheme does not use an index; in other words, there's no xps0001.dat, xps0002.dat, etc. Also, the date goes year-month-day instead of month-day-year like many Americans are used to. Finally, this scheme seems like it will produce long filenames.</p>
-<h2>Time as an index (and other benefits)</h2>
-<p>The structure of the date/timestamp is a key part of this naming scheme, so I'm going to spend some time explaining the reasoning of using it. By specifying time to the resolution of minutes, one gets implicit indexing, even though the indices won't likely be sequential. I've found that sequential indexing with data filenames simply isn't that useful so long as every data file has a unique name. Moreover, manually indexing filenames is distracting for the experimenter; a small part of the experimenter's mind is occupied with the running index instead of focused on the experiment. Unless a computer is keeping track of the index, an experimenter may likely skip an index or repeat one which adds to the confusion.</p>
-<p>Typically experiments take longer than a minute to run, and so temporal resolution to the minute is usually sufficient to avoid name collisions. If higher temporal resolution is required, simply add seconds, etc. fields following the minutes.</p>
-<p>The order of the temporal denominations are important as well, and go from largest to smallest denomination of time. This ordering is based on the <a href="http://en.wikipedia.org/wiki/ISO_8601">ISO 8601 standard</a>. The use of 24-hour clock format reduces ambiguity and saves an extra character or two in filename length (am vs. pm). Formatting the date and time in this way is precise and unambiguous, which should be the aspiration of a scientist.</p>
-<p>Writing the date/timestamp in this way and putting it at the beginning of the filename yields the benefit that most computers will end up displaying the filenames sorted chronologically by default. Contrast this chronological sorting with the default sorting that would occur if the date was written MM-DD-YY or even MM-DD-YYYY.</p>
-<h2>The non-temporal metadata parts of the filename</h2>
-<p>The rest of the filename is composed of a few other bits of metadata. The <code>experiment</code> field is necessary because the filename extension may not give enough information to determine it. For example, our scanning electron microscope generates <a href="http://en.wikipedia.org/wiki/Tagged_Image_File_Format">tiff</a> files, regardless of if it was imaging in <a href="http://en.wikipedia.org/wiki/Scanning_electron_microscope#Detection_of_secondary_electrons">secondary electron mode</a>, <a href="http://en.wikipedia.org/wiki/Scanning_electron_microscope#Detection_of_backscattered_electrons">backscatter mode</a>, <a href="http://en.wikipedia.org/wiki/Electron_beam-induced_current">EBIC</a>, or some other mode. I recommend trying to use no more than a three or four character string for the technique.</p>
-<p>The <code>sample</code> field gives the name of the sample, which should be unique. I'll write more on choosing unique sample names later. The <code>experimenter</code> field is useful for two reasons. First: attribution. Someone preparing a manuscript for publication can easily determine who contributed the data if this field is present in the filename. Second: responsibility. If this field is present, someone analyzing the data can track down the person who took the data and ask them questions.</p>
-<h1>Some advice and pitfalls to avoid</h1>
-<p>There were a few design criteria I was hoping to meet with this naming scheme. I wanted to have a rubric to generate a filename that was guaranteed to be unique. I also wanted to build in enough information so that a person could have a good idea of the contents and context of the file simply by looking at the name. Of course, you could always add even more metadata, but at some point the length of the filename will be unweildy and people won't follow the convention. To that end, the final design criterion was a convention that was long enough to be sufficiently descriptive, yet short enough that people would still use it. I would recommend that you not add additional metadata fields to this scheme.</p>
-<p>One last piece of advice, I recommend using all lowercase letters in your filenames.</p>
-<p>A big advantage of this scheme is that it allows you to leverage the search functionality of your operating system. For example, you could easily find all of the AFM images taken by me by searching for "afm" and "jrs". Additionally, it is simple to break apart the filename into useful metadata.</p>
-<h1>Dealing with old OSs that don't support long filenames</h1>
-<p>Many labs have old, but perfectly usable instruments that are controlled by old computers. Depending on the age, the operating system may not support long filenames. In this case, the file naming format I suggest won't work. In this case, I recommend using a nested directory structure to capture the full set of metadata -- just reverse the order of the metadata components.</p>
-<p><code>experimenter/sample/experiment/YYYYMMDD/HHMM.extension</code></p>
-<p>It probably occurs to you that you wouldn't want a heterogeneous system containing short filename files within the nested directory structure along with the long filename files. In a future post I will discuss a computer data file workflow to deal with the issues that such a heterogeneous system would create.</p><p>There are <a href="http://jrsmith3.github.io/naming-files-uniquely-to-reduce-confusion.html#disqus_thread">comments</a>.</p>                </article>
-            </aside><!-- /#featured -->
-                <section id="content" class="body">
-                    <h1>Other articles</h1>
-                    <hr />
-                    <ol id="posts-list" class="hfeed">
+<p>It seems like most groups have an ad-hoc and ...</p>
+                    </section>
+                </article>
+            </li>
+            <hr/>
+            <li>
+                <article class="post-entry">
+                    <header class="entry-header">
+                        <time class="post-time" datetime="2014-02-27T22:50:00" pubdate>
+                            Thu 27 February 2014
+                        </time>
+                        <a href="http://jrsmith3.github.io/effective-lab-notebooks.html" rel="bookmark"><h1>Effective Lab Notebooks</h1></a>
+                    </header>
+                    <section class="post-content">
+                        <p>Successful lab notebooks</p>
+                    </section>
+                </article>
+            </li>
+            <hr/>
+            <li>
+                <article class="post-entry">
+                    <header class="entry-header">
+                        <time class="post-time" datetime="2013-09-10T17:37:00" pubdate>
+                            Tue 10 September 2013
+                        </time>
+                        <a href="http://jrsmith3.github.io/hello-world.html" rel="bookmark"><h1>Hello World</h1></a>
+                    </header>
+                    <section class="post-content">
+                        <p>Introductions</p>
+                    </section>
+                </article>
+            </li>
+            <hr/>
+        </ol>
 
-            <li><article class="hentry">
-                <header>
-                    <h1><a href="http://jrsmith3.github.io/effective-lab-notebooks.html" rel="bookmark"
-                           title="Permalink to Effective Lab Notebooks">Effective Lab Notebooks</a></h1>
-                </header>
+    </div>
+        </div>
 
-                <div class="entry-content">
-<footer class="post-info">
-        <abbr class="published" title="2014-02-27T22:50:00">
-                Thu 27 February 2014
-        </abbr>
-
-        <address class="vcard author">
-                By <a class="url fn" href="http://jrsmith3.github.io/author/joshua-ryan-smith.html">Joshua Ryan Smith</a>
-        </address>
-<p>In <a href="http://jrsmith3.github.io/category/blog.html">Blog</a>. </p>
-
-</footer><!-- /.post-info -->                <p>Successful lab notebooks</p>
-                <a class="readmore" href="http://jrsmith3.github.io/effective-lab-notebooks.html">read more</a>
-<p>There are <a href="http://jrsmith3.github.io/effective-lab-notebooks.html#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
-            </article></li>
-
-            <li><article class="hentry">
-                <header>
-                    <h1><a href="http://jrsmith3.github.io/hello-world.html" rel="bookmark"
-                           title="Permalink to Hello World">Hello World</a></h1>
-                </header>
-
-                <div class="entry-content">
-<footer class="post-info">
-        <abbr class="published" title="2013-09-10T17:37:00">
-                Tue 10 September 2013
-        </abbr>
-
-        <address class="vcard author">
-                By <a class="url fn" href="http://jrsmith3.github.io/author/joshua-ryan-smith.html">Joshua Ryan Smith</a>
-        </address>
-<p>In <a href="http://jrsmith3.github.io/category/blog.html">Blog</a>. </p>
-
-</footer><!-- /.post-info -->                <p>Introductions</p>
-                <a class="readmore" href="http://jrsmith3.github.io/hello-world.html">read more</a>
-<p>There are <a href="http://jrsmith3.github.io/hello-world.html#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
-            </article></li>
-            </ol><!-- /#posts-list -->
-            </section><!-- /#content -->
-        <section id="extras" class="body">
-                <div class="social">
-                        <h2>social</h2>
-                        <ul>
-                            <li><a href="http://jrsmith3.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
-
-                            <li><a href="http://twitter.com/joshua_r_smith">twitter</a></li>
-                            <li><a href="http://github.com/jrsmith3">github</a></li>
-                            <li><a href="mailto:joshua.r.smith@gmail.com">email</a></li>
-                        </ul>
-                </div><!-- /.social -->
-        </section><!-- /#extras -->
-
-        <footer id="contentinfo" class="body">
-                <address id="about" class="vcard body">
-                Proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
-                </address><!-- /#about -->
-
-                <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
-        </footer><!-- /#contentinfo -->
-
-    <script type="text/javascript">
-    var _gaq = _gaq || [];
-    _gaq.push(['_setAccount', 'UA-1567200-4']);
-    _gaq.push(['_trackPageview']);
-    (function() {
-        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-    })();
-    </script>
-<script type="text/javascript">
-    var disqus_shortname = 'genericsurname';
-    (function () {
-        var s = document.createElement('script'); s.async = true;
-        s.type = 'text/javascript';
-        s.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
-        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
-    }());
+<script>
+    var _gaq=[['_setAccount','UA-1567200-4'],['_trackPageview']];
+    (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+    g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+    s.parentNode.insertBefore(g,s)}(document,'script'));
 </script>
-</body>
+        <script src="http://jrsmith3.github.io/theme/js/main.js"></script>
+    </body>
 </html>

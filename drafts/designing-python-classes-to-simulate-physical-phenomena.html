@@ -1,45 +1,65 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-        <meta charset="utf-8" />
-        <title>Designing python classes to simulate physical phenomena</title>
-        <link rel="stylesheet" href="http://jrsmith3.github.io/theme/css/main.css" />
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>    Designing python classes to simulate physical phenomena
+</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width">
+            <link rel="stylesheet" href="http://jrsmith3.github.io/theme/css/normalize.css">
+        <link href='//fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
+        <link href='//fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=PT+Mono' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="http://jrsmith3.github.io/theme/css/font-awesome.min.css">
+        <link rel="stylesheet" href="http://jrsmith3.github.io/theme/css/main.css">
+
+    <link rel="stylesheet" href="http://jrsmith3.github.io/theme/css/blog.css">
+    <link rel="stylesheet" href="http://jrsmith3.github.io/theme/css/github.css">
         <link href="http://jrsmith3.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Generic Surname Atom Feed" />
-
-        <!--[if IE]>
-            <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <script src="http://jrsmith3.github.io/theme/js/vendor/modernizr-2.6.2.min.js"></script>
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
         <![endif]-->
-</head>
 
-<body id="index" class="home">
-        <header id="banner" class="body">
-                <h1><a href="http://jrsmith3.github.io/">Generic Surname </a></h1>
-                <nav><ul>
-                    <li><a href="http://jrsmith3.github.io/pages/about.html">About</a></li>
-                    <li><a href="http://jrsmith3.github.io/pages/curriculum-vitae.html">Curriculum Vitae</a></li>
-                    <li class="active"><a href="http://jrsmith3.github.io/category/blog.html">Blog</a></li>
-                </ul></nav>
-        </header><!-- /#banner -->
-<section id="content" class="body">
-  <article>
-    <header>
-      <h1 class="entry-title">
-        <a href="http://jrsmith3.github.io/designing-python-classes-to-simulate-physical-phenomena.html" rel="bookmark"
-           title="Permalink to Designing python classes to simulate physical phenomena">Designing python classes to simulate physical phenomena</a></h1>
-    </header>
+        <div id="wrapper">
+<header id="sidebar" class="side-shadow">
+    <hgroup id="site-header">
+        <a id="site-title" href="http://jrsmith3.github.io"><h1><i class="icon-coffee"></i> Generic Surname</h1></a>
+        <p id="site-desc"></p>
+    </hgroup>
+    <nav>
+        <ul id="nav-links">
+                <li><a href="http://jrsmith3.github.io/pages/about.html">About</a></li>
+                <li><a href="http://jrsmith3.github.io/pages/curriculum-vitae.html">Curriculum Vitae</a></li>
+        </ul>
+    </nav>
+<footer id="site-info">
+    <p>
+        Proudly powered by <a href="http://getpelican.com/">Pelican</a> and <a href="http://python.org/">Python</a>. Theme by<a href="https://github.com/hdra/pelican-cait">hndr</a>.
+    </p>
+    <p>
+        Textures by <a href="http://subtlepatterns.com/">Subtle Pattern</a>. Font Awesome by <a href="http://fortawesome.github.io/Font-Awesome/">Dave Grandy</a>.
+    </p>
+</footer></header>
+    <div id="post-container">
+        <ol id="post-list">
+            <li>
+                <article class="post-entry">
+                    <header class="entry-header">
+                        <time class="post-time" datetime="2013-10-08T18:58:00" pubdate>
+                            Tue 08 October 2013
+                        </time>
+                        <a href="http://jrsmith3.github.io/designing-python-classes-to-simulate-physical-phenomena.html" rel="bookmark"><h1>Designing python classes to simulate physical phenomena</h1></a>
+                    </header>
 
-    <div class="entry-content">
-<footer class="post-info">
-        <abbr class="published" title="2013-10-08T18:58:00">
-                Tue 08 October 2013
-        </abbr>
-
-        <address class="vcard author">
-                By <a class="url fn" href="http://jrsmith3.github.io/author/joshua-ryan-smith.html">Joshua Ryan Smith</a>
-        </address>
-<p>In <a href="http://jrsmith3.github.io/category/blog.html">Blog</a>. </p>
-
-</footer><!-- /.post-info -->      <p>Designing software to simulate physical phenomena is a nuanced art. Design decisions made early in the development process can have lasting negative consequences: the scientist software developer can back themself into a corner where making small changes or extension to the functionality require enormous efforts on the part of the developer. These decisions can result in the code evolving to be brittle and difficult to maintain. If the developer had knowledge of how the code should look from the outset, this wouldn't be much of a problem. Unfortunately, no one can predict the future, so software designers must rely on intuition gained from experience.</p>
+                    <section class="post-content">
+                        <p>Designing software to simulate physical phenomena is a nuanced art. Design decisions made early in the development process can have lasting negative consequences: the scientist software developer can back themself into a corner where making small changes or extension to the functionality require enormous efforts on the part of the developer. These decisions can result in the code evolving to be brittle and difficult to maintain. If the developer had knowledge of how the code should look from the outset, this wouldn't be much of a problem. Unfortunately, no one can predict the future, so software designers must rely on intuition gained from experience.</p>
 <p>In this essay I will describe some design patterns I've found to be useful when writing code to simulate physical phenomena. These are simulations that do not require massive amounts of computational resources. In this essay, I assume the reader already follows good software development practices: they use version control, an issue tracker, they write documentation for their modules, classes, methods, etc. They write good tests.</p>
 <p>I write code in python, so all the examples in this essay are in python. I also assume the reader is familiar with programming -- this essay is not a tutorial on python.</p>
 <p>One of the foundational ideas is tto capture the problem in teh framework of object oriented programming. I've found that the fact that objects combine both data and functionality is an effective way to logically group the physical phenomena of interest (e.g. momentum, electron concentration, current density -- things that can be calculated using methods) together with the with the quantities on which those phenomena depend (mass, electron charge -- things that can be represented by class attributes). Many times, after the initial code has been written and hte original calculation has been performed, you discover that you want to perform a slightly different calculation. When code is written in the object-oriented framework, you simply add another method to the class definition. Any code that handles the data, loads, writes, etc. is already there. There are software developers out there whos skills are far superior to mine who are against OOP. Frankly, I don't really understand why. OOP seems to elegantly solve my problems and I haven't really seen a drawback.</p>
@@ -79,49 +99,37 @@
 <p>On the other hand, explicit nameability of items is a useful feature for a data structure who's job it is to contain arguments. Dictionaries have exactly this feature. Moreover, dicts explicitly do not have any ordering so they prevent a bad pattern in software architecture.</p>
 <h2>Use verbs to describe the functionality of methods</h2>
 <p>I like to use the prefix "calc" for any method that calculates and returns a quantity. I also use the prefix "set".</p>
-    </div><!-- /.entry-content -->
-
-  </article>
-</section>
-        <section id="extras" class="body">
-                <div class="social">
-                        <h2>social</h2>
-                        <ul>
-                            <li><a href="http://jrsmith3.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
-
-                            <li><a href="http://twitter.com/joshua_r_smith">twitter</a></li>
-                            <li><a href="http://github.com/jrsmith3">github</a></li>
-                            <li><a href="mailto:joshua.r.smith@gmail.com">email</a></li>
-                        </ul>
-                </div><!-- /.social -->
-        </section><!-- /#extras -->
-
-        <footer id="contentinfo" class="body">
-                <address id="about" class="vcard body">
-                Proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
-                </address><!-- /#about -->
-
-                <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
-        </footer><!-- /#contentinfo -->
-
+                    </section>
+                    <hr/>
+                    <aside class="post-meta">
+                        <p>Category: <a href="http://jrsmith3.github.io/category/blog.html">Blog</a></p>
+                    </aside>
+                    <hr/>
+<div class="comments">
+    <div id="disqus_thread"></div>
     <script type="text/javascript">
-    var _gaq = _gaq || [];
-    _gaq.push(['_setAccount', 'UA-1567200-4']);
-    _gaq.push(['_trackPageview']);
-    (function() {
-        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-    })();
+        var disqus_shortname = 'genericsurname';
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
     </script>
-<script type="text/javascript">
-    var disqus_shortname = 'genericsurname';
-    (function () {
-        var s = document.createElement('script'); s.async = true;
-        s.type = 'text/javascript';
-        s.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
-        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
-    }());
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+                </article>
+            </li>
+        </ol>
+    </div>
+        </div>
+
+<script>
+    var _gaq=[['_setAccount','UA-1567200-4'],['_trackPageview']];
+    (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+    g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+    s.parentNode.insertBefore(g,s)}(document,'script'));
 </script>
-</body>
+        <script src="http://jrsmith3.github.io/theme/js/main.js"></script>
+    </body>
 </html>
