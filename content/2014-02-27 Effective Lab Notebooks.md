@@ -1,8 +1,8 @@
-Title: Effective Lab Notebooks
+Title: Effective lab notebooks
 Date: 2014-02-27 22:50
 Category: Blog
 Author: Joshua Ryan Smith
-Summary: Successful lab notebooks
+Summary: How to name and keep a successful lab notebook.
 
 Summary
 =======
