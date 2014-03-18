@@ -1,4 +1,4 @@
-Title: Naming files uniquely to reduce confusion
+Title: Naming data files
 Date: 2014-02-28 23:21
 Category: Blog
 Author: Joshua Ryan Smith
