@@ -23,7 +23,7 @@ Introduction
 ============
 A sample log is a record of all the events that a sample experiences. Sample logs are just as necessary as lab notebooks because they capture a set of information that simply isn't captured in a lab notebook. The necessity of such a record is particularly clear in projects where samples undergo process and analysis steps by many different people. Samples tend to move from place to place and from person to person; they have complex and eventful lifecycles.
 
-(Picture of a sample log)
+(Picture of a sample log -- JRS0019 both pages)
 
 You may think, "What purpose does a sample log serve? Isn't this information contained in lab notebooks?" In contrast to a lab notbook, a sample log won't contain a long narrative description of an experiment; it only contains a list of brief records of every event the sample experiences. Each entry contains the bare minimum amount of information with generous cross-referencing to the relevant lab notebooks and computer data files. In this way a reader of the sample log can comprehend the entire lifecycle of a sample, and the reader can follow the cross-references to find more details about particular events. There is not another source of information that provides these features. 
 
@@ -38,15 +38,15 @@ The metadata section contains information about the sample. Obviously, the sampl
 
 Beyond sample name, required metadata depends on the needs of individual labs. I've found it useful to record the size of the sample, the substrate, the manufacturer/supplier, and the manufacturer's metadata (lot number, etc.). Doping, structure, etc. is appropriate to record here.
 
-(Picture of metadata fields of a sample log)
+(Picture of metadata fields of a sample log -- JRS0070)
 
 
 Sample log entries
 ==================
 Entries are the fundamental unit of the sample log. Every time the sample experiences an event, an entry should be recorded. Each entry should have four components: date/time stamp, event name, brief description, and cross-reference. Entries should be recorded in pen. Each entry should be recorded on a new line.
 
-(picture of sample log entries on a p1 of the PDF)  
-(picture of sample log entries on a p1+n of the PDF)
+(picture of sample log entries on a p1 of the PDF -- JRS0019/p1)  
+(picture of sample log entries on a p1+n of the PDF -- JRS0019/p2)
 
 
 Date/time stamp
@@ -70,7 +70,7 @@ Finally, the records should have one or more cross-references, if applicable. Cr
 
 Many times, an entry will have multiple cross-references. Put each cross-reference on a new line.
 
-(picture of multiple cross-references)
+(picture of multiple cross-references -- JRS0075/p3/2011-02-05_18:55)
 
 There are some events that probably don't require a reference. For example, loading a sample into an instrument won't likely have a reference unless there was some unusual circumstance associated with it, in which case the details should be recorded in a lab notebook and the reference noted on the sample log. 
 
