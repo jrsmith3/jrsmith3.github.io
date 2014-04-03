@@ -23,7 +23,7 @@ Most of your data management issues can be resolved by adopting a single, flat (
 
 The workflow for this kind of system is straightforward: data is taken on an instrument and gets copied to `data`. If analysis is to be done on files in `data`, the person analyzing the data would first copy the files into a different project directory and then perform the analysis.
 
-Having all data single, centrally accessible `data` directory has a number of advantages. First, this approach eliminates findability costs. People will never have to go around to different computers looking for the data they took. Second, this approach decreases transaction costs. If you need data that I took, simply find it in `data`. There's no need to ask me to email or otherwise send you the data.
+Having all data in a single, centrally accessible `data` directory has a number of advantages. First, this approach eliminates findability costs. People will never have to go around to different computers looking for the data they took. Second, this approach decreases transaction costs. If you need data that I took, simply find it in `data`. There's no need to ask me to email or otherwise send you the data.
 
 This approach to data management is strongly coupled to choosing [unique, metadata-rich filenames](http://jrsmith3.github.io/naming-data-files.html). To recap, use 
 
@@ -35,7 +35,7 @@ on systems that support long filenames and the nested directory structure
 
 on older systems that do not support long filenames.
 
-Having a `data` directory filled with uniquely and descriptively named files is the next best thing to having a [URI](https://en.wikipedia.org/wiki/Uniform_resource_identifier) for each file and having the files in some kind of relational database. In addition to the advantage of findability I mentioned above, uniquely naming files in a single `data` directory yields addressability. Cross-referencing a file in a [lab notebook](http://jrsmith3.github.io/effective-lab-notebooks.html) or [sample log]() is as simple as writing the filename. To find the cross-referenced file, simply look for it in `data`. 
+Having a `data` directory filled with uniquely and descriptively named files is the next best thing to having a [URI](https://en.wikipedia.org/wiki/Uniform_resource_identifier) for each file and having the files in some kind of relational database. In addition to the advantage of findability I mentioned above, uniquely naming files in a single `data` directory yields addressability. Cross-referencing a file in a [lab notebook](http://jrsmith3.github.io/effective-lab-notebooks.html) or [sample log](http://jrsmith3.github.io/sample-logs-the-secret-to-managing-multi-person-projects.html) is as simple as writing the filename. To find the cross-referenced file, simply look for it in `data`. 
 
 Using metadata-rich filenames gives you another advantage: it is easy to perform searches for specific files or sets of files using filename search functions in your file browser or shell. More advanced searches can be done via simple python scripts. For example, lets say I wanted to find all the XPS data files I've taken
 
@@ -66,9 +66,7 @@ The same search can be performed from OSX Finder:
 
 I don't use Windows, but I would be happy to post instructions on the same search from powershell or Windows file Explorer, [email](mailto:joshua.r.smith@gmail.com) me or pull request.
 
-Using the file naming scheme I suggest above gives one final advantage. File browsers and the shell will automatically list files in chronological order.
-
-(picture of `data` as viewed in file browser)  
+Using the file naming scheme I suggest above gives one final advantage. File browsers and the shell will automatically list files in chronological order. In the bash shell:
 
 ```bash
 gamma:data jrsmith3$ ls
@@ -101,7 +99,9 @@ gamma:data jrsmith3$ ls
 20110527-1635_TEM_JRST26_ATW.dm3
 ```
 
+The same thing in the OS X finder: 
 
+(picture of `data` as viewed in file browser)  
 
 
 
