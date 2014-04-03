@@ -1,5 +1,5 @@
 Title: Data storage and data file workflow
-Date: 2014-03-18 17:33
+Date: 2014-04-02 23:05
 Category: Blog
 Author: Joshua Ryan Smith
 Summary: Store data in a single, flat directory.
