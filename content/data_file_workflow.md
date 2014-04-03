@@ -2,7 +2,7 @@ Title: Data storage and data file workflow
 Date: 2014-04-02 23:05
 Category: Blog
 Author: Joshua Ryan Smith
-Summary: Store data in a single, flat directory.
+Summary: Store data read-only using unique filenames in a single, flat directory.
 
 Summary
 =======
@@ -11,6 +11,7 @@ Summary
 * Files in `data` should have [unique names](http://jrsmith3.github.io/naming-data-files.html).
 * `data` should have a flat structure (no subdirectories).
 * Files in `data` should remain pristine as they came off the instrument and never be altered.
+* Do not use `data` as a working directory. I.e. don't put code, manuscripts, etc. in `data`; use a project directory instead.
 
 Introduction
 ============
