@@ -1,8 +1,22 @@
 Title: Sample logs - the secret to managing multi-person projects
-Date: 2014-03-18 16:28
+Date: 2014-04-02 22:55
 Category: Blog
 Author: Joshua Ryan Smith
 Summary: How and why to keep sample logs to manage multi-person projects.
+
+<!-- Having embedded CSS is a hack, but I want the images to be side-by-side. 
+I stole this CSS from: https://ghost.org/forum/using-ghost/1931-markdown-inline-images/
+-->
+<style type="text/css">
+#myImages {
+    width: auto; //need to keep div to the parent width so the text doesn't slide up
+    margin-left: auto;
+    margin-right: auto;
+}
+#myImages img {
+    display: inline;
+}
+</style>
 
 Summary
 =======
@@ -23,7 +37,9 @@ Introduction
 ============
 A sample log is a record of all the events that a sample experiences. Sample logs are just as necessary as lab notebooks because they capture a set of information that simply isn't captured in a lab notebook. The necessity of such a record is particularly clear in projects where samples undergo process and analysis steps by many different people. Samples tend to move from place to place and from person to person; they have complex and eventful lifecycles.
 
-(Picture of a sample log -- JRS0019 both pages)
+<div id = "myImages">
+<a href="images/samplelog_jrs0019_p1.png"> <img src="images/samplelog_jrs0019_p1_small.png" /> </a> <a href="images/samplelog_jrs0019_p2.png"> <img src="images/samplelog_jrs0019_p2_small.png" /> </a>
+</div>
 
 You may think, "What purpose does a sample log serve? Isn't this information contained in lab notebooks?" In contrast to a lab notbook, a sample log won't contain a long narrative description of an experiment; it only contains a list of brief records of every event the sample experiences. Each entry contains the bare minimum amount of information with generous cross-referencing to the relevant lab notebooks and computer data files. In this way a reader of the sample log can comprehend the entire lifecycle of a sample, and the reader can follow the cross-references to find more details about particular events. There is not another source of information that provides these features. 
 
@@ -38,16 +54,15 @@ The metadata section contains information about the sample. Obviously, the sampl
 
 Beyond sample name, required metadata depends on the needs of individual labs. I've found it useful to record the size of the sample, the substrate, the manufacturer/supplier, and the manufacturer's metadata (lot number, etc.). Doping, structure, etc. is appropriate to record here.
 
-(Picture of metadata fields of a sample log -- JRS0070)
-
+[![Sample Log JRS0070, p1](images/samplelog_jrs0070_p1_small.png "Sample Log JRS0070, p1")](images/samplelog_jrs0070_p1.png)
 
 Sample log entries
 ==================
 Entries are the fundamental unit of the sample log. Every time the sample experiences an event, an entry should be recorded. Each entry should have four components: date/time stamp, event name, brief description, and cross-reference. Entries should be recorded in pen. Each entry should be recorded on a new line.
 
-(picture of sample log entries on a p1 of the PDF -- JRS0019/p1)  
-(picture of sample log entries on a p1+n of the PDF -- JRS0019/p2)
-
+<div id = "myImages">
+<a href="images/samplelog_jrs0019_p1.png"> <img src="images/samplelog_jrs0019_p1_small.png" /> </a> <a href="images/samplelog_jrs0019_p2.png"> <img src="images/samplelog_jrs0019_p2_small.png" /> </a>
+</div>
 
 Date/time stamp
 ---------------
@@ -70,7 +85,7 @@ Finally, the records should have one or more cross-references, if applicable. Cr
 
 Many times, an entry will have multiple cross-references. Put each cross-reference on a new line.
 
-(picture of multiple cross-references -- JRS0075/p3/2011-02-05_18:55)
+[![Sample Log JRS0075, p3](images/samplelog_jrs0075_p3_2011-02-05_18-55_small.png "Sample Log JRS0075, p3")](images/samplelog_jrs0075_p3_2011-02-05_18-55.png)
 
 There are some events that probably don't require a reference. For example, loading a sample into an instrument won't likely have a reference unless there was some unusual circumstance associated with it, in which case the details should be recorded in a lab notebook and the reference noted on the sample log. 
 
@@ -110,8 +125,8 @@ The sample log worksheet PDF is two pages. Once the two pages have been filled, 
 
 I recommend punching holes in the sample logs with a three-hole punch (or printing them on pre-punched paper) and storing them in [one-inch binders](http://www.amazon.com/exec/obidos/ASIN/B0006HVEI4). I've found that in larger binders, pages flop around and eventually rip out. Don't pack the binder full, just start a new binder once the current binder starts to get full. I recommend labeling the binder(s) with "Sample Log" on the spine. I recommend against indexing the sample logs because I recommend adding individual sample logs alphabetically according to sample name (in other words, don't mark the binders with anything beyond "Sample Logs"). I'll go into more detail later with a recommendation on how to uniquely name samples so that their index grows chronologically. In that way, inserting new sample logs into the middle of a sample log is a rare occurance. Thus, once a binder gets filled, its unlikely that additional sample logs will need to be added which prevents shuffling sample logs through binders to make room.
 
-(picture of sample log binder)
+[![Sample Log binders](images/samplelog_binders_small.jpg "Sample Log binders")](images/samplelog_binders.jpg)
 
 Binders containing sample logs should be kept in a central location, preferrably in the same location as lab notebooks and samples. Despite the binder suggestion, sample logs should travel with their sample as the sample moves from place to place. I've found that [plastic page protectors](http://www.amazon.com/exec/obidos/ASIN/B00006IC89) are good for this purpose. If your sample is up to a 4" wafer, the wafer carrier can be slipped inside the plastic sleeve with the sample log and the entire packet can be passed between researchers. If any of the sample processing or analysis occurs in the cleanroom, sample logs should be printed on cleanroom paper.
 
-(picture of sample log in a sleeve with wafer carrier)
+[![Sample log in plastic sleeve with wafer carrier.](images/samplelog_sample_jrs0033_sleeve_small.jpg "Sample log in plastic sleeve with wafer carrier.")](images/samplelog_sample_jrs0033_sleeve.jpg)
