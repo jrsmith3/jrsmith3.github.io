@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>    Pre-brief: Collaborative proposal prep via GitHub with non-developer professors
+</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width">
+            <link rel="stylesheet" href="http://jrsmith3.github.io/theme/css/normalize.css">
+        <link href='//fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+        <link href='//fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="http://jrsmith3.github.io/theme/css/font-awesome.min.css">
+        <link rel="stylesheet" href="http://jrsmith3.github.io/theme/css/main.css">
+
+    <link rel="stylesheet" href="http://jrsmith3.github.io/theme/css/blog.css">
+    <link rel="stylesheet" href="http://jrsmith3.github.io/theme/css/github.css">
+        <link href="http://jrsmith3.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Generic Surname Atom Feed" />
+        <script src="http://jrsmith3.github.io/theme/js/vendor/modernizr-2.6.2.min.js"></script>
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+        <![endif]-->
+
+        <div id="wrapper">
+<header id="sidebar" class="side-shadow">
+    <hgroup id="site-header">
+        <a id="site-title" href="http://jrsmith3.github.io"><h1><i class="icon-coffee"></i> Generic Surname</h1></a>
+        <p id="site-desc"></p>
+    </hgroup>
+    <nav>
+        <ul id="nav-links">
+                <li><a href="http://jrsmith3.github.io/pages/about.html">About</a></li>
+                <li><a href="http://jrsmith3.github.io/pages/contact.html">Contact</a></li>
+                <li><a href="http://jrsmith3.github.io/pages/curriculum-vitae.html">Curriculum Vitae</a></li>
+        </ul>
+    </nav>
+<footer id="site-info">
+    <p>
+        Proudly powered by <a href="http://getpelican.com/" target="pelican">Pelican</a> and <a href="http://python.org/" target="python">Python</a>. Theme by <a href="https://github.com/hdra/pelican-cait" target="github">hndr</a>.
+    </p>
+    <p>
+        Textures by <a href="http://subtlepatterns.com/" target="subtlepatterns">Subtle Pattern</a>. Font Awesome by <a href="http://fortawesome.github.io/Font-Awesome/" target="github">Dave Grandy</a>.
+    </p>
+</footer></header>
+    <div id="post-container">
+        <ol id="post-list">
+            <li>
+                <article class="post-entry">
+                    <header class="entry-header">
+                        <time class="post-time" datetime="2014-04-09T12:47:00" pubdate>
+                            Wed 09 April 2014
+                        </time>
+                        <a href="http://jrsmith3.github.io/pre-brief-collaborative-proposal-prep-via-github-with-non-developer-professors.html" rel="bookmark"><h1>Pre-brief: Collaborative proposal prep via GitHub with non-developer professors</h1></a>
+                    </header>
+
+                    <section class="post-content">
+                        <p>I am just starting writing a proposal with a few professors, all of whom are over 40, use Windows and MS Word, and none of whom have any software development experience. To make things more interesting, the team is scattered across the US. My goal is to manage the proposal writing using GitHub, and ultimately use GitHub to collaborate on the papers, software, and other products coming out of this work.</p>
+<p>This post is a pre-brief of the process; I want to record what I've done to introduce my collaborators to a git-based workflow via GitHub, and some thoughts and concerns before sending out the email asking them to set up a GitHub account.</p>
+<p>I intend to post updates during the proposal writing process, and I will post a debrief once the proposal has been submitted. In these posts, I will cover what worked and what didn't work.</p>
+<h1>Motivation</h1>
+<p>My experience is that the default method of collaboration is completely ad-hoc and consists of emailing various versions of documents. There typically is not a central location, such as a fileserver, on which documents and data are stored.</p>
+<p>I've seen GitHub used <a href="">successfully</a> to coordinate the <a href="">Software-Carpentry</a> project. I believe that several contributors to SWC use a git or GitHub based workflow to coordinate the work in their labs.</p>
+<p>I believe the git workflow can be applied to most parts of the proposed project and the goal is to impose this workflow in at the very beginning of the project.</p>
+<h1>Preparation</h1>
+<p>I've had several phone and email conversations with my collaborators, to sketch out the scope of the proposal and to get their feedback and buy-in. I have sent them drafts of a document, in PDF, that will ultimately become the proposal. This proto-proposal was prepared using LaTeX, but the whitepaper and proposal itself will be prepared using markdown.</p>
+<p>I am currently at the point where I need to invite my collaborators to edit the proposal. I have set everything up to (hopefully) reduce friction as much as possible; to this end I have prepared a few items:</p>
+<ul>
+<li>An opening email.</li>
+<li>A private GitHub repository containing the files for the proposal.</li>
+<li>A README in the root directory of the repo.</li>
+<li>Additional instructions on git, GitHub, and markdown.</li>
+</ul>
+<h2>Email</h2>
+<p>This invitational email is about 500 words long and includes several components: I mention the scope of the project, I mention the fact that the first step in the process is to submit a whitepaper, and the date I hope to submit the whitepaper. I also give some simple instructions for how to create an account on github in order to access the repository. Finally, I briefly sketch out how the markdown/GitHub workflow is different from the MS Word/email workflow.</p>
+<h2>Repo</h2>
+<p>Before sending out the invitation email, I created an organization for this project, and set up a private repository on GitHub.</p>
+<h2>README</h2>
+<p>In the root of the GitHub repo, I created a 200 word <code>README.md</code> that will be displayed when people visit the repo page. This file has a section of links to the relevant documents from the funding agency. The second section reiterates the scope of the proposal. Finally, there is a section of simple instructions for how to edit the whitepaper via GitHub's web interface with a mention that files in the repository can be edited locally on their machine.</p>
+<h2>Additional instructions</h2>
+<p>I've added a file of additional instructions regarding git, GitHub, markdown, and a few other odds-and-ends. I go into more detail about how to clone repos locally. This file is 633 words long. I'm not explicitly linking to it from the <code>README.md</code>, but perhaps I will if there are too many questions.</p>
+<h1>Concerns</h1>
+<p>One of my main concerns is that the jump from editing a document locally on their computer in MS Word to editing a document on GitHub in markdown will be too large. Another concern is that I am not starting with a comprehensive tutorial of what git is and how the git workflow of forking, pull requests, branching, and merging works -- I'm simply showing them GitHub's web interface of a git repo and asking them to edit a document via that interface. Finally, I'm concerned that my collaborators will be turned off by the fact that markdown doesn't automatically do pagination like a word processor (the funding agency has a strict page limit on the whitepaper).</p>
+<p>Another big concern I have is how to transition my collaborators from the idea that they are editing a document on the web to the idea that they can edit documents locally on their machine, commit changes to the local repo, then push those changes to the remote.</p>
+                    </section>
+                    <hr/>
+                    <aside class="post-meta">
+                        <p>Category: <a href="http://jrsmith3.github.io/category/blog.html">Blog</a></p>
+                    </aside>
+                    <hr/>
+<div class="comments">
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        var disqus_shortname = 'genericsurname';
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+                </article>
+            </li>
+        </ol>
+    </div>
+        </div>
+
+<script>
+    var _gaq=[['_setAccount','UA-1567200-4'],['_trackPageview']];
+    (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+    g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+    s.parentNode.insertBefore(g,s)}(document,'script'));
+</script>
+        <script src="http://jrsmith3.github.io/theme/js/main.js"></script>
+    </body>
+</html>
