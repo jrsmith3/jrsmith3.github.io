@@ -14,7 +14,7 @@ Motivation
 ==========
 My experience is that the default method of collaboration is completely ad-hoc and consists of emailing various versions of documents. There typically is not a central location, such as a fileserver, on which documents and data are stored.
 
-I've seen GitHub used [successfully]() to coordinate the [Software-Carpentry]() project. I believe that several contributors to SWC use a git or GitHub based workflow to coordinate the work in their labs.
+I've seen GitHub used [successfully](https://github.com/swcarpentry/) to coordinate the [Software-Carpentry](http://software-carpentry.org) project. I believe that several contributors to SWC use a git or GitHub based workflow to coordinate the work in their labs.
 
 I believe the git workflow can be applied to most parts of the proposed project and the goal is to impose this workflow in at the very beginning of the project.
 
