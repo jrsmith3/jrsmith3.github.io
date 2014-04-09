@@ -4,7 +4,7 @@
 &lt;p&gt;I intend to post updates during the proposal writing process, and I will post a debrief once the proposal has been submitted. In these posts, I will cover what worked and what didn't work.&lt;/p&gt;
 &lt;h1&gt;Motivation&lt;/h1&gt;
 &lt;p&gt;My experience is that the default method of collaboration is completely ad-hoc and consists of emailing various versions of documents. There typically is not a central location, such as a fileserver, on which documents and data are stored.&lt;/p&gt;
-&lt;p&gt;I've seen GitHub used &lt;a href=""&gt;successfully&lt;/a&gt; to coordinate the &lt;a href=""&gt;Software-Carpentry&lt;/a&gt; project. I believe that several contributors to SWC use a git or GitHub based workflow to coordinate the work in their labs.&lt;/p&gt;
+&lt;p&gt;I've seen GitHub used &lt;a href="https://github.com/swcarpentry/"&gt;successfully&lt;/a&gt; to coordinate the &lt;a href="http://software-carpentry.org"&gt;Software-Carpentry&lt;/a&gt; project. I believe that several contributors to SWC use a git or GitHub based workflow to coordinate the work in their labs.&lt;/p&gt;
 &lt;p&gt;I believe the git workflow can be applied to most parts of the proposed project and the goal is to impose this workflow in at the very beginning of the project.&lt;/p&gt;
 &lt;h1&gt;Preparation&lt;/h1&gt;
 &lt;p&gt;I've had several phone and email conversations with my collaborators, to sketch out the scope of the proposal and to get their feedback and buy-in. I have sent them drafts of a document, in PDF, that will ultimately become the proposal. This proto-proposal was prepared using LaTeX, but the whitepaper and proposal itself will be prepared using markdown.&lt;/p&gt;
