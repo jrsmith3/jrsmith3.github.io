@@ -9,8 +9,8 @@ Summary
 - Start with a LaTeX document hosted in an existing GitHub repo.
 - Create a new article on Authorea by importing the main LaTeX document source.
 - Connect the Authorea document to the exisiting GitHub repo by
--- generating Authorea document ssh keys
--- setting up a GitHub webhook.
+    - generating Authorea document ssh keys
+    - setting up a GitHub webhook.
 - Fix and reorganize the resulting files that Authorea creates.
 
 
