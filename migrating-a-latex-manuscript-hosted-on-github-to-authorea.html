@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>    Migrating a LaTeX manuscript hosted on GitHub to Authorea
+</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width">
+            <link rel="stylesheet" href="http://jrsmith3.github.io/theme/css/normalize.css">
+        <link href='//fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+        <link href='//fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="http://jrsmith3.github.io/theme/css/font-awesome.min.css">
+        <link rel="stylesheet" href="http://jrsmith3.github.io/theme/css/main.css">
+
+    <link rel="stylesheet" href="http://jrsmith3.github.io/theme/css/blog.css">
+    <link rel="stylesheet" href="http://jrsmith3.github.io/theme/css/github.css">
+        <link href="http://jrsmith3.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Generic Surname Atom Feed" />
+        <script src="http://jrsmith3.github.io/theme/js/vendor/modernizr-2.6.2.min.js"></script>
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+        <![endif]-->
+
+        <div id="wrapper">
+<header id="sidebar" class="side-shadow">
+    <hgroup id="site-header">
+        <a id="site-title" href="http://jrsmith3.github.io"><h1><i class="icon-coffee"></i> Generic Surname</h1></a>
+        <p id="site-desc"></p>
+    </hgroup>
+    <nav>
+        <ul id="nav-links">
+                <li><a href="http://jrsmith3.github.io/pages/about.html">About</a></li>
+                <li><a href="http://jrsmith3.github.io/pages/contact.html">Contact</a></li>
+                <li><a href="http://jrsmith3.github.io/pages/curriculum-vitae.html">Curriculum Vitae</a></li>
+        </ul>
+    </nav>
+<footer id="site-info">
+    <p>
+        Proudly powered by <a href="http://getpelican.com/" target="pelican">Pelican</a> and <a href="http://python.org/" target="python">Python</a>. Theme by <a href="https://github.com/hdra/pelican-cait" target="github">hndr</a>.
+    </p>
+    <p>
+        Textures by <a href="http://subtlepatterns.com/" target="subtlepatterns">Subtle Pattern</a>. Font Awesome by <a href="http://fortawesome.github.io/Font-Awesome/" target="github">Dave Grandy</a>.
+    </p>
+</footer></header>
+    <div id="post-container">
+        <ol id="post-list">
+            <li>
+                <article class="post-entry">
+                    <header class="entry-header">
+                        <time class="post-time" datetime="2014-05-15T23:28:00" pubdate>
+                            Thu 15 May 2014
+                        </time>
+                        <a href="http://jrsmith3.github.io/migrating-a-latex-manuscript-hosted-on-github-to-authorea.html" rel="bookmark"><h1>Migrating a LaTeX manuscript hosted on GitHub to Authorea</h1></a>
+                    </header>
+
+                    <section class="post-content">
+                        <h1>Summary</h1>
+<ul>
+<li>Start with a LaTeX document hosted in an existing GitHub repo.</li>
+<li>Create a new article on Authorea by importing the main LaTeX document source.</li>
+<li>Connect the Authorea document to the exisiting GitHub repo by<ul>
+<li>generating Authorea document ssh keys</li>
+<li>setting up a GitHub webhook.</li>
+</ul>
+</li>
+<li>Fix and reorganize the resulting files that Authorea creates.</li>
+</ul>
+<h1>Authorea + GitHub: extreme power plus low barrier to entry?</h1>
+<p>Without having used it extensively, I am very excited about <a href="https://authorea.com/">Authorea</a>. Authorea looks like the collaborative authoring tool I would have created. It allows teams to collaborate on LaTeX documents, and it has a git backend that can be connected to a GitHub repository. My hope is that Authorea will bridge a gap: it will allow people with a lot of git and LaTeX experience to collaborate on manuscripts with people that have none. In this way, hopefully the group can operate at the level of the most computer savvy members as opposed to regressing to the lowest-common-denominator .doc + email workflow. Longer term, perhaps the people with less experience will get a gentle introduction to version control and markup languages so they can see the value without having to pass through <a href="http://software-carpentry.org/blog/2014/05/playing-the-kazoo.html#glass-law">the valley of death</a>.</p>
+<p>Authorea is currently thin on the documentation of how to connect to an existing LaTeX document hosted on GitHub. This post will be a case study of how I integrated Authorea into an existing LaTeX document on GitHub. I will use an example <a href="https://github.com/jrsmith3/authorea_test">GitHub repo called authorea_test</a> and <a href="https://authorea.com/users/6814/articles/7173/">Authorea document</a> so that you can poke around the result.</p>
+<h1>Step 0: Prep initial LaTeX manuscript on GitHub</h1>
+<p>I started with a simple LaTeX document hosted in a GitHub repo. Release <a href="https://github.com/jrsmith3/authorea_test/releases/tag/1.0">1.0</a> is the state of the repository before I connected it to Authorea. My typical workflow is to author or edit the LaTeX source, then build the result with a <a href="https://github.com/jrsmith3/latex_template">makefile</a>. I would like to keep this makefile workflow, but I also want the files to be in a form that can be built by Authorea.</p>
+<h2>Make a branch to be merged later</h2>
+<p>Spoiler alert: when you set up access to your GitHub repo by Authorea, Authorea is going to push to <code>master</code> and merge whatever it finds. I suggest moving whatever is currently in <code>master</code> to a new branch called <code>latex</code>, deleting <code>master</code>, and then merging the two on your own terms.</p>
+<h1>Step 1: Make a new article on Authorea via import</h1>
+<p>Click on the red "New article" button and choose "Import". For "Project name" I chose "authorea_test" to match the repo name on GitHub. For the LaTeX file in the "Source files" section, I navigated to the directory in my local filesystem containing the git repo and chose the <code>main.tex</code> file. I ended up choosing "Public" in the "Article availability" section for this example, but for my actual proposal I used "Private." Finally, click "Submit."</p>
+<p><a href="images/01_import_article.png"><img alt="Import article" src="images/01_import_article_small.png" /></a></p>
+<p>Authorea slices up <code>main.tex</code> and creates several .tex files. It also alerts me to a rendering error. This error is because Authorea incorrectly parsed my <code>\usepackage{hyperref}</code> directive. </p>
+<p><a href="images/02_successful_import_with_error.png"><img alt="Successful import with error" src="images/02_successful_import_with_error_small.png" /></a></p>
+<p>I'll fix the <code>hyperref</code> problem momentarily, but first take a look the files that Authorea has created by clicking on the <code>folder</code> tab.</p>
+<p><a href="images/03_folder_tab_after_import.png"><img alt="Folder tab after import" src="images/03_folder_tab_after_import_small.png" /></a></p>
+<p>Authorea has parsed <code>main.tex</code> and broken out the sections into individual files listed below. Commit <a href="https://github.com/jrsmith3/authorea_test/commit/b737b5f73d60ff46835fc3365ba131b496e34840">b737b5f7</a> corresponds to the state of the repo at this point.</p>
+<ul>
+<li><strong><code>bibliography</code></strong> - A directory containing an empty file called <code>biblio.bib</code>. Probably my own bibTeX file would have gone here had I uploaded it during the creation of this document.</li>
+<li><strong><code>figures</code></strong> - An empty directory that would contain figures associated with this manuscript.</li>
+<li><strong><code>abstract.tex</code></strong> - A file containing the string between the <code>\begin{abstract}</code> and <code>\end{abstract}</code> directives in the original <code>main.tex</code> file.</li>
+<li><strong><code>header.tex</code></strong> - Contains the LaTeX commands that weren't ignored as part of the preamble or parsed into <code>pdftitleTitle_pdfaut.tex</code>.</li>
+<li><strong><code>layout.md</code></strong> - Markdown file with a list of LaTeX files. This file appears to list the order in which Authorea assembles the various .tex files to be built.</li>
+<li><strong><code>pdftitleTitle_pdfaut.tex</code></strong> - The <code>hyperref</code> package arguments. These commands are what is causing the rendering error.</li>
+<li><strong><code>preamble.tex</code></strong> - Looks like boilerplate LaTeX preamble.</li>
+<li><strong><code>sectionIntroduction_.tex</code></strong> - <code>\section{}</code> command and text from the <code>Introduction</code> section.</li>
+<li><strong><code>title.tex</code></strong> - Text of title of document. Since I defined my own TeX command to hold the string containing the title, this file simply calls that command.</li>
+<li><strong><code>untitled.tex</code></strong> - Empty .tex file.</li>
+</ul>
+<p>Based on the above files, it looks like Authorea is building a document like the following:</p>
+<div class="highlight"><pre><span class="k">\input</span><span class="nb">{</span>preamble<span class="nb">}</span>
+<span class="k">\input</span><span class="nb">{</span>header<span class="nb">}</span>
+
+<span class="k">\title</span><span class="nb">{</span><span class="k">\input</span><span class="nb">{</span>title<span class="nb">}}</span>
+<span class="k">\author</span><span class="nb">{</span><span class="k">\AuthorName</span><span class="nb">}</span>
+
+<span class="k">\begin</span><span class="nb">{</span>document<span class="nb">}</span>
+
+<span class="k">\maketitle</span>
+
+<span class="k">\begin</span><span class="nb">{</span>abstract<span class="nb">}</span>
+<span class="k">\input</span><span class="nb">{</span>abstract<span class="nb">}</span>
+<span class="k">\end</span><span class="nb">{</span>abstract<span class="nb">}</span>
+
+<span class="k">\input</span><span class="nb">{</span>sectionIntroduction<span class="nb">_}</span>
+
+<span class="k">\end</span><span class="nb">{</span>document<span class="nb">}</span>
+</pre></div>
+
+
+<h1>Step 2: Connect Authorea document to GitHub</h1>
+<p>Things in the Authorea document are a bit of a mess. We will first connect to the GitHub repo, clean things up on our local machine, then push back up to GitHub.</p>
+<h2>Authorea ssh keys</h2>
+<p>One of the ways GitHub authenticates access to repositories is via ssh keys. Authorea can generate key pairs for each document; once generated you simply copy your document's public key to the correspondig GitHub repo.</p>
+<p>From the <code>main</code> tab on Authorea, click on the <code>Settings</code> button; once the "Article Settings" window pops up, click on the green "setup a deploy key" button. </p>
+<p><a href="images/04_article_settings_with_deploy_key_button.png"><img alt="Article Settings with deploy key button" src="images/04_article_settings_with_deploy_key_button_small.png" /></a></p>
+<p>To create this keypair, click on the "Generate ssh key pair" button. A new window will pop up entitled, "Public Deploy Key." Copy the entire block of text. </p>
+<p><a href="images/05_authorea_public_deploy_key.png"><img alt="Authorea public deploy key" src="images/05_authorea_public_deploy_key_small.png" /></a></p>
+<p>Next, navigate over to the GitHub page with the repo containing your LaTeX manuscript. Click on the "Settings" tab. Then click on the "Deploy keys" tab on the next page that pops up. </p>
+<p><a href="images/06_github_without_public_deploy_key.png"><img alt="GitHub without public deploy key" src="images/06_github_without_public_deploy_key_small.png" /></a></p>
+<p>Click on "Add deploy key" and then paste the public ssh key that Authorea generated into the "Key" box. I named the key "authorea_auto_generated" but you can pick whatever name you want. Finally, click the green "Add key" button. GitHub may ask you to enter your password to add the public ssh key to the repository.</p>
+<p><a href="images/07_github_adding_public_deploy_key.png"><img alt="GitHub adding public deploy key" src="images/07_github_adding_public_deploy_key_small.png" /></a>
+<a href="images/08_github_with_public_deploy_key.png"><img alt="GitHub with public deploy key" src="images/08_github_with_public_deploy_key_small.png" /></a></p>
+<p>Here's a recap of what happened: Authorea generated a public/private ssh key pair for the <code>authorea_test</code> document. We copied the public key into the <code>authorea_test</code> GitHub repository. Now Authorea has push/pull access to the <code>authorea_test</code> repo on GitHub.</p>
+<p>We aren't finished. Authorea needs to know the git URL for the GitHub repository, and the GitHub repository needs a webhook.</p>
+<h2>Git URL</h2>
+<p>Before leaving GitHub, navigate back to the repository's main page and copy the "SSH clone URL." Now navigate to the Authorea page and close the ssh public key window. Copy the ssh clone URL into the box in step 2. Authorea now has everything it needs to modify the GitHub repo. Click "Submit."</p>
+<p><a href="images/09_authorea_github_repo_url.png"><img alt="Authorea GitHub repo url" src="images/09_authorea_github_repo_url_small.png" /></a></p>
+<h2>GitHub Webhook</h2>
+<p>If everything is successful, Authorea will give you a page with a Web Hook URL. </p>
+<p><a href="images/10_authorea_git_access_bridge_with_webhook.png"><img alt="Authorea Git access bridge with webhook" src="images/10_authorea_git_access_bridge_with_webhook_small.png" /></a></p>
+<p>Copy the URL and navigate back to the GitHub page with the repo. Click on the "Settings" tab, but this time click on "Webhooks and Services." </p>
+<p><a href="images/11_github_webhooks_and_services.png"><img alt="GitHub webhooks and services" src="images/11_github_webhooks_and_services_small.png" /></a></p>
+<p>Click "Add webook." Paste the URL from Authorea into the "Payload URL" box, then click the green "Add webhook" button.</p>
+<p><a href="images/12_github_webhooks_add_webhook.png"><img alt="GitHub webhooks add webhook" src="images/12_github_webhooks_add_webhook_small.png" /></a>
+<a href="images/13_github_webhooks_and_services_after_webhook_add.png"><img alt="GitHub webhooks and services after webhook add" src="images/13_github_webhooks_and_services_after_webhook_add_small.png" /></a></p>
+<p>Once the webhook has been set up, Authorea pushes what it has to the GitHub repo and clobbers your stuff via a merge. You should go back to the local directory on your machine and pull in the changes.</p>
+<p><a href="images/14_github_after_merge.png"><img alt="GitHub after merge" src="images/14_github_after_merge_small.png" /></a>
+<a href="images/15_github_network_graph_after_merge.png"><img alt="GitHub network graph after merge" src="images/15_github_network_graph_after_merge_small.png" /></a></p>
+<p>At this point, the connection between Authorea and GitHub has been made. I'm pretty sure that every time a push is made to <code>master</code> on the GitHub repo, Authorea will pull in the changes. Likewise, any time edits are saved on Authorea, Authorea will push the changes to GitHub. I think that if a merge conflict arises, Authorea will push the changes to the branch <code>authorea</code> and require a manual merge.</p>
+<p>For what its worth, <a href="https://github.com/jrsmith3/authorea_test/releases/tag/2.0">tag <code>2.0</code></a> points to the commit where Authorea initially merged.</p>
+<h1>Step 3: Reorganizing what Authorea has done</h1>
+<p>Things aren't terrible since all of the original LaTeX in the repo was on its own branch and since <code>master</code> was only a single commit containing <code>.gitignore</code>. There's some cruft in <code>master</code>. Here's a list of the files and how they should be fixed.</p>
+<ul>
+<li><strong><code>untitled.tex</code></strong> is superfluous and can be deleted. </li>
+<li><strong><code>pdftitleTitle_pdfaut.tex</code></strong> contains the mangled <code>hyperref</code> directive -- <code>pdftitleTitle_pdfaut.tex</code> can be deleted because...</li>
+<li><strong><code>header.tex</code></strong> should be modified to include the non-mangled <code>hyperref</code> directive.</li>
+<li><strong><code>sectionIntroduction_.tex</code></strong> should be renamed. I prefer simply <code>introduction.tex</code>.</li>
+<li><strong><code>preamble.tex</code></strong> should be rewritten with the original preamble.</li>
+<li><strong><code>layout.md</code></strong> should be edited to remove the line calling for <code>pdftitleTitle_pdfaut.tex</code>. The line referring to the old <code>sectionIntroduction_.tex</code> should be updated.</li>
+</ul>
+<p>Release <a href="https://github.com/jrsmith3/authorea_test/releases/tag/3.0">3.0</a> is the state of the repo after the modifications.</p>
+<h1>Step 4: Merging <code>latex</code> back into <code>main</code></h1>
+<p>I still want to be able to clone the repo and build the LaTeX document using the makefile. In order to accomplish this goal, I merged the <code>latex</code> branch back into <code>master</code>, and then modified <code>main.tex</code> to essentially the file at the top of this post. Note that I manually <code>\input{}</code> the sections in <code>main.tex</code>; there's probably a way to parse <code>layout.md</code> but its late and I am tired.</p>
+<p>The result of the merge and subsequent <code>make</code> can be found in release <a href="https://github.com/jrsmith3/authorea_test/releases/tag/4.0">4.0</a>.</p>
+<h1>Conclusion</h1>
+<p>The process of setting up Authorea as a frontend for a LaTeX document in an existing GitHub is a little wonky. Hopefully the extreme detail of this post helped.</p>
+                    </section>
+                    <hr/>
+                    <aside class="post-meta">
+                        <p>Category: <a href="http://jrsmith3.github.io/category/blog.html">Blog</a></p>
+                    </aside>
+                    <hr/>
+<div class="comments">
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        var disqus_shortname = 'genericsurname';
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+                </article>
+            </li>
+        </ol>
+    </div>
+        </div>
+
+<script>
+    var _gaq=[['_setAccount','UA-1567200-4'],['_trackPageview']];
+    (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+    g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+    s.parentNode.insertBefore(g,s)}(document,'script'));
+</script>
+        <script src="http://jrsmith3.github.io/theme/js/main.js"></script>
+    </body>
+</html>
