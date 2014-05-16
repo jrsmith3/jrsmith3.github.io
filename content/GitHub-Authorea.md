@@ -16,7 +16,7 @@ Summary
 
 Authorea + GitHub: extreme power plus low barrier to entry?
 ===========================================================
-Without having used it extensively, I am very excited about [Authorea](https://authorea.com/). Authorea looks like the collaborative authoring tool I would have created. It allows teams to collaborate on LaTeX documents, and it has a git backend that can be connected to a GitHub repository. My hope is that Authorea will bridge a gap: it will allow people with a lot of git and LaTeX experience to collaborate on manuscripts with people that have none. In this way, the more experienced members of the team can contribute to **project management (find a better word)** via a git workflow and LaTeX, and the less experienced members of the group aren't overwhelmed by the idiosyncracies of those tools. Longer term, perhaps the people with less experience will get a gentle introduction to version control and markup languages so they can see the value without having to pass through [the valley of death](http://software-carpentry.org/blog/2014/05/playing-the-kazoo.html#glass-law).
+Without having used it extensively, I am very excited about [Authorea](https://authorea.com/). Authorea looks like the collaborative authoring tool I would have created. It allows teams to collaborate on LaTeX documents, and it has a git backend that can be connected to a GitHub repository. My hope is that Authorea will bridge a gap: it will allow people with a lot of git and LaTeX experience to collaborate on manuscripts with people that have none. In this way, hopefully the group can operate at the level of the most computer savvy members as opposed to regressing to the lowest-common-denominator .doc + email workflow. Longer term, perhaps the people with less experience will get a gentle introduction to version control and markup languages so they can see the value without having to pass through [the valley of death](http://software-carpentry.org/blog/2014/05/playing-the-kazoo.html#glass-law).
 
 Authorea is currently thin on the documentation of how to connect to an existing LaTeX document hosted on GitHub. This post will be a case study of how I integrated Authorea into an existing LaTeX document on GitHub. I will use an example [GitHub repo called authorea_test](https://github.com/jrsmith3/authorea_test) and [Authorea document]() so that you can poke around the result.
 
@@ -29,9 +29,13 @@ Note that I am *not* starting a document from scratch on Authorea and then invit
 This post is verbose. Authorea's documentation is pretty much the quickstart version.
 
 
-Initial LaTeX manuscript on GitHub
-==================================
-I started with a simple LaTeX document hosted in a GitHub [repo](https://github.com/jrsmith3/authorea_test). Note that the previous link is a tag which is the state of the repo right before I connected it to Authorea. My typical workflow is to author or edit the LaTeX source, then build the result with a [makefile](https://github.com/jrsmith3/latex_template). I would like to keep this makefile workflow, but I also want the files to be in a form that can be built by Authorea.
+Step 0: Prep initial LaTeX manuscript on GitHub
+===============================================
+I started with a simple LaTeX document hosted in a GitHub [repo](https://github.com/jrsmith3/authorea_test/releases/tag/1.0). Note that the previous link is a tag which is the state of the repo right before I connected it to Authorea. My typical workflow is to author or edit the LaTeX source, then build the result with a [makefile](https://github.com/jrsmith3/latex_template). I would like to keep this makefile workflow, but I also want the files to be in a form that can be built by Authorea.
+
+Make a branch to be merged later
+--------------------------------
+Spoiler alert: when you set up access to your GitHub repo by Authorea, Authorea is going to push to `master` and merge whatever it finds. I suggest moving whatever is currently in `master` to a new branch called `latex`, deleting `master`, and then merging the two on your own terms.
 
 
 Step 1: Make a new article on Authorea via import
@@ -106,6 +110,7 @@ Next, navigate over to the GitHub page with the repo containing your LaTeX manus
 
 Click on "Add deploy key" and then paste the public ssh key that Authorea generated into the "Key" box. I named the key "authorea_auto_generated" but you can pick whatever name you want. Finally, click the green "Add key" button. GitHub may ask you to enter your password to add the public ssh key to the repository.
 
+![GitHub adding public deploy key]()
 ![GitHub with public deploy key]()
 
 Here's a recap of what happened: Authorea generated a public/private ssh key pair for the `authorea_test` document. We copied the public key into the `authorea_test` GitHub repository. Now Authorea has push/pull access to the `authorea_test` repo on GitHub.
@@ -114,7 +119,9 @@ We aren't finished. Authorea needs to know the git URL for the GitHub repository
 
 Git URL
 -------
-Before leaving GitHub, navigate back to the repository's main page and copy the "SSH clone URL." Now navigate to the Authorea page and close the ssh public key window. Copy the ssh clone URL into the box in step 2. Authorea now has everything it needs to modify the GitHub repo. Click "Submit." 
+Before leaving GitHub, navigate back to the repository's main page and copy the "SSH clone URL." Now navigate to the Authorea page and close the ssh public key window. Copy the ssh clone URL into the box in step 2. Authorea now has everything it needs to modify the GitHub repo. Click "Submit."
+
+![Authorea GitHub repo url]()
 
 GitHub Webhook
 --------------
@@ -129,23 +136,36 @@ Copy the URL and navigate back to the GitHub page with the repo. Click on the "S
 Click "Add webook." Paste the URL from Authorea into the "Payload URL" box, then click the green "Add webhook" button.
 
 ![GitHub webhooks add webhook]()
+![GitHub webhooks and services after webhook add]()
 
 Once the webhook has been set up, Authorea pushes what it has to the GitHub repo and clobbers your stuff via a merge. You should go back to the local directory on your machine and pull in the changes.
 
+![GitHub after merge]()
+![GitHub network graph after merge]()
+
 At this point, the connection between Authorea and GitHub has been made. I'm pretty sure that every time a push is made to `master` on the GitHub repo, Authorea will pull in the changes. Likewise, any time edits are saved on Authorea, Authorea will push the changes to GitHub. I think that if a merge conflict arises, Authorea will push the changes to the branch `authorea` and require a manual merge.
 
-Reorganizing what Authorea has done
-===================================
-First, we remove cruft by deleting `untitled.tex`. Then we need to adjust `layout.md` and the associated .tex files to get the document buildable from our local machine (thus we need to change the Makefile). Finally, we can delete `main.tex` as well.
+For what its worth, [tag `2.0`](https://github.com/jrsmith3/authorea_test/releases/tag/2.0) points to the commit where Authorea initially merged.
 
-Deleting `untitled.tex`, `pdftitleTitle_pdfaut.tex`, `main.tex`.
+Step 3: Reorganizing what Authorea has done
+===========================================
+Things aren't terrible since all of the original LaTeX in the repo was on its own branch and since `master` was only a single commit containing `.gitignore`. There's some cruft in `master`. Here's a list of the files and how they should be fixed.
 
-Here's what's happening. `layout.md` lists the order in which the files are built. Combining what's in `layout.md` with the rest of the files, I think the document gets built by parsing files in the following order:
+- **`untitled.tex`** is superfluous and can be deleted. 
+- **`pdftitleTitle_pdfaut.tex`** contains the mangled `hyperref` directive -- `pdftitleTitle_pdfaut.tex` can be deleted because...
+- **`header.tex`** should be modified to include the non-mangled `hyperref` directive.
+- **`sectionIntroduction_.tex`** should be renamed. I prefer simply `introduction.tex`.
+- **`preamble.tex`** should be rewritten with the original preamble.
+- **`layout.md`** should be edited to remove the line calling for `pdftitleTitle_pdfaut.tex`. The line referring to the old `sectionIntroduction_.tex` should be updated.
 
-preamble.tex
-header.tex
-title.tex
-abstract.tex
-sectionIntroduction_.tex
+Release [3.0](https://github.com/jrsmith3/authorea_test/releases/tag/3.0) is the state of the repo after the modifications.
 
-I think that between `title.tex` and `abstract.tex`, probably a `\maketitle` command is issued somewhere.
+Step 4: Merging `latex` back into `main`
+========================================
+I still want to be able to clone the repo and build the LaTeX document using the makefile. In order to accomplish this goal, I merged the `latex` branch back into `master`, and then modified `main.tex` to essentially the file at the top of this post. Note that I manually `\input{}` the sections in `main.tex`; there's probably a way to parse `layout.md` but its late and I am tired.
+
+The result of the merge and subsequent `make` can be found in release [4.0](https://github.com/jrsmith3/authorea_test/releases/tag/4.0).
+
+Conclusion
+==========
+The process of setting up Authorea as a frontend for a LaTeX document in an existing GitHub is a little wonky. Hopefully the extreme detail of this post helped.
