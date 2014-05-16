@@ -18,20 +18,12 @@ Authorea + GitHub: extreme power plus low barrier to entry?
 ===========================================================
 Without having used it extensively, I am very excited about [Authorea](https://authorea.com/). Authorea looks like the collaborative authoring tool I would have created. It allows teams to collaborate on LaTeX documents, and it has a git backend that can be connected to a GitHub repository. My hope is that Authorea will bridge a gap: it will allow people with a lot of git and LaTeX experience to collaborate on manuscripts with people that have none. In this way, hopefully the group can operate at the level of the most computer savvy members as opposed to regressing to the lowest-common-denominator .doc + email workflow. Longer term, perhaps the people with less experience will get a gentle introduction to version control and markup languages so they can see the value without having to pass through [the valley of death](http://software-carpentry.org/blog/2014/05/playing-the-kazoo.html#glass-law).
 
-Authorea is currently thin on the documentation of how to connect to an existing LaTeX document hosted on GitHub. This post will be a case study of how I integrated Authorea into an existing LaTeX document on GitHub. I will use an example [GitHub repo called authorea_test](https://github.com/jrsmith3/authorea_test) and [Authorea document]() so that you can poke around the result.
-
-Background
-----------
-I am currently writing a proposal with several professors; these professors range in age from mid-40s to 60s, and all are strictly MS Windows and MS Word people. Their typical document collaborative workflow is to email an MS Word .doc file around. I'm not going to go into the shortcomings of this workflow here. One requirement we have is confidentiality: I don't want to write this proposal in public.
-
-Note that I am *not* starting a document from scratch on Authorea and then inviting others to work on it. I already have a document in a git repository with 10s of commits. I want to enable collaborative editing on this document via Authorea.
-
-This post is verbose. Authorea's documentation is pretty much the quickstart version.
+Authorea is currently thin on the documentation of how to connect to an existing LaTeX document hosted on GitHub. This post will be a case study of how I integrated Authorea into an existing LaTeX document on GitHub. I will use an example [GitHub repo called authorea_test](https://github.com/jrsmith3/authorea_test) and [Authorea document](https://authorea.com/users/6814/articles/7173/) so that you can poke around the result.
 
 
 Step 0: Prep initial LaTeX manuscript on GitHub
 ===============================================
-I started with a simple LaTeX document hosted in a GitHub [repo](https://github.com/jrsmith3/authorea_test/releases/tag/1.0). Note that the previous link is a tag which is the state of the repo right before I connected it to Authorea. My typical workflow is to author or edit the LaTeX source, then build the result with a [makefile](https://github.com/jrsmith3/latex_template). I would like to keep this makefile workflow, but I also want the files to be in a form that can be built by Authorea.
+I started with a simple LaTeX document hosted in a GitHub repo. Release [1.0](https://github.com/jrsmith3/authorea_test/releases/tag/1.0) is the state of the repository before I connected it to Authorea. My typical workflow is to author or edit the LaTeX source, then build the result with a [makefile](https://github.com/jrsmith3/latex_template). I would like to keep this makefile workflow, but I also want the files to be in a form that can be built by Authorea.
 
 Make a branch to be merged later
 --------------------------------
@@ -42,17 +34,17 @@ Step 1: Make a new article on Authorea via import
 =================================================
 Click on the red "New article" button and choose "Import". For "Project name" I chose "authorea_test" to match the repo name on GitHub. For the LaTeX file in the "Source files" section, I navigated to the directory in my local filesystem containing the git repo and chose the `main.tex` file. I ended up choosing "Public" in the "Article availability" section for this example, but for my actual proposal I used "Private." Finally, click "Submit."
 
-![Import article]()
+[![Import article](images/01_import_article_small.png)](images/01_import_article.png)
 
 Authorea slices up `main.tex` and creates several .tex files. It also alerts me to a rendering error. This error is because Authorea incorrectly parsed my `\usepackage{hyperref}` directive. 
 
-![Successful import with error]()
+[![Successful import with error](images/02_successful_import_with_error_small.png)](images/02_successful_import_with_error.png)
 
 I'll fix the `hyperref` problem momentarily, but first take a look the files that Authorea has created by clicking on the `folder` tab.
 
-![Folder tab after import]()
+[![Folder tab after import](images/03_folder_tab_after_import_small.png)](images/03_folder_tab_after_import.png)
 
-Authorea has parsed `main.tex` and broken out the sections into individual files listed below. Commit [commit_hash_value]() corresponds to the state of the repo at this point.
+Authorea has parsed `main.tex` and broken out the sections into individual files listed below. Commit [b737b5f7](https://github.com/jrsmith3/authorea_test/commit/b737b5f73d60ff46835fc3365ba131b496e34840) corresponds to the state of the repo at this point.
 
 - **`bibliography`** - A directory containing an empty file called `biblio.bib`. Probably my own bibTeX file would have gone here had I uploaded it during the creation of this document.
 - **`figures`** - An empty directory that would contain figures associated with this manuscript.
@@ -98,20 +90,20 @@ One of the ways GitHub authenticates access to repositories is via ssh keys. Aut
 
 From the `main` tab on Authorea, click on the `Settings` button; once the "Article Settings" window pops up, click on the green "setup a deploy key" button. 
 
-![Article Settings with deploy key button]()
+[![Article Settings with deploy key button](images/04_article_settings_with_deploy_key_button_small.png)](images/04_article_settings_with_deploy_key_button.png)
 
 To create this keypair, click on the "Generate ssh key pair" button. A new window will pop up entitled, "Public Deploy Key." Copy the entire block of text. 
 
-![Authorea public deploy key]()
+[![Authorea public deploy key](images/05_authorea_public_deploy_key_small.png)](images/05_authorea_public_deploy_key.png)
 
 Next, navigate over to the GitHub page with the repo containing your LaTeX manuscript. Click on the "Settings" tab. Then click on the "Deploy keys" tab on the next page that pops up. 
 
-![GitHub without public deploy key]()
+[![GitHub without public deploy key](images/06_github_without_public_deploy_key_small.png)](images/06_github_without_public_deploy_key.png)
 
 Click on "Add deploy key" and then paste the public ssh key that Authorea generated into the "Key" box. I named the key "authorea_auto_generated" but you can pick whatever name you want. Finally, click the green "Add key" button. GitHub may ask you to enter your password to add the public ssh key to the repository.
 
-![GitHub adding public deploy key]()
-![GitHub with public deploy key]()
+[![GitHub adding public deploy key](images/07_github_adding_public_deploy_key_small.png)](images/07_github_adding_public_deploy_key.png)
+[![GitHub with public deploy key](images/08_github_with_public_deploy_key_small.png)](images/08_github_with_public_deploy_key.png)
 
 Here's a recap of what happened: Authorea generated a public/private ssh key pair for the `authorea_test` document. We copied the public key into the `authorea_test` GitHub repository. Now Authorea has push/pull access to the `authorea_test` repo on GitHub.
 
@@ -121,27 +113,27 @@ Git URL
 -------
 Before leaving GitHub, navigate back to the repository's main page and copy the "SSH clone URL." Now navigate to the Authorea page and close the ssh public key window. Copy the ssh clone URL into the box in step 2. Authorea now has everything it needs to modify the GitHub repo. Click "Submit."
 
-![Authorea GitHub repo url]()
+[![Authorea GitHub repo url](images/09_authorea_github_repo_url_small.png)](images/09_authorea_github_repo_url.png)
 
 GitHub Webhook
 --------------
 If everything is successful, Authorea will give you a page with a Web Hook URL. 
 
-![Authorea Git access bridge with webhook]()
+[![Authorea Git access bridge with webhook](images/10_authorea_git_access_bridge_with_webhook_small.png)](images/10_authorea_git_access_bridge_with_webhook.png)
 
 Copy the URL and navigate back to the GitHub page with the repo. Click on the "Settings" tab, but this time click on "Webhooks and Services." 
 
-![GitHub webhooks and services]()
+[![GitHub webhooks and services](images/11_github_webhooks_and_services_small.png)](images/11_github_webhooks_and_services.png)
 
 Click "Add webook." Paste the URL from Authorea into the "Payload URL" box, then click the green "Add webhook" button.
 
-![GitHub webhooks add webhook]()
-![GitHub webhooks and services after webhook add]()
+[![GitHub webhooks add webhook](images/12_github_webhooks_add_webhook_small.png)](images/12_github_webhooks_add_webhook.png)
+[![GitHub webhooks and services after webhook add](images/13_github_webhooks_and_services_after_webhook_add_small.png)](images/13_github_webhooks_and_services_after_webhook_add.png)
 
 Once the webhook has been set up, Authorea pushes what it has to the GitHub repo and clobbers your stuff via a merge. You should go back to the local directory on your machine and pull in the changes.
 
-![GitHub after merge]()
-![GitHub network graph after merge]()
+[![GitHub after merge](images/14_github_after_merge_small.png)](images/14_github_after_merge.png)
+[![GitHub network graph after merge](images/15_github_network_graph_after_merge_small.png)](images/15_github_network_graph_after_merge.png)
 
 At this point, the connection between Authorea and GitHub has been made. I'm pretty sure that every time a push is made to `master` on the GitHub repo, Authorea will pull in the changes. Likewise, any time edits are saved on Authorea, Authorea will push the changes to GitHub. I think that if a merge conflict arises, Authorea will push the changes to the branch `authorea` and require a manual merge.
 
