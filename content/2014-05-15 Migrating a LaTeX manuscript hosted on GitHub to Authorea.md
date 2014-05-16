@@ -1,5 +1,5 @@
 Title: Migrating a LaTeX manuscript hosted on GitHub to Authorea
-Date: 2014-05-14 09:24
+Date: 2014-05-15 23:28
 Category: Blog
 Author: Joshua Ryan Smith
 Summary: How to integrate Authorea with a LaTeX manuscript hosted in an existing GitHub repository.
