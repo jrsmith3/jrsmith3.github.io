@@ -1,5 +1,5 @@
 Title: Data storage and data file workflow
-Date: 2014-04-02 23:05
+Date: 2014-06-22
 Category: Blog
 Author: Joshua Ryan Smith
 Summary: Store data read-only using unique filenames in a single, flat directory.
@@ -15,11 +15,11 @@ Summary
 
 Introduction
 ============
-Its 2014 and you are going to generate computer data files in the course of your research. These may be SEM images in TIFF format, files containing I-V data for your Schottky diodes in ASCII format, or AFM images in some proprietary binary format. how should you organize these files? How should you store them so others can get access when they need to (without bothering you)? How can you keep track of them and any changes during data analysis?
+If you are like me, in the course of your research you generate data files from the various apparatus used in your experiments. These may be SEM images in TIFF format, files containing I-V data for your Schottky diodes in ASCII format, or AFM images in some proprietary binary format. How should you organize these files? How should you store them so others can get access when they need to (without bothering you)? How can you keep track of them and any changes during data analysis?
 
 The solution: unique filenames, read-only files, and a single, flat `data` directory
 ====================================================================================
-Most of your data management issues can be resolved by adopting a single, flat (no subdirectories), centrally accessable directory containing read-only copies of your group's data files which are uniquely named. The advantages of this approach far outweigh the disadvantages.
+Most of your data management issues can be resolved by adopting a single, flat (no subdirectories), centrally accessable directory containing read-only copies of your group's data files which are uniquely named.
 
 The workflow for this kind of system is straightforward: data is taken on an instrument and gets copied to `data`. If analysis is to be done on files in `data`, the person analyzing the data would first copy the files into a different project directory and then perform the analysis.
 
