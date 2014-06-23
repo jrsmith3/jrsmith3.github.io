@@ -27,11 +27,11 @@ Having all data in a single, centrally accessible `data` directory has a number 
 
 This approach to data management is strongly coupled to choosing [unique, metadata-rich filenames](http://jrsmith3.github.io/naming-data-files.html). To recap, use 
 
-    `YYYYMMDD-HHMM_experiment_sample_experimenter.extension`
+    YYYYMMDD-HHMM_experiment_sample_experimenter.extension
 
 on systems that support long filenames and the nested directory structure
     
-    `experimenter/sample/experiment/YYYYMMDD/HHMM.extension`
+    experimenter/YYYYMMDD/experiment/sample/HHMM.extension
 
 on older systems that do not support long filenames.
 
@@ -95,47 +95,26 @@ gamma:data jrsmith3$ ls
 20110527-1635_TEM_JRST26_ATW.dm3
 ```
 
-
-Old
-===
-
-
-
-
-
-
-Downsides of a single `data` directory: single point of failure. Therefore, backup this directory! (is there a way to use dropbox for this task and an online incremental backup service?)
-
-Another downside: modification of files within `data`. This is a separate issue. Don't modify data in `data`. Make a copy and modify the copy. The data in `data` is pristine. It should contain only files that came directly from the instrument.
-
 Workflow
 ========
-Data should move along the following trajectory: Data files are created on the instrument and are named appropriately. Data then moves into the `data` directory either directly or via an intermediate medium. Directly means you mount the device containing `data`, then copy your files. Otherwise you might copy the data from the computer attached to the instrument to a portable external drive, then from the portable drive to `data`.
+The workflow is pretty simple: Data files are created on the instrument and are named appropriately. Data then moves into the `data` directory either directly or via an intermediate medium such as a USB flash drive. If you are on Windows, I believe [WinSCP](http://winscp.net/eng/index.php) has a nice [synchronization](http://winscp.net/eng/docs/guide_synchronize) capability.
 
-The rsync program is good for this sort of thing. Also putty (?) has a feature to sync one directory to another.
+Cautions
+========
+There are two related issues that you should avoid. First, putting all data in a single directory creates a single point of failure. I suggest having a robust backup and recovery plan for this directory.
 
-Version control might be useful for this application.
+The second thing you should avoid is altering any data that is located in the `data` directory. Oftentimes you will need to do some kind of analysis that changes the data file itself; if so, make a copy of the data you need and modify the copy. To reiterate: once data lands in the `data` directory, it should never change.
+
+Putting `data` under version control might not be a bad idea. Some people might balk at having a big repo, but apparently some companies do it.
+
+<blockquote class="twitter-tweet" lang="en"><p>Facebook&#39;s git repo is 54 GB. <a href="http://t.co/zLNSzDlFYF">pic.twitter.com/zLNSzDlFYF</a></p>&mdash; Feross (@feross) <a href="https://twitter.com/feross/statuses/459259593630433280">April 24, 2014</a></blockquote>
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 Short filenames
 ===============
-According to my file naming rubric, short filenames are necessarily in a nested directory structure. Look, part of this scheme assumes `data` is only additive: things can be added; but once added, things don't change.
+If you've been paying attention, you will have noticed a contradiction. According to my file naming rubric, short filenames are necessarily in a nested directory structure but I advocate a flat structure for `data`.
 
-There's two possibilities with the short filenames: renaming/copying script. Copy into subdir, linking & renaming script.
+The best case scenario would be to have some scripts for various platforms which would flatten the nested structure in `data`. I will post links to these scripts when they become available. In the meantime, the nested structure I suggest makes drag-and-drop additions to the `data` directory easy. 
 
-I still need to talk more about the analysis of the files in `data`. Look, `data` is a repository, not a workshop. Data goes there to be stored, analysis of the data should occur in a separate location. Files that are not pristine copies of the data should not be in this directory.
+    experimenter/YYYYMMDD/experiment/sample/HHMM.extension
 
-So I should basically write a spec for the `data` directory.
-
-
-Is this advice applicable to your lab?
-======================================
-
-
-Note
-====
-* Backups
-* flat filesystem structure
-* rsync
-* git/version control
-* pristine copies of data
-* disadvantages of nested filesystem
