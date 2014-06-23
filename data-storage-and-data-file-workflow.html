@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>    Data storage and data file workflow
+</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width">
+            <link rel="stylesheet" href="http://jrsmith3.github.io/theme/css/normalize.css">
+        <link href='//fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+        <link href='//fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="http://jrsmith3.github.io/theme/css/font-awesome.min.css">
+        <link rel="stylesheet" href="http://jrsmith3.github.io/theme/css/main.css">
+
+    <link rel="stylesheet" href="http://jrsmith3.github.io/theme/css/blog.css">
+    <link rel="stylesheet" href="http://jrsmith3.github.io/theme/css/github.css">
+        <link href="http://jrsmith3.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Generic Surname Atom Feed" />
+        <script src="http://jrsmith3.github.io/theme/js/vendor/modernizr-2.6.2.min.js"></script>
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+        <![endif]-->
+
+        <div id="wrapper">
+<header id="sidebar" class="side-shadow">
+    <hgroup id="site-header">
+        <a id="site-title" href="http://jrsmith3.github.io"><h1><i class="icon-coffee"></i> Generic Surname</h1></a>
+        <p id="site-desc"></p>
+    </hgroup>
+    <nav>
+        <ul id="nav-links">
+                <li><a href="http://jrsmith3.github.io/pages/about.html">About</a></li>
+                <li><a href="http://jrsmith3.github.io/pages/contact.html">Contact</a></li>
+                <li><a href="http://jrsmith3.github.io/pages/curriculum-vitae.html">Curriculum Vitae</a></li>
+        </ul>
+    </nav>
+<footer id="site-info">
+    <p>
+        Proudly powered by <a href="http://getpelican.com/" target="pelican">Pelican</a> and <a href="http://python.org/" target="python">Python</a>. Theme by <a href="https://github.com/hdra/pelican-cait" target="github">hndr</a>.
+    </p>
+    <p>
+        Textures by <a href="http://subtlepatterns.com/" target="subtlepatterns">Subtle Pattern</a>. Font Awesome by <a href="http://fortawesome.github.io/Font-Awesome/" target="github">Dave Grandy</a>.
+    </p>
+</footer></header>
+    <div id="post-container">
+        <ol id="post-list">
+            <li>
+                <article class="post-entry">
+                    <header class="entry-header">
+                        <time class="post-time" datetime="2014-06-22T00:00:00" pubdate>
+                            Sun 22 June 2014
+                        </time>
+                        <a href="http://jrsmith3.github.io/data-storage-and-data-file-workflow.html" rel="bookmark"><h1>Data storage and data file workflow</h1></a>
+                    </header>
+
+                    <section class="post-content">
+                        <h1>Summary</h1>
+<ul>
+<li>Raw data files should be stored in a single directory named <code>data</code>.</li>
+<li><code>data</code> should be centrally accessible.</li>
+<li>Files in <code>data</code> should have <a href="http://jrsmith3.github.io/naming-data-files.html">unique names</a>.</li>
+<li><code>data</code> should have a flat structure (no subdirectories).</li>
+<li>Files in <code>data</code> should remain pristine as they came off the instrument and never be altered.</li>
+<li>Do not use <code>data</code> as a working directory. I.e. don't put code, manuscripts, etc. in <code>data</code>; use a project directory instead.</li>
+</ul>
+<h1>Introduction</h1>
+<p>If you are like me, in the course of your research you generate data files from the various apparatus used in your experiments. These may be SEM images in TIFF format, files containing I-V data for your Schottky diodes in ASCII format, or AFM images in some proprietary binary format. How should you organize these files? How should you store them so others can get access when they need to (without bothering you)? How can you keep track of them and any changes during data analysis?</p>
+<h1>The solution: unique filenames, read-only files, and a single, flat <code>data</code> directory</h1>
+<p>Most of your data management issues can be resolved by adopting a single, flat (no subdirectories), centrally accessable directory containing read-only copies of your group's data files which are uniquely named.</p>
+<p>The workflow for this kind of system is straightforward: data is taken on an instrument and gets copied to <code>data</code>. If analysis is to be done on files in <code>data</code>, the person analyzing the data would first copy the files into a different project directory and then perform the analysis.</p>
+<p>Having all data in a single, centrally accessible <code>data</code> directory has a number of advantages. First, this approach eliminates findability costs. People will never have to go around to different computers looking for the data they took. Second, this approach decreases transaction costs. If you need data that I took, simply find it in <code>data</code>. There's no need to ask me to email or otherwise send you the data.</p>
+<p>This approach to data management is strongly coupled to choosing <a href="http://jrsmith3.github.io/naming-data-files.html">unique, metadata-rich filenames</a>. To recap, use </p>
+<div class="highlight"><pre><span class="n">YYYYMMDD</span><span class="o">-</span><span class="n">HHMM_experiment_sample_experimenter</span><span class="p">.</span><span class="n">extension</span>
+</pre></div>
+
+
+<p>on systems that support long filenames and the nested directory structure</p>
+<div class="highlight"><pre><span class="n">experimenter</span><span class="o">/</span><span class="n">YYYYMMDD</span><span class="o">/</span><span class="n">experiment</span><span class="o">/</span><span class="n">sample</span><span class="o">/</span><span class="n">HHMM</span><span class="p">.</span><span class="n">extension</span>
+</pre></div>
+
+
+<p>on older systems that do not support long filenames.</p>
+<p>Having a <code>data</code> directory filled with uniquely and descriptively named files is the next best thing to having a <a href="https://en.wikipedia.org/wiki/Uniform_resource_identifier">URI</a> for each file and having the files in some kind of relational database. In addition to the advantage of findability I mentioned above, uniquely naming files in a single <code>data</code> directory yields addressability. Cross-referencing a file in a <a href="http://jrsmith3.github.io/effective-lab-notebooks.html">lab notebook</a> or <a href="http://jrsmith3.github.io/sample-logs-the-secret-to-managing-multi-person-projects.html">sample log</a> is as simple as writing the filename. To find the cross-referenced file, simply look for it in <code>data</code>. </p>
+<p>Using metadata-rich filenames gives you another advantage: it is easy to perform searches for specific files or sets of files using filename search functions in your file browser or shell. More advanced searches can be done via simple python scripts. For example, lets say I wanted to find all the XPS data files I've taken</p>
+<div class="highlight"><pre>gamma:data jrsmith3<span class="nv">$ </span>ls | grep -i jrs | grep -i xps
+20100202-0844_xps_tfan25_jrs.dat
+20100202-0850_xps_tfan25_jrs.dat
+20100202-1008_xps_tfan25_jrs.dat
+20100202-1019_xps_tfan25_jrs.dat
+20100202-1127_xps_tfan25_jrs.dat
+20100202-1133_xps_tfan25_jrs.dat
+20100202-1223_xps_tfan25_jrs.dat
+20100202-1227_xps_tfan25_jrs.dat
+20100202-1324_xps_tfan25_jrs.dat
+20100202-1330_xps_tfan25_jrs.dat
+20100203-0823_xps_tfan24_jrs.dat
+20100203-0829_xps_tfan24_jrs.dat
+20100203-0932_xps_tfan24_jrs.dat
+20100203-0937_xps_tfan24_jrs.dat
+20100203-0956_xps_tfan24_jrs.dat
+20100203-1033_xps_tfan24_jrs.dat
+20100203-1039_xps_tfan24_jrs.dat
+</pre></div>
+
+
+<p>The same search can be performed from OSX Finder. I don't use Windows, but I would be happy to post instructions on the same search from powershell or Windows file Explorer, <a href="mailto:joshua.r.smith@gmail.com">email</a> me or pull request.</p>
+<p>Using the file naming scheme I suggest above gives one final advantage. File browsers and the shell will automatically list files in chronological order. In the bash shell:</p>
+<div class="highlight"><pre>gamma:data jrsmith3<span class="nv">$ </span>ls
+20110520-1543_stm_jrs0075_jrs.sm4
+20110520-1614_stm_jrs0075_jrs.sm4
+20110520-1622_oscilloscope_jrs0075_jrs.txt
+20110520-1623_stm_jrs0075_jrs.sm4
+20110520-1700_stm_jrs0075_jrs.sm4
+20110520-1709_stm_jrs0075_jrs.sm4
+20110520-1721_stm_jrs0075_jrs.sm4
+20110520-1731_stm_jrs0075_jrs.sm4
+20110520-1742_stm_jrs0075_jrs.sm4
+20110520-1819_stm_jrs0076_jrs.sm4
+20110520-1830_stm_jrs0076_jrs.sm4
+20110520-1840_stm_jrs0076_jrs.sm4
+20110520-1840_stm_jrs0076_jrs.txt
+20110520-1916_stm_jrs0076_jrs.sm4
+20110520-1925_stm_jrs0076_jrs.sm4
+20110520-2002_stm_jrs0076_jrs.sm4
+20110523-1052_xps_jrs0076_jrs.dat
+20110523-1110_xps_jrs0076_jrs.dat
+20110527-1614_TEM_JRST27_ATW.dm3
+20110527-1615_TEM_JRST27_ATW.dm3
+20110527-1617_TEM_JRST27_ATW.dm3
+20110527-1619_TEM_JRST27_ATW.dm3
+20110527-162412_TEM_JRST26_ATW.dm3
+20110527-162430_TEM_JRST26_ATW.dm3
+20110527-1627_TEM_JRST26_ATW.dm3
+20110527-1628_TEM_JRST26_ATW.dm3
+20110527-1635_TEM_JRST26_ATW.dm3
+</pre></div>
+
+
+<h1>Workflow</h1>
+<p>The workflow is pretty simple: Data files are created on the instrument and are named appropriately. Data then moves into the <code>data</code> directory either directly or via an intermediate medium such as a USB flash drive. If you are on Windows, I believe <a href="http://winscp.net/eng/index.php">WinSCP</a> has a nice <a href="http://winscp.net/eng/docs/guide_synchronize">synchronization</a> capability.</p>
+<h1>Cautions</h1>
+<p>There are two related issues that you should avoid. First, putting all data in a single directory creates a single point of failure. I suggest having a robust backup and recovery plan for this directory.</p>
+<p>The second thing you should avoid is altering any data that is located in the <code>data</code> directory. Oftentimes you will need to do some kind of analysis that changes the data file itself; if so, make a copy of the data you need and modify the copy. To reiterate: once data lands in the <code>data</code> directory, it should never change.</p>
+<p>Putting <code>data</code> under version control might not be a bad idea. Some people might balk at having a big repo, but apparently some companies do it.</p>
+<blockquote class="twitter-tweet" lang="en"><p>Facebook&#39;s git repo is 54 GB. <a href="http://t.co/zLNSzDlFYF">pic.twitter.com/zLNSzDlFYF</a></p>&mdash; Feross (@feross) <a href="https://twitter.com/feross/statuses/459259593630433280">April 24, 2014</a></blockquote>
+
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+<p>I would recommend using git or another vcs if your lab's data is a few hundred MBs.</p>
+<h1>Short filenames</h1>
+<p>If you've been paying attention, you will have noticed a contradiction. According to my file naming rubric, short filenames are necessarily in a nested directory structure but I advocate a flat structure for <code>data</code>.</p>
+<p>The best case scenario would be to have some scripts for various platforms which would flatten the nested structure in <code>data</code>. I will post links to these scripts when they become available. In the meantime, the nested structure I suggest makes drag-and-drop additions to the <code>data</code> directory easy. To keep things in <code>data</code> clean, use a single subdirectory named <code>nested</code> to store all of the data in nested directories coming from computers constrained to short filenames. According to my nested directory naming scheme, the <code>nested</code> directory will contain subdirectories corresponding to each experimenter. Each experimenter's directory will end up having a series of <code>YYYYMMDD</code> subdirectories. In this way, everyone can simply drag-and-drop newly acquired data into a new <code>YYYYMMDD</code> subdirectory in their own directory.</p>
+<p>Here's a visualization:</p>
+<div class="highlight"><pre><span class="nv">$ </span>tree data/
+data/
+└── nested
+    ├── jrs
+    │   └── 20140622
+    │       └── xps
+    │           └── jrs0014
+    │               ├── 0943.dat
+    │               ├── 0950.dat
+    │               ├── 1002.dat
+    │               ├── 1307.dat
+    │               └── 1320.dat
+    └── rpt
+
+6 directories, 5 files
+</pre></div>
+                    </section>
+                    <hr/>
+                    <aside class="post-meta">
+                        <p>Category: <a href="http://jrsmith3.github.io/category/blog.html">Blog</a></p>
+                    </aside>
+                    <hr/>
+<div class="comments">
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        var disqus_shortname = 'genericsurname';
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+                </article>
+            </li>
+        </ol>
+    </div>
+        </div>
+
+<script>
+    var _gaq=[['_setAccount','UA-1567200-4'],['_trackPageview']];
+    (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+    g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+    s.parentNode.insertBefore(g,s)}(document,'script'));
+</script>
+        <script src="http://jrsmith3.github.io/theme/js/main.js"></script>
+    </body>
+</html>

@@ -1,5 +1,117 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Generic Surname</title><link href="http://jrsmith3.github.io/" rel="alternate"></link><link href="http://jrsmith3.github.io/feeds/blog.atom.xml" rel="self"></link><id>http://jrsmith3.github.io/</id><updated>2014-05-15T23:28:00-04:00</updated><entry><title>Migrating a LaTeX manuscript hosted on GitHub to Authorea</title><link href="http://jrsmith3.github.io/migrating-a-latex-manuscript-hosted-on-github-to-authorea.html" rel="alternate"></link><updated>2014-05-15T23:28:00-04:00</updated><author><name>Joshua Ryan Smith</name></author><id>tag:jrsmith3.github.io,2014-05-15:migrating-a-latex-manuscript-hosted-on-github-to-authorea.html</id><summary type="html">&lt;h1&gt;Summary&lt;/h1&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Generic Surname</title><link href="http://jrsmith3.github.io/" rel="alternate"></link><link href="http://jrsmith3.github.io/feeds/blog.atom.xml" rel="self"></link><id>http://jrsmith3.github.io/</id><updated>2014-06-22T00:00:00-04:00</updated><entry><title>Data storage and data file workflow</title><link href="http://jrsmith3.github.io/data-storage-and-data-file-workflow.html" rel="alternate"></link><updated>2014-06-22T00:00:00-04:00</updated><author><name>Joshua Ryan Smith</name></author><id>tag:jrsmith3.github.io,2014-06-22:data-storage-and-data-file-workflow.html</id><summary type="html">&lt;h1&gt;Summary&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Raw data files should be stored in a single directory named &lt;code&gt;data&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;data&lt;/code&gt; should be centrally accessible.&lt;/li&gt;
+&lt;li&gt;Files in &lt;code&gt;data&lt;/code&gt; should have &lt;a href="http://jrsmith3.github.io/naming-data-files.html"&gt;unique names&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;data&lt;/code&gt; should have a flat structure (no subdirectories).&lt;/li&gt;
+&lt;li&gt;Files in &lt;code&gt;data&lt;/code&gt; should remain pristine as they came off the instrument and never be altered.&lt;/li&gt;
+&lt;li&gt;Do not use &lt;code&gt;data&lt;/code&gt; as a working directory. I.e. don't put code, manuscripts, etc. in &lt;code&gt;data&lt;/code&gt;; use a project directory instead.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1&gt;Introduction&lt;/h1&gt;
+&lt;p&gt;If you are like me, in the course of your research you generate data files from the various apparatus used in your experiments. These may be SEM images in TIFF format, files containing I-V data for your Schottky diodes in ASCII format, or AFM images in some proprietary binary format. How should you organize these files? How should you store them so others can get access when they need to (without bothering you)? How can you keep track of them and any changes during data analysis?&lt;/p&gt;
+&lt;h1&gt;The solution: unique filenames, read-only files, and a single, flat &lt;code&gt;data&lt;/code&gt; directory&lt;/h1&gt;
+&lt;p&gt;Most of your data management issues can be resolved by adopting a single, flat (no subdirectories), centrally accessable directory containing read-only copies of your group's data files which are uniquely named.&lt;/p&gt;
+&lt;p&gt;The workflow for this kind of system is straightforward: data is taken on an instrument and gets copied to &lt;code&gt;data&lt;/code&gt;. If analysis is to be done on files in &lt;code&gt;data&lt;/code&gt;, the person analyzing the data would first copy the files into a different project directory and then perform the analysis.&lt;/p&gt;
+&lt;p&gt;Having all data in a single, centrally accessible &lt;code&gt;data&lt;/code&gt; directory has a number of advantages. First, this approach eliminates findability costs. People will never have to go around to different computers looking for the data they took. Second, this approach decreases transaction costs. If you need data that I took, simply find it in &lt;code&gt;data&lt;/code&gt;. There's no need to ask me to email or otherwise send you the data.&lt;/p&gt;
+&lt;p&gt;This approach to data management is strongly coupled to choosing &lt;a href="http://jrsmith3.github.io/naming-data-files.html"&gt;unique, metadata-rich filenames&lt;/a&gt;. To recap, use &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;YYYYMMDD&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;HHMM_experiment_sample_experimenter&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;extension&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;on systems that support long filenames and the nested directory structure&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;experimenter&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;YYYYMMDD&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;experiment&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;sample&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;HHMM&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;extension&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;on older systems that do not support long filenames.&lt;/p&gt;
+&lt;p&gt;Having a &lt;code&gt;data&lt;/code&gt; directory filled with uniquely and descriptively named files is the next best thing to having a &lt;a href="https://en.wikipedia.org/wiki/Uniform_resource_identifier"&gt;URI&lt;/a&gt; for each file and having the files in some kind of relational database. In addition to the advantage of findability I mentioned above, uniquely naming files in a single &lt;code&gt;data&lt;/code&gt; directory yields addressability. Cross-referencing a file in a &lt;a href="http://jrsmith3.github.io/effective-lab-notebooks.html"&gt;lab notebook&lt;/a&gt; or &lt;a href="http://jrsmith3.github.io/sample-logs-the-secret-to-managing-multi-person-projects.html"&gt;sample log&lt;/a&gt; is as simple as writing the filename. To find the cross-referenced file, simply look for it in &lt;code&gt;data&lt;/code&gt;. &lt;/p&gt;
+&lt;p&gt;Using metadata-rich filenames gives you another advantage: it is easy to perform searches for specific files or sets of files using filename search functions in your file browser or shell. More advanced searches can be done via simple python scripts. For example, lets say I wanted to find all the XPS data files I've taken&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;gamma:data jrsmith3&lt;span class="nv"&gt;$ &lt;/span&gt;ls | grep -i jrs | grep -i xps
+20100202-0844_xps_tfan25_jrs.dat
+20100202-0850_xps_tfan25_jrs.dat
+20100202-1008_xps_tfan25_jrs.dat
+20100202-1019_xps_tfan25_jrs.dat
+20100202-1127_xps_tfan25_jrs.dat
+20100202-1133_xps_tfan25_jrs.dat
+20100202-1223_xps_tfan25_jrs.dat
+20100202-1227_xps_tfan25_jrs.dat
+20100202-1324_xps_tfan25_jrs.dat
+20100202-1330_xps_tfan25_jrs.dat
+20100203-0823_xps_tfan24_jrs.dat
+20100203-0829_xps_tfan24_jrs.dat
+20100203-0932_xps_tfan24_jrs.dat
+20100203-0937_xps_tfan24_jrs.dat
+20100203-0956_xps_tfan24_jrs.dat
+20100203-1033_xps_tfan24_jrs.dat
+20100203-1039_xps_tfan24_jrs.dat
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;The same search can be performed from OSX Finder. I don't use Windows, but I would be happy to post instructions on the same search from powershell or Windows file Explorer, &lt;a href="mailto:joshua.r.smith@gmail.com"&gt;email&lt;/a&gt; me or pull request.&lt;/p&gt;
+&lt;p&gt;Using the file naming scheme I suggest above gives one final advantage. File browsers and the shell will automatically list files in chronological order. In the bash shell:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;gamma:data jrsmith3&lt;span class="nv"&gt;$ &lt;/span&gt;ls
+20110520-1543_stm_jrs0075_jrs.sm4
+20110520-1614_stm_jrs0075_jrs.sm4
+20110520-1622_oscilloscope_jrs0075_jrs.txt
+20110520-1623_stm_jrs0075_jrs.sm4
+20110520-1700_stm_jrs0075_jrs.sm4
+20110520-1709_stm_jrs0075_jrs.sm4
+20110520-1721_stm_jrs0075_jrs.sm4
+20110520-1731_stm_jrs0075_jrs.sm4
+20110520-1742_stm_jrs0075_jrs.sm4
+20110520-1819_stm_jrs0076_jrs.sm4
+20110520-1830_stm_jrs0076_jrs.sm4
+20110520-1840_stm_jrs0076_jrs.sm4
+20110520-1840_stm_jrs0076_jrs.txt
+20110520-1916_stm_jrs0076_jrs.sm4
+20110520-1925_stm_jrs0076_jrs.sm4
+20110520-2002_stm_jrs0076_jrs.sm4
+20110523-1052_xps_jrs0076_jrs.dat
+20110523-1110_xps_jrs0076_jrs.dat
+20110527-1614_TEM_JRST27_ATW.dm3
+20110527-1615_TEM_JRST27_ATW.dm3
+20110527-1617_TEM_JRST27_ATW.dm3
+20110527-1619_TEM_JRST27_ATW.dm3
+20110527-162412_TEM_JRST26_ATW.dm3
+20110527-162430_TEM_JRST26_ATW.dm3
+20110527-1627_TEM_JRST26_ATW.dm3
+20110527-1628_TEM_JRST26_ATW.dm3
+20110527-1635_TEM_JRST26_ATW.dm3
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h1&gt;Workflow&lt;/h1&gt;
+&lt;p&gt;The workflow is pretty simple: Data files are created on the instrument and are named appropriately. Data then moves into the &lt;code&gt;data&lt;/code&gt; directory either directly or via an intermediate medium such as a USB flash drive. If you are on Windows, I believe &lt;a href="http://winscp.net/eng/index.php"&gt;WinSCP&lt;/a&gt; has a nice &lt;a href="http://winscp.net/eng/docs/guide_synchronize"&gt;synchronization&lt;/a&gt; capability.&lt;/p&gt;
+&lt;h1&gt;Cautions&lt;/h1&gt;
+&lt;p&gt;There are two related issues that you should avoid. First, putting all data in a single directory creates a single point of failure. I suggest having a robust backup and recovery plan for this directory.&lt;/p&gt;
+&lt;p&gt;The second thing you should avoid is altering any data that is located in the &lt;code&gt;data&lt;/code&gt; directory. Oftentimes you will need to do some kind of analysis that changes the data file itself; if so, make a copy of the data you need and modify the copy. To reiterate: once data lands in the &lt;code&gt;data&lt;/code&gt; directory, it should never change.&lt;/p&gt;
+&lt;p&gt;Putting &lt;code&gt;data&lt;/code&gt; under version control might not be a bad idea. Some people might balk at having a big repo, but apparently some companies do it.&lt;/p&gt;
+&lt;blockquote class="twitter-tweet" lang="en"&gt;&lt;p&gt;Facebook&amp;#39;s git repo is 54 GB. &lt;a href="http://t.co/zLNSzDlFYF"&gt;pic.twitter.com/zLNSzDlFYF&lt;/a&gt;&lt;/p&gt;&amp;mdash; Feross (@feross) &lt;a href="https://twitter.com/feross/statuses/459259593630433280"&gt;April 24, 2014&lt;/a&gt;&lt;/blockquote&gt;
+
+&lt;script async src="//platform.twitter.com/widgets.js" charset="utf-8"&gt;&lt;/script&gt;
+
+&lt;p&gt;I would recommend using git or another vcs if your lab's data is a few hundred MBs.&lt;/p&gt;
+&lt;h1&gt;Short filenames&lt;/h1&gt;
+&lt;p&gt;If you've been paying attention, you will have noticed a contradiction. According to my file naming rubric, short filenames are necessarily in a nested directory structure but I advocate a flat structure for &lt;code&gt;data&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;The best case scenario would be to have some scripts for various platforms which would flatten the nested structure in &lt;code&gt;data&lt;/code&gt;. I will post links to these scripts when they become available. In the meantime, the nested structure I suggest makes drag-and-drop additions to the &lt;code&gt;data&lt;/code&gt; directory easy. To keep things in &lt;code&gt;data&lt;/code&gt; clean, use a single subdirectory named &lt;code&gt;nested&lt;/code&gt; to store all of the data in nested directories coming from computers constrained to short filenames. According to my nested directory naming scheme, the &lt;code&gt;nested&lt;/code&gt; directory will contain subdirectories corresponding to each experimenter. Each experimenter's directory will end up having a series of &lt;code&gt;YYYYMMDD&lt;/code&gt; subdirectories. In this way, everyone can simply drag-and-drop newly acquired data into a new &lt;code&gt;YYYYMMDD&lt;/code&gt; subdirectory in their own directory.&lt;/p&gt;
+&lt;p&gt;Here's a visualization:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;tree data/
+data/
+└── nested
+    ├── jrs
+    │   └── 20140622
+    │       └── xps
+    │           └── jrs0014
+    │               ├── 0943.dat
+    │               ├── 0950.dat
+    │               ├── 1002.dat
+    │               ├── 1307.dat
+    │               └── 1320.dat
+    └── rpt
+
+6 directories, 5 files
+&lt;/pre&gt;&lt;/div&gt;</summary></entry><entry><title>Migrating a LaTeX manuscript hosted on GitHub to Authorea</title><link href="http://jrsmith3.github.io/migrating-a-latex-manuscript-hosted-on-github-to-authorea.html" rel="alternate"></link><updated>2014-05-15T23:28:00-04:00</updated><author><name>Joshua Ryan Smith</name></author><id>tag:jrsmith3.github.io,2014-05-15:migrating-a-latex-manuscript-hosted-on-github-to-authorea.html</id><summary type="html">&lt;h1&gt;Summary&lt;/h1&gt;
 &lt;ul&gt;
 &lt;li&gt;Start with a LaTeX document hosted in an existing GitHub repo.&lt;/li&gt;
 &lt;li&gt;Create a new article on Authorea by importing the main LaTeX document source.&lt;/li&gt;
@@ -227,7 +339,7 @@ I stole this CSS from: https://ghost.org/forum/using-ghost/1931-markdown-inline-
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;If instruments have a short filename limit, use the following filesystem structure to parallel the long filename format above:&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;experimenter/sample/experiment/YYYYMMDD/HHMM.extension&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;experimenter/YYYYMMDD/experiment/sample/HHMM.extension&lt;/code&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;h1&gt;Introduction&lt;/h1&gt;
@@ -263,7 +375,7 @@ I stole this CSS from: https://ghost.org/forum/using-ghost/1931-markdown-inline-
 &lt;p&gt;A big advantage of this scheme is that it allows you to leverage the search functionality of your operating system. For example, you could easily find all of the AFM images taken by me by searching for "afm" and "jrs". Additionally, it is simple to break apart the filename into useful metadata.&lt;/p&gt;
 &lt;h1&gt;Dealing with old OSs that don't support long filenames&lt;/h1&gt;
 &lt;p&gt;Many labs have old, but perfectly usable instruments that are controlled by old computers. Depending on the age, the operating system may not support long filenames. In this case, the file naming format I suggest won't work. In this case, I recommend using a nested directory structure to capture the full set of metadata -- just reverse the order of the metadata components.&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;experimenter/sample/experiment/YYYYMMDD/HHMM.extension&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;experimenter/YYYYMMDD/experiment/sample/HHMM.extension&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;It probably occurs to you that you wouldn't want a heterogeneous system containing short filename files within the nested directory structure along with the long filename files. In a future post I will discuss a computer data file workflow to deal with the issues that such a heterogeneous system would create.&lt;/p&gt;</summary></entry><entry><title>Effective lab notebooks</title><link href="http://jrsmith3.github.io/effective-lab-notebooks.html" rel="alternate"></link><updated>2014-02-27T22:50:00-05:00</updated><author><name>Joshua Ryan Smith</name></author><id>tag:jrsmith3.github.io,2014-02-27:effective-lab-notebooks.html</id><summary type="html">&lt;h1&gt;Summary&lt;/h1&gt;
 &lt;ul&gt;
 &lt;li&gt;Lab notebooks are collections of entries describing experiments performed in a lab.&lt;/li&gt;

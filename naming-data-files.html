@@ -68,7 +68,7 @@
 </li>
 <li>
 <p>If instruments have a short filename limit, use the following filesystem structure to parallel the long filename format above:</p>
-<p><code>experimenter/sample/experiment/YYYYMMDD/HHMM.extension</code></p>
+<p><code>experimenter/YYYYMMDD/experiment/sample/HHMM.extension</code></p>
 </li>
 </ul>
 <h1>Introduction</h1>
@@ -104,7 +104,7 @@
 <p>A big advantage of this scheme is that it allows you to leverage the search functionality of your operating system. For example, you could easily find all of the AFM images taken by me by searching for "afm" and "jrs". Additionally, it is simple to break apart the filename into useful metadata.</p>
 <h1>Dealing with old OSs that don't support long filenames</h1>
 <p>Many labs have old, but perfectly usable instruments that are controlled by old computers. Depending on the age, the operating system may not support long filenames. In this case, the file naming format I suggest won't work. In this case, I recommend using a nested directory structure to capture the full set of metadata -- just reverse the order of the metadata components.</p>
-<p><code>experimenter/sample/experiment/YYYYMMDD/HHMM.extension</code></p>
+<p><code>experimenter/YYYYMMDD/experiment/sample/HHMM.extension</code></p>
 <p>It probably occurs to you that you wouldn't want a heterogeneous system containing short filename files within the nested directory structure along with the long filename files. In a future post I will discuss a computer data file workflow to deal with the issues that such a heterogeneous system would create.</p>
                     </section>
                     <hr/>
