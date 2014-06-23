@@ -60,11 +60,7 @@ gamma:data jrsmith3$ ls | grep -i jrs | grep -i xps
 20100203-1039_xps_tfan24_jrs.dat
 ```
 
-The same search can be performed from OSX Finder:
-
-(picture of search as viewed in finder)
-
-I don't use Windows, but I would be happy to post instructions on the same search from powershell or Windows file Explorer, [email](mailto:joshua.r.smith@gmail.com) me or pull request.
+The same search can be performed from OSX Finder. I don't use Windows, but I would be happy to post instructions on the same search from powershell or Windows file Explorer, [email](mailto:joshua.r.smith@gmail.com) me or pull request.
 
 Using the file naming scheme I suggest above gives one final advantage. File browsers and the shell will automatically list files in chronological order. In the bash shell:
 
@@ -99,26 +95,14 @@ gamma:data jrsmith3$ ls
 20110527-1635_TEM_JRST26_ATW.dm3
 ```
 
-The same thing in the OS X finder: 
-
-(picture of `data` as viewed in file browser)  
-
-
-
 
 Old
 ===
-In this post, I will describe a way to store data and a workflow for getting data from your instrument to a central repository.
 
-The main takeaway is that your lab should keep all data in a central location. For example, there should be a directory on a computer or server named `data`. Your data files should be stored in this directory, regardless of type (images, I-V data, etc.). It is very important that this directory has a flat structure -- all data files go directly into the `data` directory. THERE SHOULD BE NO SUBDIRECTORIES in the `data` directory.
 
-(Picture of finder looking at `data`)
 
-At this point you may be thinking, "OMG! `data` will contain thousands of files!" So what? If you choose [unique, hierarchical, and descriptive filenames](), your file manager will display the data in chronological order. Think about why you might be having this reaction. Having all your group's data has many advantages white having data apread across several locations has no obvious advantages. Here are the advantages of putting all your group's data files in a single, flat, `data` directory using descriptive filenames. First, locateability. If the file is in `data`, it exists. If it isn't, it doesn't exist. This fact has more implications regarding cross-referencing. For example, writing the filename down is sufficient to reference the file. You can write the filename in your [lab notebook]() entry or the [sample log](), and a reader of your notebook can immediately find the file (hint: its in `data`). If you name files using the scheme I suggest, your file browser will display all your data in chronological order. Again, using my suggested naming scheme means you can do a simple search for the experiment type, sample name, or experimenter initials, and the search will yield exactly what you want.
 
-This method is tightly integrated with my [data file naming scheme]().
 
-Putting all data files in a single `data` directory also minimizes transaction costs. If I take a lot of data and I put it in `data`, you can analyze my data without having to ask me. Since my data files are named with my initials, it is clear that I deserve attribution in your paper.
 
 Downsides of a single `data` directory: single point of failure. Therefore, backup this directory! (is there a way to use dropbox for this task and an online incremental backup service?)
 
