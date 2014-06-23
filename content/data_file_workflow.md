@@ -110,11 +110,30 @@ Putting `data` under version control might not be a bad idea. Some people might 
 <blockquote class="twitter-tweet" lang="en"><p>Facebook&#39;s git repo is 54 GB. <a href="http://t.co/zLNSzDlFYF">pic.twitter.com/zLNSzDlFYF</a></p>&mdash; Feross (@feross) <a href="https://twitter.com/feross/statuses/459259593630433280">April 24, 2014</a></blockquote>
 <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 
+I would recommend using git or another vcs if your lab's data is a few hundred MBs.
+
 Short filenames
 ===============
 If you've been paying attention, you will have noticed a contradiction. According to my file naming rubric, short filenames are necessarily in a nested directory structure but I advocate a flat structure for `data`.
 
-The best case scenario would be to have some scripts for various platforms which would flatten the nested structure in `data`. I will post links to these scripts when they become available. In the meantime, the nested structure I suggest makes drag-and-drop additions to the `data` directory easy. 
+The best case scenario would be to have some scripts for various platforms which would flatten the nested structure in `data`. I will post links to these scripts when they become available. In the meantime, the nested structure I suggest makes drag-and-drop additions to the `data` directory easy. To keep things in `data` clean, use a single subdirectory named `nested` to store all of the data in nested directories coming from computers constrained to short filenames. According to my nested directory naming scheme, the `nested` directory will contain subdirectories corresponding to each experimenter. Each experimenter's directory will end up having a series of `YYYYMMDD` subdirectories. In this way, everyone can simply drag-and-drop newly acquired data into a new `YYYYMMDD` subdirectory in their own directory.
 
-    experimenter/YYYYMMDD/experiment/sample/HHMM.extension
+Here's a visualization:
 
+```bash
+$ tree data/
+data/
+└── nested
+    ├── jrs
+    │   └── 20140622
+    │       └── xps
+    │           └── jrs0014
+    │               ├── 0943.dat
+    │               ├── 0950.dat
+    │               ├── 1002.dat
+    │               ├── 1307.dat
+    │               └── 1320.dat
+    └── rpt
+
+6 directories, 5 files
+```
