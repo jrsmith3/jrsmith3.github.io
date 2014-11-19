@@ -20,7 +20,7 @@ I stole this CSS from: https://ghost.org/forum/using-ghost/1931-markdown-inline-
 
 Summary
 =======
-* A [sample log](https://github.com/jrsmith3/sample_log) is a record of all the events a sample experiences.
+* A [sample log](https://github.com/jrsmith3/sample_log/releases/download/2014-11-19/sample_log.pdf) is a record of all the events a sample experiences.
 * Sample logs are necessary, especially if sample processing/analysis steps are preformed by different people.
 * The fundamental unit of a sample log is an entry.
 * Entries should be recorded at the time of event, not before or after.
@@ -117,7 +117,7 @@ What follows is a list of tips based on my experience working on projects at the
 
 Recommendations
 ===============
-Creating and maintaining sample logs is a continual occurance and so I've created a [worksheet](https://github.com/jrsmith3/sample_log). For what its worth, I used an open-source program named [scribus](http://scribus.net) to generate this worksheet and I've licensed it [CC-BY 4.0](https://creativecommons.org/licenses/by/4.0/) to make it easy for others to modify it for their own needs.
+Creating and maintaining sample logs is a continual occurance and so I've created a [worksheet](https://github.com/jrsmith3/sample_log/releases/download/2014-11-19/sample_log.pdf) (and the [repo](https://github.com/jrsmith3/sample_log)). For what its worth, I used an open-source program named [scribus](http://scribus.net) to generate this worksheet and I've licensed it [CC-BY 4.0](https://creativecommons.org/licenses/by/4.0/) to make it easy for others to modify it for their own needs.
 
 I recommend printing these worksheets instead of attempting to keep electronic sample logs. The advantages of electronic files (copying, publishing) aren't terribly beneficial for sample logs. On the other hand, electronic sample logs introduce issues of synchronization, backups, and findability.
 
