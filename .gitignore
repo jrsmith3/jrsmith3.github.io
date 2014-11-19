@@ -15,6 +15,7 @@ output/
 *.pid
 *.pyc
 *.swp
+cache
 
 # =================================================
 # Python (from https://github.com/github/gitignore)
