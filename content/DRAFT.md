@@ -7,8 +7,8 @@ Summary: Some notes on what I've learned about structuring python tests
 Testing a module you've written in python can easily spiral out of control. You want to be sure that your tests are comprehensive, but its quite easy to fall down a rabbit hole of writing completely inane tests for edge cases that will never occur in practice. After writing and refactoring my [`tec`](https://github.com/jrsmith3/tec) module several times, I've gotten a sense of the various types of tests that need to be written and how to organize them. This post is the 0.1.0 version of the strategy I'm using to test `tec`. I intend this strategy to be along the lines of a "style guidelines" type document like [pep8]() or [Strunk and White]().
 
 
-Style guidelines for python classes simulating physical phenomnea
-=================================================================
+Style guidelines for tests for python classes simulating physical phenomnea
+===========================================================================
 Files containing tests for a python module should be located in a `test` directory in the root of the repo, as is pythonic (CITE). Each file in the `test` directory should contain tests for one and only one class/function defined in the module. Files containing tests should be named according to the rubric 
 
     test_ClassName.py
