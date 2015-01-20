@@ -11,7 +11,7 @@ Style guidelines for python classes simulating physical phenomnea
 =================================================================
 Files containing tests for a python module should be located in a `test` directory in the root of the repo, as is pythonic (CITE). Each file in the `test` directory should contain tests for one and only one class/function defined in the module. Files containing tests should be named according to the rubric 
 
-    `test_ClassName.py`
+    test_ClassName.py
 
 At the top of the file containing the tests, I have the typical python import statements. Below that, I usually define some common initialization parameters needed for the tests. These initialization parameters aren't used directly in the tests as I will explain momentarily.
 
