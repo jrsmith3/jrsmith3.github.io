@@ -30,17 +30,22 @@ Each class contains methods that implement a test. These methods are named accor
 
     test_name_condition
 
-Where `name` refers to the name of the attribute or method being tested and `condition` refers to the condition being tested. The name of the class which contains the attribute or method under test should not appear in the test method name, nor should the functionality of the test. For example, the following test names should not be used:
+Where "name" refers to the name of the attribute or method being tested and "condition" refers to the condition being tested. The name of the class which contains the attribute or method under test should not appear in the test method name, nor should the functionality of the test. For example, the following test names should not be used:
 
-    test_Electrode_temp_less_than_zero
+    test_Metal_temp_less_than_zero
     test_input_temp_less_than_zero
 
-The first example contains the name of the class (`Electrode`) in which the attribute `temp` is found. The class name is superfluous in this case because this test is presumably located in a file named `test_Electrode.py`.
+The first example contains the name of the class (`Metal`) in which the attribute `temp` is found. The class name is superfluous in this case because this test is presumably located in a file named `test_Metal.py`.
 
-The second example contains the name of the functionality being tested, i.e. "input." The functionality in this case is superfluous because the test is presumably a method of the class `InstantiationInputOutsideConstraints`
+The second example contains the name of the functionality being tested, i.e. "input." The functionality in this case is superfluous because the test is presumably a method of the class `Instantiation`
 .
 
-Docstrings should include the name of the class under test, the functionality being tested, the name of the attribute/method being tested, and the condition being tested. In this way, `nosetests` will display all the information required to locate the failed/erronious test within this classification scheme. The order is not strictly required; sometimes it is easier to write something like "Setting Electrode.richardson < 0 is invalid." The docstrings should describe logically what the test method does. In other words, it should be clear from the docstring how the test is passed or failed.
+Docstrings should include the name of the class under test, the functionality being tested, the name of the attribute/method being tested, and the condition being tested. In this way, `nosetests` will display all the information required to locate the failed/erronious test within this classification scheme. The order is not strictly required; sometimes it is easier to write something like "Setting Metal.richardson < 0 is invalid." The docstrings should describe logically what the test method does. In other words, it should be clear from the docstring how the test is passed or failed.
+
+
+Remarks
+=======
+If a class has several methods that do similar things, many of the tests in a class will be very similar. I wrote a really dumb command line tool I call [`testwriter`](https://github.com/jrsmith3/testwriter) to automatically generate code for these tests.
 
 
 Skeleton test file
