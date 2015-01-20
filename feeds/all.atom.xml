@@ -1,5 +1,120 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Generic Surname</title><link href="http://jrsmith3.github.io/" rel="alternate"></link><link href="http://jrsmith3.github.io/feeds/all.atom.xml" rel="self"></link><id>http://jrsmith3.github.io/</id><updated>2014-12-03T16:30:00-05:00</updated><entry><title>My Fall 2014 Materials Research Society meeting poster is online</title><link href="http://jrsmith3.github.io/my-fall-2014-materials-research-society-meeting-poster-is-online.html" rel="alternate"></link><updated>2014-12-03T16:30:00-05:00</updated><author><name>Joshua Ryan Smith</name></author><id>tag:jrsmith3.github.io,2014-12-03:my-fall-2014-materials-research-society-meeting-poster-is-online.html</id><summary type="html">&lt;p&gt;I am presenting a poster entitled, "Beta-enhanced thermoelectron emission and energy conversion" at the &lt;a href="http://www.mrs.org/fall2014/"&gt;2014 Materials Research Society Fall Meeting&lt;/a&gt;. The poster is number CC9.36 and will be on display Wednesday evening. You can download the &lt;a href="https://github.com/jrsmith3/conf-mrs_fall_2014_poster/releases/download/2014-12-03/poster.pdf"&gt;PDF&lt;/a&gt; or check out the &lt;a href="https://github.com/jrsmith3/conf-mrs_fall_2014_poster"&gt;repository&lt;/a&gt;.&lt;/p&gt;</summary></entry><entry><title>Merging a subdirectory from another repo via git-subtree</title><link href="http://jrsmith3.github.io/merging-a-subdirectory-from-another-repo-via-git-subtree.html" rel="alternate"></link><updated>2014-10-12T00:00:00-04:00</updated><author><name>Joshua Ryan Smith</name></author><id>tag:jrsmith3.github.io,2014-10-12:merging-a-subdirectory-from-another-repo-via-git-subtree.html</id><summary type="html">&lt;p&gt;Greg Wilson &lt;a href="https://twitter.com/jiffyclub/status/519920529038262272"&gt;wanted to know&lt;/a&gt; how to move a directory from one git repo to another while preserving history. Ash Wilson posted a &lt;a href="https://gist.github.com/smashwilson/015e6a3abfbf7af73d31"&gt;gist&lt;/a&gt; demonstrating a merge and delete strategy. A similar result can be achieved using &lt;code&gt;git-subtree&lt;/code&gt;. The advantage of the &lt;code&gt;git-subtree&lt;/code&gt; approach is that &lt;code&gt;git-subtree&lt;/code&gt; creates a new branch containing only the commits pertaining to files located in a specified subdirectory. Like Ash's approach, &lt;code&gt;git-subtree&lt;/code&gt; will result in the final state of the target repo is such that changes to the target repo won't get pushed back upstream to the source.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Generic Surname</title><link href="http://jrsmith3.github.io/" rel="alternate"></link><link href="http://jrsmith3.github.io/feeds/all.atom.xml" rel="self"></link><id>http://jrsmith3.github.io/</id><updated>2015-01-20T00:00:00-05:00</updated><entry><title>Python testing style guidelines</title><link href="http://jrsmith3.github.io/python-testing-style-guidelines.html" rel="alternate"></link><updated>2015-01-20T00:00:00-05:00</updated><author><name>Joshua Ryan Smith</name></author><id>tag:jrsmith3.github.io,2015-01-20:python-testing-style-guidelines.html</id><summary type="html">&lt;p&gt;Testing a module you've written in python can easily spiral out of control. You want to be sure that your tests are comprehensive, but its quite easy to fall down a rabbit hole of writing completely inane tests for edge cases that will never occur in practice. After writing and refactoring my &lt;a href="https://github.com/jrsmith3/tec"&gt;&lt;code&gt;tec&lt;/code&gt;&lt;/a&gt; module several times, I've gotten a sense of the various types of tests that need to be written and how to organize them. This post is the 0.1.0 version of the strategy I'm using to test &lt;code&gt;tec&lt;/code&gt;. I intend this strategy to be along the lines of a "style guidelines" type document like &lt;a href="https://www.python.org/dev/peps/pep-0008/"&gt;pep8&lt;/a&gt; or &lt;a href="https://en.wikipedia.org/wiki/The_Elements_of_Style"&gt;Strunk and White&lt;/a&gt;.&lt;/p&gt;
+&lt;h1&gt;Style guidelines for tests for python classes simulating physical phenomnea&lt;/h1&gt;
+&lt;p&gt;Files containing tests for a python module should be located in a &lt;code&gt;test&lt;/code&gt; directory in the root of the repo, as is pythonic (CITE). Each file in the &lt;code&gt;test&lt;/code&gt; directory should contain tests for one and only one class/function defined in the module. Files containing tests should be named according to the rubric &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;test_ClassName&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;py&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;At the top of the file containing the tests, I have the typical python import statements. Below that, I usually define some common initialization parameters needed for the tests. These initialization parameters aren't used directly in the tests as I will explain momentarily.&lt;/p&gt;
+&lt;p&gt;Next, I usually define a base class (called &lt;code&gt;Base&lt;/code&gt;) which is a subclass of &lt;code&gt;unittest.TestCase&lt;/code&gt;. In this class I define a &lt;code&gt;setUp&lt;/code&gt; method (and possibly &lt;code&gt;tearDown&lt;/code&gt;) because I've found that most of the tests I write require a common environment in which to be run. This base class allows me to split up tests according to functionality by writing subclasses of &lt;code&gt;Base&lt;/code&gt; while avoiding copying/pasting the same &lt;code&gt;setUp&lt;/code&gt; method between these classes. Therefore I avoid introducing the category of bugs associated with copying and pasting code for reuse. In this &lt;code&gt;Base&lt;/code&gt; class I &lt;code&gt;copy&lt;/code&gt; the common initialization parameters I've defined at the top of the test file into attributes of the class so that a uniform environment is created for each test via &lt;code&gt;Base.setUp&lt;/code&gt;. I've found there's a category of bugs that appear if I directly use the initialization parameters defined at the top of the test file: some tests require the initialization parameters to be changed slightly. Its possible to define a parameter and have it change in memory as a result of a test. Subsequent tests will therefore throw errors.&lt;/p&gt;
+&lt;p&gt;I organize tests according to functionality by subclassing &lt;code&gt;Base&lt;/code&gt; (and thus &lt;code&gt;unittest.TestCase&lt;/code&gt;). For classes that implement a physical phenomenon, tests tend to fall into the following categories:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;Instantiation&lt;/code&gt; - test all aspects of instantiating an object. Includes input of wrong type, input outside of a bound, etc.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Set&lt;/code&gt; - test all aspects of instantiating an object. Includes similar tests to the instantiation tests.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;MethodsInput&lt;/code&gt; - test methods that take input. Includes passing data of the wrong type, data that's outside of a constraint, etc.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;MethodsReturnType&lt;/code&gt; - test that methods return the proper type of data.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;MethodsReturnUnits&lt;/code&gt; - test that methods return the proper units, assuming the method returns data of type &lt;code&gt;astropy.units.Unit&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;MethodsReturnValues&lt;/code&gt; - tests that the methods return appropriate values. These tests are particularly important for methods which actually implement the physical model; I call them "calculator methods." Testing the values of these methods is a whole other kettle of fish and will be discussed in a subsequent revision.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Each class contains methods that implement a test. These methods are named according to the rubric&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;test_name_condition&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Where "name" refers to the name of the attribute or method being tested and "condition" refers to the condition being tested. The name of the class which contains the attribute or method under test should not appear in the test method name, nor should the functionality of the test. For example, the following test names should not be used:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;test_Metal_temp_less_than_zero&lt;/span&gt;
+&lt;span class="n"&gt;test_input_temp_less_than_zero&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;The first example contains the name of the class (&lt;code&gt;Metal&lt;/code&gt;) in which the attribute &lt;code&gt;temp&lt;/code&gt; is found. The class name is superfluous in this case because this test is presumably located in a file named &lt;code&gt;test_Metal.py&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;The second example contains the name of the functionality being tested, i.e. "input." The functionality in this case is superfluous because the test is presumably a method of the class &lt;code&gt;Instantiation&lt;/code&gt;
+.&lt;/p&gt;
+&lt;p&gt;Docstrings should include the name of the class under test, the functionality being tested, the name of the attribute/method being tested, and the condition being tested. In this way, &lt;code&gt;nosetests&lt;/code&gt; will display all the information required to locate the failed/erronious test within this classification scheme. The order is not strictly required; sometimes it is easier to write something like "Setting Metal.richardson &amp;lt; 0 is invalid." The docstrings should describe logically what the test method does. In other words, it should be clear from the docstring how the test is passed or failed.&lt;/p&gt;
+&lt;h1&gt;Remarks&lt;/h1&gt;
+&lt;p&gt;If a class has several methods that do similar things, many of the tests in a class will be very similar. I wrote a really dumb command line tool I call &lt;a href="https://github.com/jrsmith3/testwriter"&gt;&lt;code&gt;testwriter&lt;/code&gt;&lt;/a&gt; to automatically generate code for these tests.&lt;/p&gt;
+&lt;h1&gt;Skeleton test file&lt;/h1&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# -*- coding: utf-8 -*-&lt;/span&gt;
+&lt;span class="c"&gt;# Import statements&lt;/span&gt;
+&lt;span class="c"&gt;# =================&lt;/span&gt;
+
+&lt;span class="c"&gt;# Common input parameters&lt;/span&gt;
+&lt;span class="c"&gt;# =======================&lt;/span&gt;
+
+&lt;span class="c"&gt;# Base classes&lt;/span&gt;
+&lt;span class="c"&gt;# ============&lt;/span&gt;
+&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;Base&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;unittest&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;TestCase&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+&lt;span class="sd"&gt;    Base class for tests&lt;/span&gt;
+
+&lt;span class="sd"&gt;    This class defines a common `setUp` method that defines attributes which are used in the various tests.&lt;/span&gt;
+&lt;span class="sd"&gt;    &amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;setUp&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="k"&gt;pass&lt;/span&gt;
+
+
+&lt;span class="c"&gt;# Test classes&lt;/span&gt;
+&lt;span class="c"&gt;# ============&lt;/span&gt;
+&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;Instantiation&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Base&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+&lt;span class="sd"&gt;    Tests all aspects of instantiation&lt;/span&gt;
+
+&lt;span class="sd"&gt;    Tests include: instantiation with args of wrong type, instantiation with input values outside constraints, etc.&lt;/span&gt;
+&lt;span class="sd"&gt;    &amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+    &lt;span class="k"&gt;pass&lt;/span&gt;
+
+    &lt;span class="c"&gt;# Input arguments wrong type&lt;/span&gt;
+    &lt;span class="c"&gt;# ==========================&lt;/span&gt;
+
+    &lt;span class="c"&gt;# Input arguments outside constraints&lt;/span&gt;
+    &lt;span class="c"&gt;# ===================================&lt;/span&gt;
+
+
+&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;Set&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Base&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+&lt;span class="sd"&gt;    Tests all aspects of setting attributes&lt;/span&gt;
+
+&lt;span class="sd"&gt;    Tests include: setting attributes of wrong type, setting attributes outside their constraints, etc.&lt;/span&gt;
+&lt;span class="sd"&gt;    &amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+    &lt;span class="k"&gt;pass&lt;/span&gt;
+
+    &lt;span class="c"&gt;# Set attribute wrong type&lt;/span&gt;
+    &lt;span class="c"&gt;# ========================&lt;/span&gt;
+
+    &lt;span class="c"&gt;# Set attribute outside constraint&lt;/span&gt;
+    &lt;span class="c"&gt;# ================================&lt;/span&gt;
+
+
+&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;MethodsInput&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Base&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+&lt;span class="sd"&gt;    Tests methods which take input parameters&lt;/span&gt;
+
+&lt;span class="sd"&gt;    Tests include: passing invalid input, etc.&lt;/span&gt;
+&lt;span class="sd"&gt;    &amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+    &lt;span class="k"&gt;pass&lt;/span&gt;
+
+
+&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;MethodsReturnType&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Base&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+&lt;span class="sd"&gt;    Tests methods&amp;#39; output types&lt;/span&gt;
+&lt;span class="sd"&gt;    &amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+    &lt;span class="k"&gt;pass&lt;/span&gt;
+
+
+&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;MethodsReturnUnits&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Base&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+&lt;span class="sd"&gt;    Tests methods&amp;#39; output units where applicable&lt;/span&gt;
+&lt;span class="sd"&gt;    &amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+    &lt;span class="k"&gt;pass&lt;/span&gt;
+
+
+&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;MethodsReturnValues&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Base&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+&lt;span class="sd"&gt;    Tests values of methods against known values&lt;/span&gt;
+&lt;span class="sd"&gt;    &amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+    &lt;span class="k"&gt;pass&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;</summary></entry><entry><title>My Fall 2014 Materials Research Society meeting poster is online</title><link href="http://jrsmith3.github.io/my-fall-2014-materials-research-society-meeting-poster-is-online.html" rel="alternate"></link><updated>2014-12-03T16:30:00-05:00</updated><author><name>Joshua Ryan Smith</name></author><id>tag:jrsmith3.github.io,2014-12-03:my-fall-2014-materials-research-society-meeting-poster-is-online.html</id><summary type="html">&lt;p&gt;I am presenting a poster entitled, "Beta-enhanced thermoelectron emission and energy conversion" at the &lt;a href="http://www.mrs.org/fall2014/"&gt;2014 Materials Research Society Fall Meeting&lt;/a&gt;. The poster is number CC9.36 and will be on display Wednesday evening. You can download the &lt;a href="https://github.com/jrsmith3/conf-mrs_fall_2014_poster/releases/download/2014-12-03/poster.pdf"&gt;PDF&lt;/a&gt; or check out the &lt;a href="https://github.com/jrsmith3/conf-mrs_fall_2014_poster"&gt;repository&lt;/a&gt;.&lt;/p&gt;</summary></entry><entry><title>Merging a subdirectory from another repo via git-subtree</title><link href="http://jrsmith3.github.io/merging-a-subdirectory-from-another-repo-via-git-subtree.html" rel="alternate"></link><updated>2014-10-12T00:00:00-04:00</updated><author><name>Joshua Ryan Smith</name></author><id>tag:jrsmith3.github.io,2014-10-12:merging-a-subdirectory-from-another-repo-via-git-subtree.html</id><summary type="html">&lt;p&gt;Greg Wilson &lt;a href="https://twitter.com/jiffyclub/status/519920529038262272"&gt;wanted to know&lt;/a&gt; how to move a directory from one git repo to another while preserving history. Ash Wilson posted a &lt;a href="https://gist.github.com/smashwilson/015e6a3abfbf7af73d31"&gt;gist&lt;/a&gt; demonstrating a merge and delete strategy. A similar result can be achieved using &lt;code&gt;git-subtree&lt;/code&gt;. The advantage of the &lt;code&gt;git-subtree&lt;/code&gt; approach is that &lt;code&gt;git-subtree&lt;/code&gt; creates a new branch containing only the commits pertaining to files located in a specified subdirectory. Like Ash's approach, &lt;code&gt;git-subtree&lt;/code&gt; will result in the final state of the target repo is such that changes to the target repo won't get pushed back upstream to the source.&lt;/p&gt;
 &lt;p&gt;If you want to carry &lt;em&gt;all&lt;/em&gt; of the commit history from another repo into the target repo, Ash's approach is probably the way to go. If you want only the commits pertaining to files within a subdirectory of the source repo, &lt;code&gt;git-subtree&lt;/code&gt; is the way to go.&lt;/p&gt;
 &lt;p&gt;The workflow with &lt;code&gt;git-subtree&lt;/code&gt; is pretty simple: you specify a subdirectory in a source repo which you want to break out, then you merge those commits into a subdirectory in a target repo.&lt;/p&gt;
 &lt;p&gt;I am modifying my example slightly from Ash's because it looks like the &lt;code&gt;/openstack-swift/&lt;/code&gt; directory has been removed from jclouds/jclouds-labs-openstack as of 2014-10-12. I will use &lt;code&gt;openstack-glance&lt;/code&gt; instead. Thus, we're moving the &lt;code&gt;/openstack-glance/&lt;/code&gt; directory from jclouds/jclouds-labs-openstack to &lt;code&gt;/apis/openstack-glance/&lt;/code&gt; in jclouds/jclouds. The two approaches begin in the same way.&lt;/p&gt;
