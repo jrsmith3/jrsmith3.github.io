@@ -24,7 +24,7 @@ I organize tests according to functionality by subclassing `Base` (and thus `uni
 * `MethodsInput` - test methods that take input. Includes passing data of the wrong type, data that's outside of a constraint, etc.
 * `MethodsReturnType` - test that methods return the proper type of data.
 * `MethodsReturnUnits` - test that methods return the proper units, assuming the method returns data of type `astropy.units.Unit`.
-* `MethodsReturnValues` - tests that the methods return appropriate values. These tests are particularly important for what I've been calling "calculator methods."
+* `MethodsReturnValues` - tests that the methods return appropriate values. These tests are particularly important for methods which actually implement the physical model; I call them "calculator methods." Testing the values of these methods is a whole other kettle of fish and will be discussed in a subsequent revision.
 
 Each class contains methods that implement a test. These methods are named according to the rubric
 
