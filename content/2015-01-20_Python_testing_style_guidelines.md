@@ -63,11 +63,11 @@ Numerical tests evaluate the accuracy of the output of methods that return a qua
 
 This entire testing strategy is based on the assumption that the computer can accurately and repeatably perform simple calculations. I assume that as far as the computer is concerned, the product
 
-  2 * 5
+    2 * 5
   
 is just as easy to calculate as the product
 
-  2.333690544228055 * 5.44073192976832565
+    2.333690544228055 * 5.44073192976832565
 
 and the result is just as accurate. Most calculator methods are straightforward arithmetical operations, and the important task is to analyze the uncertainty propagation.
 
