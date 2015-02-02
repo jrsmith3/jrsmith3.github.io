@@ -15,6 +15,14 @@ Tests tend to fall into two categories: API tests and numerical tests. API tests
 
 I've found that writing API tests tend to pose trickier programming problems than numerical tests, but performing the analysis to determine the correctness of a numerical output is highly nontrivial.
 
+You are probably reading this essay to learn how to determine if your calculator methods are returning the correct results. The short answer is: the precision of the physical constants is the limiting factor for your calculator methods. The longer answer is: the accuracy of the numerical results depends on the correct implementation of the model; the precision is determined by the algorithm used to calculate the result and the precision of the inputs (which includes physical constants) to the algorithm.
+
+Basic numerical testing strategy
+----------
+Soon I will get to the details of how to ensure your algorithms and understand uncertainty propagation, but first I want to discuss the basic strategy for testing calculator methods. The good news is that the testing strategy is very simple: compare the output of each method to a standard set of data. The standard set of data is simply a list of inputs required by the calculator method and the corresponding (accurate and precise) output value of the method.
+
+As a very simple example, say you wrote a method to calculate...
+
 
 Style guidelines for tests for python classes simulating physical phenomnea
 ===========================================================================
