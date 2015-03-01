@@ -4,6 +4,13 @@ Category: Blog
 Author: Joshua Ryan Smith
 Summary: Some notes on what I've learned about structuring python tests
 
+<!-- 
+The structure of this description should be: 
+* Numerics
+* API
+* Style guidelines 
+-->
+
 Testing a module you've written in python can easily spiral out of control, particularly one which simulates a physical phenomenon. You want to be sure that your tests are comprehensive, but its quite easy to fall down a rabbit hole of writing completely inane tests for edge cases that will never occur in practice. After writing and refactoring my [`tec`](https://github.com/jrsmith3/tec) module several times, I've gotten a sense of the various types of tests that need to be written and how to organize them. This post is the 0.2.0 version of the strategy I'm using to test `tec`. I intend this strategy to be along the lines of a "style guidelines" type document like [pep8](https://www.python.org/dev/peps/pep-0008/) or [Strunk and White](https://en.wikipedia.org/wiki/The_Elements_of_Style).
 
 These guidelines assume the reader has an understanding of testing python code and the `unittest` framework. For an excellent introduction to python testing, see Arbuckle (9781847198846).
