@@ -6,7 +6,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title>    Writeup of my work on the Army Research Lab website
+        <title>    Naming data files revisited
 </title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width">
@@ -52,15 +52,43 @@
             <li>
                 <article class="post-entry">
                     <header class="entry-header">
-                        <time class="post-time" datetime="2014-04-07T18:21:00-04:00" pubdate>
-                            Mon 07 April 2014
+                        <time class="post-time" datetime="2015-03-22T00:00:00-04:00" pubdate>
+                            Sun 22 March 2015
                         </time>
-                        <a href="https://jrsmith3.github.io/writeup-of-my-work-on-the-army-research-lab-website.html" rel="bookmark"><h1>Writeup of my work on the Army Research Lab website</h1></a>
+                        <a href="https://jrsmith3.github.io/naming-data-files-revisited.html" rel="bookmark"><h1>Naming data files revisited</h1></a>
                     </header>
 
                     <section class="post-content">
-                        <p>This morning, a <a href="http://www.arl.army.mil/www/default.cfm?article=2462">writeup</a> of my research was featured on the Army Research Laboratory's website. I took a screenshot for posterity.</p>
-<p><img alt="ARL website" src="images/screenshot-arl_website.png" title="ARL website" /></p>
+                        <p>I wrote a <a href="http://jrsmith3.github.io/naming-data-files.html">post about naming data files</a> awhile back. Also, yesterday I found that <a href="http://conda.pydata.org/docs/intro.html#package-naming-conventions">conda canonical filenames</a> <a href="https://github.com/conda/conda/issues/974#issuecomment-61172554">cannot support semver version strings</a> because the dash ("-") character is disallowed in the string.</p>
+<p>This issue is perennial: everybody reinvents the wheel of coming up with a file naming scheme for their system. Look, the goal of a file naming convention is to balance a few competing requirements:</p>
+<ul>
+<li>Human legibility. People should have a fighting chance of understanding the file contents by reading the filename.</li>
+<li>Uniqueness. The convention should mitigate name collisions.</li>
+<li>Orthogonality and precision. Components of the naming convention should be conceptually disjoint.</li>
+<li>Consistency.</li>
+</ul>
+<h1>Suggestion: data serialization format as filename</h1>
+<p>I suggest that a general solution to the problem of coming up with file naming schemes is to employ some kind of human-readable data serialization standard like JSON, YAML, etc. for filenames. The idea is to use a string encoding a dictionary and populate the dictionary with metadata about the file. The only constraint on the type of data serilization format is constraints on filenames imposed by the filesystem.</p>
+<p>JSON would be the obvious choice here, but unfortunately defining a dict requires a colon character (":") between the key and value. This character is illegal in filenames on Apple and MS Windows systems. YAML is out for the same reason plus the use of whitespace and newlines.</p>
+<p>Thus, I propose using the old <a href="http://www.gnustep.org/resources/documentation/Developer/Base/Reference/NSPropertyList.html">NextSTEP plist format</a>. The fields and values should be of type string. In order to avoid invalid filesystem characters, the strings should be converted to <a href="https://en.wikipedia.org/wiki/Percent-encoding">percent encoding</a> before writing the filename.</p>
+<p>Using this plist dictionary as a filename, one could imagine someone writing a plugin for <code>grep</code> that parses the filename and searches the dict.</p>
+<p>Unforunately, the NextSTEP plist format is pretty old and in five minutes of searching Google, I wasn't able to find many packages to parse it. On the other hand, the NextSTEP plist format for dicts isn't terribly different from the JSON representation; replacing the "=" with ":" in the filename string should suffice to make the string parseable JSON.</p>
+<h1>Examples</h1>
+<p>For files containing experimental data, the filename could include the following information:</p>
+<ul>
+<li>date and time stamp</li>
+<li>sample</li>
+<li>researcher's name</li>
+<li>technique</li>
+</ul>
+<p>Additionally, the filename could include a checksum (e.g. SHA256) to verify the integrity of the data.</p>
+<p>For example, the filename <code>20110701-1453_stm_jrs0069_jrs.sm4</code> could become:</p>
+<div class="highlight"><pre>{&quot;d&quot;=&quot;20110701T1453&quot;,&quot;e&quot;=&quot;stm&quot;,&quot;s&quot;=&quot;jrs0069&quot;,&quot;p&quot;=&quot;Joshua Ryan Smith&quot;,&quot;sha256sum&quot;=&quot;140acb7ef861ba01d74f3ee10a0a28eb80a6212157cc6ee1755bf4dfb772c6b7&quot;}.sm4
+</pre></div>
+
+
+<p>where "d" stands for "date," "e" stands for "experiment type," "s" stands for "sample," "p" stands for "person," and "sha256sum" is self-explanatory.</p>
+<p>The plist style filename contains more characters, but retains many of the advantages of my <a href="http://jrsmith3.github.io/naming-data-files.html">old suggestion</a>.</p>
                     </section>
                     <hr/>
                     <aside class="post-meta">

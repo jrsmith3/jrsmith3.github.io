@@ -10,16 +10,16 @@
 </title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width">
-            <link rel="stylesheet" href="http://jrsmith3.github.io/theme/css/normalize.css">
+            <link rel="stylesheet" href="https://jrsmith3.github.io/theme/css/normalize.css">
         <link href='//fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
         <link href='//fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
-        <link rel="stylesheet" href="http://jrsmith3.github.io/theme/css/font-awesome.min.css">
-        <link rel="stylesheet" href="http://jrsmith3.github.io/theme/css/main.css">
+        <link rel="stylesheet" href="https://jrsmith3.github.io/theme/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://jrsmith3.github.io/theme/css/main.css">
 
-    <link rel="stylesheet" href="http://jrsmith3.github.io/theme/css/blog.css">
-    <link rel="stylesheet" href="http://jrsmith3.github.io/theme/css/github.css">
-        <link href="http://jrsmith3.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Generic Surname Atom Feed" />
-        <script src="http://jrsmith3.github.io/theme/js/vendor/modernizr-2.6.2.min.js"></script>
+    <link rel="stylesheet" href="https://jrsmith3.github.io/theme/css/blog.css">
+    <link rel="stylesheet" href="https://jrsmith3.github.io/theme/css/github.css">
+        <link href="https://jrsmith3.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Generic Surname Atom Feed" />
+        <script src="https://jrsmith3.github.io/theme/js/vendor/modernizr-2.6.2.min.js"></script>
     </head>
     <body>
         <!--[if lt IE 7]>
@@ -29,14 +29,14 @@
         <div id="wrapper">
 <header id="sidebar" class="side-shadow">
     <hgroup id="site-header">
-        <a id="site-title" href="http://jrsmith3.github.io"><h1><i class="icon-coffee"></i> Generic Surname</h1></a>
+        <a id="site-title" href="https://jrsmith3.github.io"><h1><i class="icon-coffee"></i> Generic Surname</h1></a>
         <p id="site-desc"></p>
     </hgroup>
     <nav>
         <ul id="nav-links">
-                <li><a href="http://jrsmith3.github.io/pages/about.html">About</a></li>
-                <li><a href="http://jrsmith3.github.io/pages/contact.html">Contact</a></li>
-                <li><a href="http://jrsmith3.github.io/pages/curriculum-vitae.html">Curriculum Vitae</a></li>
+                <li><a href="https://jrsmith3.github.io/pages/about.html">About</a></li>
+                <li><a href="https://jrsmith3.github.io/pages/contact.html">Contact</a></li>
+                <li><a href="https://jrsmith3.github.io/pages/curriculum-vitae.html">Curriculum Vitae</a></li>
         </ul>
     </nav>
 <footer id="site-info">
@@ -55,7 +55,7 @@
                         <time class="post-time" datetime="2014-10-12T00:00:00-04:00" pubdate>
                             Sun 12 October 2014
                         </time>
-                        <a href="http://jrsmith3.github.io/merging-a-subdirectory-from-another-repo-via-git-subtree.html" rel="bookmark"><h1>Merging a subdirectory from another repo via git-subtree</h1></a>
+                        <a href="https://jrsmith3.github.io/merging-a-subdirectory-from-another-repo-via-git-subtree.html" rel="bookmark"><h1>Merging a subdirectory from another repo via git-subtree</h1></a>
                     </header>
 
                     <section class="post-content">
@@ -63,27 +63,27 @@
 <p>If you want to carry <em>all</em> of the commit history from another repo into the target repo, Ash's approach is probably the way to go. If you want only the commits pertaining to files within a subdirectory of the source repo, <code>git-subtree</code> is the way to go.</p>
 <p>The workflow with <code>git-subtree</code> is pretty simple: you specify a subdirectory in a source repo which you want to break out, then you merge those commits into a subdirectory in a target repo.</p>
 <p>I am modifying my example slightly from Ash's because it looks like the <code>/openstack-swift/</code> directory has been removed from jclouds/jclouds-labs-openstack as of 2014-10-12. I will use <code>openstack-glance</code> instead. Thus, we're moving the <code>/openstack-glance/</code> directory from jclouds/jclouds-labs-openstack to <code>/apis/openstack-glance/</code> in jclouds/jclouds. The two approaches begin in the same way.</p>
-<div class="highlight"><pre><span class="cp"># Clone the target repo</span>
-<span class="n">git</span> <span class="n">clone</span> <span class="n">git</span><span class="err">@</span><span class="n">github</span><span class="p">.</span><span class="n">com</span><span class="o">:</span><span class="n">jclouds</span><span class="o">/</span><span class="n">jclouds</span><span class="p">.</span><span class="n">git</span>
-<span class="n">cd</span> <span class="n">jclouds</span>
+<div class="highlight"><pre># Clone the target repo
+git clone git@github.com:jclouds/jclouds.git
+cd jclouds
 
-<span class="cp"># Add the source repository as a remote, and perform the initial fetch.</span>
-<span class="n">git</span> <span class="n">remote</span> <span class="n">add</span> <span class="o">-</span><span class="n">f</span> <span class="n">sourcerepo</span> <span class="n">git</span><span class="err">@</span><span class="n">github</span><span class="p">.</span><span class="n">com</span><span class="o">:</span><span class="n">jclouds</span><span class="o">/</span><span class="n">jclouds</span><span class="o">-</span><span class="n">labs</span><span class="o">-</span><span class="n">openstack</span><span class="p">.</span><span class="n">git</span>
+# Add the source repository as a remote, and perform the initial fetch.
+git remote add -f sourcerepo git@github.com:jclouds/jclouds-labs-openstack.git
 
-<span class="cp"># Create a branch based on the source repositories&#39; branch that contains the state you want to copy.</span>
-<span class="n">git</span> <span class="n">checkout</span> <span class="o">-</span><span class="n">b</span> <span class="n">staging</span><span class="o">-</span><span class="n">branch</span> <span class="n">sourcerepo</span><span class="o">/</span><span class="n">master</span>
+# Create a branch based on the source repositories&#39; branch that contains the state you want to copy.
+git checkout -b staging-branch sourcerepo/master
 
-<span class="cp"># Here&#39;s where the two approaches diverge.</span>
-<span class="cp"># Create a synthetic branch using the commits in `/openstack-glance/` from `sourcerepo`</span>
-<span class="n">git</span> <span class="n">subtree</span> <span class="n">split</span> <span class="o">-</span><span class="n">P</span> <span class="n">openstack</span><span class="o">-</span><span class="n">glance</span> <span class="o">-</span><span class="n">b</span> <span class="n">openstack</span><span class="o">-</span><span class="n">glance</span>
+# Here&#39;s where the two approaches diverge.
+# Create a synthetic branch using the commits in `/openstack-glance/` from `sourcerepo`
+git subtree split -P openstack-glance -b openstack-glance
 
-<span class="cp"># Checkout `master` and add the new `openstack-glance` branch into `/apis/openstack-glance/`. At this point, the desired result will have been achieved.</span>
-<span class="n">git</span> <span class="n">checkout</span> <span class="n">master</span>
-<span class="n">git</span> <span class="n">subtree</span> <span class="n">add</span> <span class="o">-</span><span class="n">P</span> <span class="n">apis</span><span class="o">/</span><span class="n">openstack</span><span class="o">-</span><span class="n">glance</span> <span class="n">openstack</span><span class="o">-</span><span class="n">glance</span>
+# Checkout `master` and add the new `openstack-glance` branch into `/apis/openstack-glance/`. At this point, the desired result will have been achieved.
+git checkout master
+git subtree add -P apis/openstack-glance openstack-glance
 
-<span class="cp"># Clean up by removing the commits from the `openstack-glance` branch and the `sourcerepo` remote.</span>
-<span class="n">git</span> <span class="n">branch</span> <span class="o">-</span><span class="n">D</span> <span class="n">openstack</span><span class="o">-</span><span class="n">glance</span> <span class="n">staging</span><span class="o">-</span><span class="n">branch</span>
-<span class="n">git</span> <span class="n">remote</span> <span class="n">rm</span> <span class="n">sourcerepo</span>
+# Clean up by removing the commits from the `openstack-glance` branch and the `sourcerepo` remote.
+git branch -D openstack-glance staging-branch
+git remote rm sourcerepo
 </pre></div>
 
 
@@ -91,7 +91,7 @@
                     </section>
                     <hr/>
                     <aside class="post-meta">
-                        <p>Category: <a href="http://jrsmith3.github.io/category/git-git-subtree.html">git, git-subtree</a></p>
+                        <p>Category: <a href="https://jrsmith3.github.io/category/git-git-subtree.html">git, git-subtree</a></p>
                     </aside>
                     <hr/>
 <div class="comments">
@@ -119,6 +119,6 @@
     g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
     s.parentNode.insertBefore(g,s)}(document,'script'));
 </script>
-        <script src="http://jrsmith3.github.io/theme/js/main.js"></script>
+        <script src="https://jrsmith3.github.io/theme/js/main.js"></script>
     </body>
 </html>

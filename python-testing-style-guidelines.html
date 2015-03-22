@@ -10,16 +10,16 @@
 </title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width">
-            <link rel="stylesheet" href="http://jrsmith3.github.io/theme/css/normalize.css">
+            <link rel="stylesheet" href="https://jrsmith3.github.io/theme/css/normalize.css">
         <link href='//fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
         <link href='//fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
-        <link rel="stylesheet" href="http://jrsmith3.github.io/theme/css/font-awesome.min.css">
-        <link rel="stylesheet" href="http://jrsmith3.github.io/theme/css/main.css">
+        <link rel="stylesheet" href="https://jrsmith3.github.io/theme/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://jrsmith3.github.io/theme/css/main.css">
 
-    <link rel="stylesheet" href="http://jrsmith3.github.io/theme/css/blog.css">
-    <link rel="stylesheet" href="http://jrsmith3.github.io/theme/css/github.css">
-        <link href="http://jrsmith3.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Generic Surname Atom Feed" />
-        <script src="http://jrsmith3.github.io/theme/js/vendor/modernizr-2.6.2.min.js"></script>
+    <link rel="stylesheet" href="https://jrsmith3.github.io/theme/css/blog.css">
+    <link rel="stylesheet" href="https://jrsmith3.github.io/theme/css/github.css">
+        <link href="https://jrsmith3.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Generic Surname Atom Feed" />
+        <script src="https://jrsmith3.github.io/theme/js/vendor/modernizr-2.6.2.min.js"></script>
     </head>
     <body>
         <!--[if lt IE 7]>
@@ -29,14 +29,14 @@
         <div id="wrapper">
 <header id="sidebar" class="side-shadow">
     <hgroup id="site-header">
-        <a id="site-title" href="http://jrsmith3.github.io"><h1><i class="icon-coffee"></i> Generic Surname</h1></a>
+        <a id="site-title" href="https://jrsmith3.github.io"><h1><i class="icon-coffee"></i> Generic Surname</h1></a>
         <p id="site-desc"></p>
     </hgroup>
     <nav>
         <ul id="nav-links">
-                <li><a href="http://jrsmith3.github.io/pages/about.html">About</a></li>
-                <li><a href="http://jrsmith3.github.io/pages/contact.html">Contact</a></li>
-                <li><a href="http://jrsmith3.github.io/pages/curriculum-vitae.html">Curriculum Vitae</a></li>
+                <li><a href="https://jrsmith3.github.io/pages/about.html">About</a></li>
+                <li><a href="https://jrsmith3.github.io/pages/contact.html">Contact</a></li>
+                <li><a href="https://jrsmith3.github.io/pages/curriculum-vitae.html">Curriculum Vitae</a></li>
         </ul>
     </nav>
 <footer id="site-info">
@@ -55,14 +55,14 @@
                         <time class="post-time" datetime="2015-01-20T00:00:00-05:00" pubdate>
                             Tue 20 January 2015
                         </time>
-                        <a href="http://jrsmith3.github.io/python-testing-style-guidelines.html" rel="bookmark"><h1>Python testing style guidelines</h1></a>
+                        <a href="https://jrsmith3.github.io/python-testing-style-guidelines.html" rel="bookmark"><h1>Python testing style guidelines</h1></a>
                     </header>
 
                     <section class="post-content">
                         <p>Testing a module you've written in python can easily spiral out of control. You want to be sure that your tests are comprehensive, but its quite easy to fall down a rabbit hole of writing completely inane tests for edge cases that will never occur in practice. After writing and refactoring my <a href="https://github.com/jrsmith3/tec"><code>tec</code></a> module several times, I've gotten a sense of the various types of tests that need to be written and how to organize them. This post is the 0.1.0 version of the strategy I'm using to test <code>tec</code>. I intend this strategy to be along the lines of a "style guidelines" type document like <a href="https://www.python.org/dev/peps/pep-0008/">pep8</a> or <a href="https://en.wikipedia.org/wiki/The_Elements_of_Style">Strunk and White</a>.</p>
 <h1>Style guidelines for tests for python classes simulating physical phenomnea</h1>
 <p>Files containing tests for a python module should be located in a <code>test</code> directory in the root of the repo, as is pythonic (CITE). Each file in the <code>test</code> directory should contain tests for one and only one class/function defined in the module. Files containing tests should be named according to the rubric </p>
-<div class="highlight"><pre><span class="n">test_ClassName</span><span class="p">.</span><span class="n">py</span>
+<div class="highlight"><pre>test_ClassName.py
 </pre></div>
 
 
@@ -78,13 +78,13 @@
 <li><code>MethodsReturnValues</code> - tests that the methods return appropriate values. These tests are particularly important for methods which actually implement the physical model; I call them "calculator methods." Testing the values of these methods is a whole other kettle of fish and will be discussed in a subsequent revision.</li>
 </ul>
 <p>Each class contains methods that implement a test. These methods are named according to the rubric</p>
-<div class="highlight"><pre><span class="n">test_name_condition</span>
+<div class="highlight"><pre>test_name_condition
 </pre></div>
 
 
 <p>Where "name" refers to the name of the attribute or method being tested and "condition" refers to the condition being tested. The name of the class which contains the attribute or method under test should not appear in the test method name, nor should the functionality of the test. For example, the following test names should not be used:</p>
-<div class="highlight"><pre><span class="n">test_Metal_temp_less_than_zero</span>
-<span class="n">test_input_temp_less_than_zero</span>
+<div class="highlight"><pre>test_Metal_temp_less_than_zero
+test_input_temp_less_than_zero
 </pre></div>
 
 
@@ -178,7 +178,7 @@
                     </section>
                     <hr/>
                     <aside class="post-meta">
-                        <p>Category: <a href="http://jrsmith3.github.io/category/blog.html">Blog</a></p>
+                        <p>Category: <a href="https://jrsmith3.github.io/category/blog.html">Blog</a></p>
                     </aside>
                     <hr/>
 <div class="comments">
@@ -206,6 +206,6 @@
     g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
     s.parentNode.insertBefore(g,s)}(document,'script'));
 </script>
-        <script src="http://jrsmith3.github.io/theme/js/main.js"></script>
+        <script src="https://jrsmith3.github.io/theme/js/main.js"></script>
     </body>
 </html>

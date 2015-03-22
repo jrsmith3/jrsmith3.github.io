@@ -10,16 +10,16 @@
 </title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width">
-            <link rel="stylesheet" href="http://jrsmith3.github.io/theme/css/normalize.css">
+            <link rel="stylesheet" href="https://jrsmith3.github.io/theme/css/normalize.css">
         <link href='//fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
         <link href='//fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
-        <link rel="stylesheet" href="http://jrsmith3.github.io/theme/css/font-awesome.min.css">
-        <link rel="stylesheet" href="http://jrsmith3.github.io/theme/css/main.css">
+        <link rel="stylesheet" href="https://jrsmith3.github.io/theme/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://jrsmith3.github.io/theme/css/main.css">
 
-    <link rel="stylesheet" href="http://jrsmith3.github.io/theme/css/blog.css">
-    <link rel="stylesheet" href="http://jrsmith3.github.io/theme/css/github.css">
-        <link href="http://jrsmith3.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Generic Surname Atom Feed" />
-        <script src="http://jrsmith3.github.io/theme/js/vendor/modernizr-2.6.2.min.js"></script>
+    <link rel="stylesheet" href="https://jrsmith3.github.io/theme/css/blog.css">
+    <link rel="stylesheet" href="https://jrsmith3.github.io/theme/css/github.css">
+        <link href="https://jrsmith3.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Generic Surname Atom Feed" />
+        <script src="https://jrsmith3.github.io/theme/js/vendor/modernizr-2.6.2.min.js"></script>
     </head>
     <body>
         <!--[if lt IE 7]>
@@ -29,14 +29,14 @@
         <div id="wrapper">
 <header id="sidebar" class="side-shadow">
     <hgroup id="site-header">
-        <a id="site-title" href="http://jrsmith3.github.io"><h1><i class="icon-coffee"></i> Generic Surname</h1></a>
+        <a id="site-title" href="https://jrsmith3.github.io"><h1><i class="icon-coffee"></i> Generic Surname</h1></a>
         <p id="site-desc"></p>
     </hgroup>
     <nav>
         <ul id="nav-links">
-                <li><a href="http://jrsmith3.github.io/pages/about.html">About</a></li>
-                <li><a href="http://jrsmith3.github.io/pages/contact.html">Contact</a></li>
-                <li><a href="http://jrsmith3.github.io/pages/curriculum-vitae.html">Curriculum Vitae</a></li>
+                <li><a href="https://jrsmith3.github.io/pages/about.html">About</a></li>
+                <li><a href="https://jrsmith3.github.io/pages/contact.html">Contact</a></li>
+                <li><a href="https://jrsmith3.github.io/pages/curriculum-vitae.html">Curriculum Vitae</a></li>
         </ul>
     </nav>
 <footer id="site-info">
@@ -55,7 +55,7 @@
                         <time class="post-time" datetime="2014-06-22T00:00:00-04:00" pubdate>
                             Sun 22 June 2014
                         </time>
-                        <a href="http://jrsmith3.github.io/data-storage-and-data-file-workflow.html" rel="bookmark"><h1>Data storage and data file workflow</h1></a>
+                        <a href="https://jrsmith3.github.io/data-storage-and-data-file-workflow.html" rel="bookmark"><h1>Data storage and data file workflow</h1></a>
                     </header>
 
                     <section class="post-content">
@@ -75,19 +75,19 @@
 <p>The workflow for this kind of system is straightforward: data is taken on an instrument and gets copied to <code>data</code>. If analysis is to be done on files in <code>data</code>, the person analyzing the data would first copy the files into a different project directory and then perform the analysis.</p>
 <p>Having all data in a single, centrally accessible <code>data</code> directory has a number of advantages. First, this approach eliminates findability costs. People will never have to go around to different computers looking for the data they took. Second, this approach decreases transaction costs. If you need data that I took, simply find it in <code>data</code>. There's no need to ask me to email or otherwise send you the data.</p>
 <p>This approach to data management is strongly coupled to choosing <a href="http://jrsmith3.github.io/naming-data-files.html">unique, metadata-rich filenames</a>. To recap, use </p>
-<div class="highlight"><pre><span class="n">YYYYMMDD</span><span class="o">-</span><span class="n">HHMM_experiment_sample_experimenter</span><span class="p">.</span><span class="n">extension</span>
+<div class="highlight"><pre>YYYYMMDD-HHMM_experiment_sample_experimenter.extension
 </pre></div>
 
 
 <p>on systems that support long filenames and the nested directory structure</p>
-<div class="highlight"><pre><span class="n">experimenter</span><span class="o">/</span><span class="n">YYYYMMDD</span><span class="o">/</span><span class="n">experiment</span><span class="o">/</span><span class="n">sample</span><span class="o">/</span><span class="n">HHMM</span><span class="p">.</span><span class="n">extension</span>
+<div class="highlight"><pre>experimenter/YYYYMMDD/experiment/sample/HHMM.extension
 </pre></div>
 
 
 <p>on older systems that do not support long filenames.</p>
 <p>Having a <code>data</code> directory filled with uniquely and descriptively named files is the next best thing to having a <a href="https://en.wikipedia.org/wiki/Uniform_resource_identifier">URI</a> for each file and having the files in some kind of relational database. In addition to the advantage of findability I mentioned above, uniquely naming files in a single <code>data</code> directory yields addressability. Cross-referencing a file in a <a href="http://jrsmith3.github.io/effective-lab-notebooks.html">lab notebook</a> or <a href="http://jrsmith3.github.io/sample-logs-the-secret-to-managing-multi-person-projects.html">sample log</a> is as simple as writing the filename. To find the cross-referenced file, simply look for it in <code>data</code>. </p>
 <p>Using metadata-rich filenames gives you another advantage: it is easy to perform searches for specific files or sets of files using filename search functions in your file browser or shell. More advanced searches can be done via simple python scripts. For example, lets say I wanted to find all the XPS data files I've taken</p>
-<div class="highlight"><pre>gamma:data jrsmith3<span class="nv">$ </span>ls | grep -i jrs | grep -i xps
+<div class="highlight"><pre>gamma:data jrsmith3<span class="nv">$ </span>ls <span class="p">|</span> grep -i jrs <span class="p">|</span> grep -i xps
 20100202-0844_xps_tfan25_jrs.dat
 20100202-0850_xps_tfan25_jrs.dat
 20100202-1008_xps_tfan25_jrs.dat
@@ -170,12 +170,12 @@ data/
     │               └── 1320.dat
     └── rpt
 
-6 directories, 5 files
+<span class="m">6</span> directories, <span class="m">5</span> files
 </pre></div>
                     </section>
                     <hr/>
                     <aside class="post-meta">
-                        <p>Category: <a href="http://jrsmith3.github.io/category/blog.html">Blog</a></p>
+                        <p>Category: <a href="https://jrsmith3.github.io/category/blog.html">Blog</a></p>
                     </aside>
                     <hr/>
 <div class="comments">
@@ -203,6 +203,6 @@ data/
     g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
     s.parentNode.insertBefore(g,s)}(document,'script'));
 </script>
-        <script src="http://jrsmith3.github.io/theme/js/main.js"></script>
+        <script src="https://jrsmith3.github.io/theme/js/main.js"></script>
     </body>
 </html>
