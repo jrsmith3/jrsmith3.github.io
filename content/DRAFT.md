@@ -22,7 +22,7 @@ Your first thought might be, "The solution is to use [reference management softw
 
 Where to find a source's unique identifier
 ------------------------------------------
-Conveniently, most papers found in the peer-reviewed literature are uniquely identified by a number called a "[digital object identifier](https://en.wikipedia.org/wiki/Digital_object_identifier)" or DOI. An example of a DOI is [10.1063/1.4826202](http://dx.doi.org/10.1063/1.4826202); the DOI is usually printed somewhere on the paper as shown in the following image:
+Conveniently, most papers found in the peer-reviewed literature are uniquely identified by a number called a "[digital object identifier](https://en.wikipedia.org/wiki/Digital_object_identifier)" or DOI. An example of a DOI is [10.1063/1.4826202](http://dx.doi.org/10.1063/1.4826202); the DOI is usually printed somewhere on the paper as shown in the following image (click to enlarge):
 
 [![Front cover of lab notebook](images/10.1063__1.4826202_p1_small.png "Front cover of lab notebook")](images/10.1063__1.4826202_p1.png)
 
