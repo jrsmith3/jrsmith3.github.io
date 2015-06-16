@@ -37,10 +37,12 @@ How to use the DOI or ISBN in your document
 -------------------------------------------
 Now that you know where to find unique identifiers for papers and books, my suggestion is to just paste or type in the unique ID anywhere you want to cite something. For example:
 
-> Using Smith's model [10.1063/1.4826202] we estimated the output power density of the device to be...
+> Using Smith's model [**10.1063/1.4826202**] we estimated the output power density of the device to be...
 
-Another example separating multiple citations with commas:
+Where the bolded number (10.1063/1.4826202) is the DOI for the paper being cited. Another example separating multiple citations with commas:
 
-> Goano has presented a similar derivation for the complete and incomplete Fermi-Dirac integrals [10.1016/0038-1101(93)90143-e, 10.1145/210089.210090].
+> Goano has presented a similar derivation for the complete and incomplete Fermi-Dirac integrals [**10.1016/0038-1101(93)90143-e**, **10.1145/210089.210090**].
+
+Again, the DOIs in the above example are 10.1016/0038-1101(93)90143-e and 10.1145/210089.210090.
 
 Eventually the manuscript will reach a point where you are ready to build the bibliography. If you are using reference management software, the DOI or ISBN can be used to identify each reference in the bibliographic database. If you've been using unique IDs in the body of the manuscript, it is trivial to apply your reference manager to build the bibliography with minimal tedium.
