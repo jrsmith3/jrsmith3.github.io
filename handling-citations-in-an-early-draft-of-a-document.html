@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>    Handling citations in an early draft of a document
+</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width">
+            <link rel="stylesheet" href="https://jrsmith3.github.io/theme/css/normalize.css">
+        <link href='//fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+        <link href='//fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="https://jrsmith3.github.io/theme/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://jrsmith3.github.io/theme/css/main.css">
+
+    <link rel="stylesheet" href="https://jrsmith3.github.io/theme/css/blog.css">
+    <link rel="stylesheet" href="https://jrsmith3.github.io/theme/css/github.css">
+        <link href="https://jrsmith3.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Generic Surname Atom Feed" />
+        <script src="https://jrsmith3.github.io/theme/js/vendor/modernizr-2.6.2.min.js"></script>
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+        <![endif]-->
+
+        <div id="wrapper">
+<header id="sidebar" class="side-shadow">
+    <hgroup id="site-header">
+        <a id="site-title" href="https://jrsmith3.github.io"><h1><i class="icon-coffee"></i> Generic Surname</h1></a>
+        <p id="site-desc"></p>
+    </hgroup>
+    <nav>
+        <ul id="nav-links">
+                <li><a href="https://jrsmith3.github.io/pages/about.html">About</a></li>
+                <li><a href="https://jrsmith3.github.io/pages/contact.html">Contact</a></li>
+                <li><a href="https://jrsmith3.github.io/pages/curriculum-vitae.html">Curriculum Vitae</a></li>
+        </ul>
+    </nav>
+<footer id="site-info">
+    <p>
+        Proudly powered by <a href="http://getpelican.com/" target="pelican">Pelican</a> and <a href="http://python.org/" target="python">Python</a>. Theme by <a href="https://github.com/hdra/pelican-cait" target="github">hndr</a>.
+    </p>
+    <p>
+        Textures by <a href="http://subtlepatterns.com/" target="subtlepatterns">Subtle Pattern</a>. Font Awesome by <a href="http://fortawesome.github.io/Font-Awesome/" target="github">Dave Grandy</a>.
+    </p>
+</footer></header>
+    <div id="post-container">
+        <ol id="post-list">
+            <li>
+                <article class="post-entry">
+                    <header class="entry-header">
+                        <time class="post-time" datetime="2015-06-12T00:00:00-04:00" pubdate>
+                            Fri 12 June 2015
+                        </time>
+                        <a href="https://jrsmith3.github.io/handling-citations-in-an-early-draft-of-a-document.html" rel="bookmark"><h1>Handling citations in an early draft of a document</h1></a>
+                    </header>
+
+                    <section class="post-content">
+                        <h1>The problem: handling citations is a pain</h1>
+<p>Dealing with citations in a document can be tedious, especially when done by hand. From my experience, the tedium falls into one of two categories:</p>
+<ol>
+<li><strong>Formatting</strong> -- There are many different ways to format a citation appearing in a bibliography (MLA, Chicago, etc.). Formatting by hand usually requires tedious copy/pasting or re-keying data that's already available.</li>
+<li><strong>Organization</strong> -- Oftentimes citations appear in the bibliography in the order in which they appeared in the text. Managing such a list by hand becomes extremely difficult as the number of citations increases, particularly if a citation needs to be inserted in the middle of the list and the subsequent citation numbers need to be incremented.</li>
+</ol>
+<p>During the initial drafts of a document, this tedium can be especially disrupting. My suggestion is to put a unique identifier for each citation in the body of the text instead of trying to wrangle the order and formatting of the citations during the early stages. Many books and academic papers already feature an "official" unique identifier: the DOI or ISBN.</p>
+<h1>The solution: unique identifiers</h1>
+<p>Your first thought might be, "The solution is to use <a href="https://en.wikipedia.org/wiki/Comparison_of_reference_management_software">reference management software</a>." This approach is on the right track, but the real secret sauce is to use unique identifiers to cite works within the document. Using unique identifiers to cite works within the document renders the choice of reference management software arbitrary.</p>
+<h2>Where to find a source's unique identifier</h2>
+<p>Conveniently, most papers found in the peer-reviewed literature are uniquely identified by a number called a "<a href="https://en.wikipedia.org/wiki/Digital_object_identifier">digital object identifier</a>" or DOI. An example of a DOI is <a href="http://dx.doi.org/10.1063/1.4826202">10.1063/1.4826202</a>; the DOI is usually printed somewhere on the paper as shown in the following image (click to enlarge):</p>
+<p><a href="images/10.1063__1.4826202_p1.png"><img alt="Front cover of lab notebook" src="images/10.1063__1.4826202_p1_small.png" title="Front cover of lab notebook" /></a></p>
+<p><a href="http://search.crossref.org">Crossref's metadata search</a> is an incredibly useful tool for resolving a paper's website or DOI from an item in a bibliography. Typing in a paper's title and a few other identifying bits of information (author, year, journal) is usually enough for Crossref's metadata search to return the correct result with the DOI.</p>
+<p>You might have noticed that the DOI in the above example image is part of a URL. Conveniently, there is a DOI resolver on the web. Simply typing the URL <code>http://dx.doi.org/</code> and pasting the DOI after the final <code>/</code> into your web browser will resolve to the page on which any particular paper is hosted.</p>
+<p>Similarly, books are identified by a number called an "<a href="https://en.wikipedia.org/wiki/International_Standard_Book_Number">international standard book number</a>" or ISBN. Nowadays, books are issued with 13 digit ISBNs, but in the past ISBNs had 10 digits. The ISBN can almost always be found as the numerical part of the bar code located on the back cover, or on the first page or two inside the book. I generally use <a href="http://www.amazon.com">Amazon.com</a> to find the ISBN corresponding to a book.</p>
+<h2>How to use the DOI or ISBN in your document</h2>
+<p>Now that you know where to find unique identifiers for papers and books, my suggestion is to just paste or type in the unique ID anywhere you want to cite something. For example:</p>
+<blockquote>
+<p>Using Smith's model [<strong>10.1063/1.4826202</strong>] we estimated the output power density of the device to be...</p>
+</blockquote>
+<p>Where the bolded number (10.1063/1.4826202) is the DOI for the paper being cited. Another example separating multiple citations with commas:</p>
+<blockquote>
+<p>Goano has presented a similar derivation for the complete and incomplete Fermi-Dirac integrals [<strong>10.1016/0038-1101(93)90143-e</strong>, <strong>10.1145/210089.210090</strong>].</p>
+</blockquote>
+<p>Again, the DOIs in the above example are 10.1016/0038-1101(93)90143-e and 10.1145/210089.210090.</p>
+<p>Eventually the manuscript will reach a point where you are ready to build the bibliography. If you are using reference management software, the DOI or ISBN can be used to identify each reference in the bibliographic database. If you've been using unique IDs in the body of the manuscript, it is trivial to apply your reference manager to build the bibliography with minimal tedium.</p>
+                    </section>
+                    <hr/>
+                    <aside class="post-meta">
+                        <p>Category: <a href="https://jrsmith3.github.io/category/blog.html">Blog</a></p>
+                    </aside>
+                    <hr/>
+<div class="comments">
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        var disqus_shortname = 'genericsurname';
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+                </article>
+            </li>
+        </ol>
+    </div>
+        </div>
+
+<script>
+    var _gaq=[['_setAccount','UA-1567200-4'],['_trackPageview']];
+    (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+    g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+    s.parentNode.insertBefore(g,s)}(document,'script'));
+</script>
+        <script src="https://jrsmith3.github.io/theme/js/main.js"></script>
+    </body>
+</html>
