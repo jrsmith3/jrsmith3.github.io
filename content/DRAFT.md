@@ -78,10 +78,145 @@ When this many manual steps are required, security will end up suffering because
 
 Specifics: How did I verify the identity of my buddy's server?
 ==============================================================
+This process was implemented over the following steps.
+The upshot is that I had an excuse to use the `openssl` command in the terminal; this exercise demystified a lot of the SSL/TLS framework for me.
+
+1. Acquire my buddy's cert and associated metadata
+
+```
+$ openssl s_client -showcerts -connect git.schmarty.net:443 | openssl x509 -text -fingerprint
+```
+
+In this command, I am calling the `openssl` program twice, piping the output of one command into another.
+The first time I am invoking the `s_client` option to show the certificate (`-showcerts`) after connecting to my buddy's server (`-connect` command) on the TLS port 443.
+The second `openssl` command is to manage the `x509` cert, returning it as `-text` and calculating its `-fingerprint`.
+
+The above command yielded the following data:
+
+```
+Certificate:
+    Data:
+        Version: 1 (0x0)
+        Serial Number: 13286215849167086773 (0xb8621eebe2c4e4b5)
+    Signature Algorithm: sha256WithRSAEncryption
+        Issuer: C=US, ST=Maryland, L=Baltimore, O=SCHMARTY DOT NET, CN=SCHMARTY DOT NET
+        Validity
+            Not Before: Oct 15 15:57:00 2014 GMT
+            Not After : Oct 14 15:57:00 2019 GMT
+        Subject: C=US, ST=Maryland, L=Baltimore, O=SCHMARTY DOT NET, CN=*.schmarty.net
+        Subject Public Key Info:
+            Public Key Algorithm: rsaEncryption
+                Public-Key: (2048 bit)
+                Modulus:
+                    00:d7:a3:a8:ff:70:df:53:3f:c1:4f:6a:86:99:ec:
+                    16:4a:64:69:32:fc:33:38:d1:b4:7f:02:f3:3e:5f:
+                    8a:8f:60:fe:ab:9c:76:08:e5:53:83:6a:37:f7:97:
+                    6a:33:ad:b4:bd:c4:a7:ab:2f:ff:e4:24:7d:8b:86:
+                    7a:da:3a:a1:b0:a6:b6:d0:49:ea:9d:49:4c:21:80:
+                    14:48:df:d8:3d:9a:36:15:71:0e:99:7d:e0:a1:3b:
+                    c0:fe:0f:b8:08:cc:9f:a8:2e:69:a2:a8:e7:9a:5d:
+                    93:c5:94:d2:77:f4:dc:f6:c1:0c:d8:ca:48:69:f2:
+                    c1:f1:04:4d:0d:b5:ac:9e:6b:1b:ef:4a:3c:67:88:
+                    91:c6:e5:f5:6b:ca:be:bc:31:3d:9e:90:6e:f4:4f:
+                    90:cd:f6:6b:57:c9:eb:97:1a:63:d9:e6:4a:c7:98:
+                    6b:1d:76:6b:6e:4b:8b:c3:fc:a0:d1:4c:c4:23:39:
+                    06:70:e5:88:b5:bf:06:36:25:6a:b3:db:0b:3c:c4:
+                    c6:e1:5a:d3:f8:d1:21:05:93:60:0c:a6:04:e1:90:
+                    21:3b:76:1e:c1:29:76:7a:33:67:a6:4f:73:2e:3c:
+                    b4:73:b3:e7:01:93:49:c8:92:1a:48:72:25:0f:3b:
+                    54:f4:7a:16:35:63:db:16:6e:e6:53:6c:19:ff:38:
+                    1f:85
+                Exponent: 65537 (0x10001)
+    Signature Algorithm: sha256WithRSAEncryption
+         36:f9:e7:ee:24:1c:98:ca:22:a8:d7:de:c0:7d:9e:8a:6e:3e:
+         cd:dc:b4:e7:98:1b:c6:58:94:79:d1:be:b2:5d:a1:8c:33:97:
+         6e:49:23:85:a9:cd:2c:32:85:00:7c:1b:e6:91:30:83:ef:c3:
+         1b:e4:c8:be:ea:6f:61:b3:9f:e2:c2:c3:8b:27:6e:49:49:0f:
+         0a:42:cf:e5:fd:4f:aa:a5:9a:03:ca:6b:70:14:5f:da:38:66:
+         d4:ae:3f:90:ba:1d:b4:29:27:78:d7:0c:d6:31:72:10:86:df:
+         10:2b:00:11:b9:4d:56:8f:c7:4f:d2:47:aa:d1:f8:09:eb:50:
+         c0:69:9a:b7:34:e4:d0:84:9c:74:b5:82:36:59:58:00:ae:a7:
+         9c:81:69:8b:0e:13:7d:3d:d7:12:fe:02:6e:64:75:83:81:d4:
+         56:b7:7b:78:f9:bf:3d:45:1c:a8:a6:9a:14:20:ed:28:3d:17:
+         59:2d:cb:ef:22:27:52:d5:10:03:77:5d:cc:be:d2:bf:43:4d:
+         d5:a4:61:a7:db:6a:c9:43:2d:d3:06:af:48:2a:ec:00:27:11:
+         c9:03:fa:2e:91:2a:06:95:5a:d0:9b:d0:3e:67:83:c9:ac:c5:
+         ef:09:2f:e5:9a:9b:13:4e:65:2e:c6:55:b4:35:ea:06:75:6e:
+         26:02:62:f5
+SHA1 Fingerprint=C6:E2:AF:00:12:E6:F4:53:96:3F:F5:00:2D:4D:7D:C1:26:D9:F2:C8
+-----BEGIN CERTIFICATE-----
+MIIDTjCCAjYCCQC4Yh7r4sTktTANBgkqhkiG9w0BAQsFADBqMQswCQYDVQQGEwJV
+UzERMA8GA1UECAwITWFyeWxhbmQxEjAQBgNVBAcMCUJhbHRpbW9yZTEZMBcGA1UE
+CgwQU0NITUFSVFkgRE9UIE5FVDEZMBcGA1UEAwwQU0NITUFSVFkgRE9UIE5FVDAe
+Fw0xNDEwMTUxNTU3MDBaFw0xOTEwMTQxNTU3MDBaMGgxCzAJBgNVBAYTAlVTMREw
+DwYDVQQIDAhNYXJ5bGFuZDESMBAGA1UEBwwJQmFsdGltb3JlMRkwFwYDVQQKDBBT
+Q0hNQVJUWSBET1QgTkVUMRcwFQYDVQQDDA4qLnNjaG1hcnR5Lm5ldDCCASIwDQYJ
+KoZIhvcNAQEBBQADggEPADCCAQoCggEBANejqP9w31M/wU9qhpnsFkpkaTL8MzjR
+tH8C8z5fio9g/qucdgjlU4NqN/eXajOttL3Ep6sv/+QkfYuGeto6obCmttBJ6p1J
+TCGAFEjf2D2aNhVxDpl94KE7wP4PuAjMn6guaaKo55pdk8WU0nf03PbBDNjKSGny
+wfEETQ21rJ5rG+9KPGeIkcbl9WvKvrwxPZ6QbvRPkM32a1fJ65caY9nmSseYax12
+a25Li8P8oNFMxCM5BnDliLW/BjYlarPbCzzExuFa0/jRIQWTYAymBOGQITt2HsEp
+dnozZ6ZPcy48tHOz5wGTSciSGkhyJQ87VPR6FjVj2xZu5lNsGf84H4UCAwEAATAN
+BgkqhkiG9w0BAQsFAAOCAQEANvnn7iQcmMoiqNfewH2eim4+zdy055gbxliUedG+
+sl2hjDOXbkkjhanNLDKFAHwb5pEwg+/DG+TIvupvYbOf4sLDiyduSUkPCkLP5f1P
+qqWaA8prcBRf2jhm1K4/kLodtCkneNcM1jFyEIbfECsAEblNVo/HT9JHqtH4CetQ
+wGmatzTk0IScdLWCNllYAK6nnIFpiw4TfT3XEv4CbmR1g4HUVrd7ePm/PUUcqKaa
+FCDtKD0XWS3L7yInUtUQA3ddzL7Sv0NN1aRhp9tqyUMt0wavSCrsACcRyQP6LpEq
+BpVa0JvQPmeDyazF7wkv5ZqbE05lLsZVtDXqBnVuJgJi9Q==
+-----END CERTIFICATE-----
+```
+
+This data (e.g. the SHA1 fingerprint) matched what I saw when I connected to the server with Safari and examined the certificate.
+
+2. I copied the above data (especially the part between the "BEGIN CERTIFICATE" and "END CERTIFICATE") and pasted it into a textfile with an email message to my buddy.
+I then signed this message with my [gpg key]() because it seemed like the crypto thing to do.
+Also I wanted to indicate that I wanted my buddy to sign whatever response he sent back because I wanted to be sure that I wasn't experiencing a sophisticated spoofing attack (super low probability, but no sense in half-assing this security exercise).
+
+3. My buddy executed some commands on his hardware to verify the cert:
+
+```marty@dogeland:~$ openssl x509 -noout -modulus -in saved_certificate.txt | openssl sha256
+(stdin)= ef835bdf6080bfe6e73c8c81545e8088bf2169970a0a70ac3305a54267431a52
+marty@dogeland:~$ openssl rsa -noout -modulus -in /path/to/gitlab/server.key | openssl sha256
+(stdin)= ef835bdf6080bfe6e73c8c81545e8088bf2169970a0a70ac3305a54267431a52
+```
+
+Note that `saved_certificate.txt` contained the stuff between "BEGIN CERTIFICATE" and "END CERTIFICATE".
+
+For fun, he also compared this with the server certificate file used by his web server:
+
+```
+marty@dogeland:~$ openssl x509 -noout -modulus -in /path/to/gitlab/server.crt | openssl sha256
+(stdin)= ef835bdf6080bfe6e73c8c81545e8088bf2169970a0a70ac3305a54267431a52
+```
+
+We were both happy that the above results verified his server.
+
+
+Reiteration: these steps are a pain in the ass
+----------------------------------------------
+Again, there are too many steps here.
+Normal people won't take the time to figure out how to do them, even if they are willing to take the time to set up a self-signed x.509 cert for their server.
+Pretty much the only reason I did them was out of boredom while waiting for my phone to get fixed at the Apple store.
 
 
 Proposal: Web-of-trust approach applied to SSL/TLS
 ==================================================
+The key problem that needs to be solved is identity: was the self-signed x.509 cert issued by someone with a key I already trust?
+Related, can the holder of that cert revoke it?
+
+My suggestion is to have something like a web-of-trust similar to the way gpg/pgp keys work.
+This system would require a third-party like keybase.io.
+Keybase.io would publish a root certificate that anyone could (manually) install in their browser.
+Users of keybase.io could generate an x.509 cert, then sign it with the gpg key they registered on keybase.io.
+The user could then upload the public part of the cert along with the signature to keybase.io; keybase would then sign the cert with their root cert and return the signed x.509 cert.
+Keybase.io would also publish the signature of the cert made by the user's private key.
+The user could then use this cert for their server.
+
+In this scenario, someone who installed the keybase.io root cert into their browser would not experience the identity warning I described at the top of this post, and any cert signed by keybase.io would work.
+In addition, the x.509 certificate holder could revoke the cert by either revoking their gpg key or issuing a revocation on the cert itself.
+Third, anyone could check the authenticity of the x.509 cert by checking the signature published on keybase.io.
+Finally, some amount of anonymity can be preserved in this way.
+This method just links the private key of an x.509 cert with a private gpg key -- if you trust the holder of the private gpg key, you can trust the holder of the x.509 cert.
 
 
 Footnotes/bibliography
