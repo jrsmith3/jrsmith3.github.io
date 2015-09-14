@@ -34,7 +34,7 @@ Thus, a man-in-the-middle listening to data from your computer to the server see
 
 Issues 1-3 in the above list are different manifestations of the same issue: who is on the other end of the connection?
 It is entirely possible that someone is spoofing the server to which you are trying to connect *and* is implementing SSL/TLS.
-In this case, your data is encrypted as it travels to the spoofer; men-in-the-middle can't read your data, but the spoofer [still can](http://sadtrombone.com).
+In this case, your data is encrypted as it travels to the spoofer; men-in-the-middle can't read your data, but the spoofer [still can](http://sadtrombone.com/?autoplay=true).
 
 The solution to this problem requires broader coordination; you need some kind of assurance that the server to which you are connecting is the server you think it is.
 This assurance can either come from the operator of the server itself, or from some trusted third party.
