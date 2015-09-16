@@ -80,7 +80,7 @@ Let's say you have an associate you know as [Mr. X]().
 You don't know X's identity, but there's some amount of trust you have in his work.
 Mr. X finds it unacceptable to divulge his identity to a corporate CA, but he needs to set up a website that employs both the encryption and identity features of SSL/TLS.
 Encryption is relatively easy: X sets up a self-signed x.509 cert.
-Identity is much more tedious because it looks like the steps listed below.
+Identity is much more tedious because it looks like the [steps listed below]().
 In my opinion, this issue of semi-anonymity is the edge case that needs a better solution.
 I may not know exactly who X is, but I automatically want to be sure that my browser is connecting to his server.
 
@@ -194,7 +194,8 @@ Also I wanted to indicate that I wanted Marty to sign whatever response he sent 
 
 3. Marty executed some commands on his hardware to verify the cert:
 
-```marty@dogeland:~$ openssl x509 -noout -modulus -in saved_certificate.txt | openssl sha256
+```
+marty@dogeland:~$ openssl x509 -noout -modulus -in saved_certificate.txt | openssl sha256
 (stdin)= ef835bdf6080bfe6e73c8c81545e8088bf2169970a0a70ac3305a54267431a52
 marty@dogeland:~$ openssl rsa -noout -modulus -in /path/to/gitlab/server.key | openssl sha256
 (stdin)= ef835bdf6080bfe6e73c8c81545e8088bf2169970a0a70ac3305a54267431a52
