@@ -13,6 +13,7 @@ Every time I tried to connect to the server, my browser would pop up a warning t
 The popup was annoying, but the annoyance wasn't a dealbreaker.
 The real issue was: how do I know that the server to which I'm connecting is actually Marty's server?
 Trying to address this issue led me to the more general question of: is there a framework outside the traditional certificate authority (CA) model in which this process is more automated and less error prone?
+Ultimately, I think the most important issue raised by this exercise was: how do we facilitate semi-anonymity while enjoying the encryption and verification benefits of SSL/TLS?
 
 
 Background: How do I know my information is going to who I think its going to on the interweb?
@@ -63,6 +64,18 @@ There's no sense in spending money if all you want is to set up a little hobby s
 Third, getting a cert from a CA requires the CA to perform some kind of background check.
 In this case, you would have to divulge a lot of personal data to the CA which raises some privacy issues.
 For example, what happens if the CA itself doesn't have good internal security practices and your personal data is leaked (a la Target, Home Depot, Ashley Madison, etc.)?
+
+
+Semi-anonymity
+--------------
+The most important issue that is not well addressed in the CA framework of SSL/TLS is semi-anonymity.
+Let's say there is a person out there named [Mr. X]().
+You don't know X's identity, but there's some amount of trust you have in his work.
+Mr. X finds it unacceptable to divulge his identity to a corporate CA, but he needs to set up a website that employs both the encryption and identity features of SSL/TLS.
+Encryption is relatively easy: X sets up a self-signed x.509 cert.
+Identity is much more tedious because it looks like the steps listed below.
+In my opinion, this issue of semi-anonymity is the edge case that needs a better solution.
+I may not know exactly who X is, but I automatically want to be sure that my browser is connecting to his server.
 
 
 The problem: it isn't straightforward to verify a self-signed cert
@@ -199,21 +212,28 @@ Normal people won't take the time to figure out how to do them, even if they are
 Pretty much the only reason I did them was out of boredom while waiting for my phone to get fixed at the Apple store.
 
 
-Proposal: Web-of-trust approach applied to SSL/TLS
-==================================================
+95% Solution: Let's Encrypt
+===========================
 The key problem that needs to be solved is identity: was the self-signed x.509 cert issued by someone with a key I already trust?
 Related, can the holder of that cert revoke it?
 
-My suggestion is to have something like a web-of-trust similar to the way gpg/pgp keys work.
-This system would require a third-party like keybase.io.
-Keybase.io would publish a root certificate that anyone could (manually) install in their browser.
-Users of keybase.io could generate an x.509 cert, then sign it with the gpg key they registered on keybase.io.
-The user could then upload the public part of the cert along with the signature to keybase.io; keybase would then sign the cert with their root cert and return the signed x.509 cert.
-Keybase.io would also publish the signature of the cert made by the user's private key.
-The user could then use this cert for their server.
+Fortunately, it looks like some of these issues will be resolved when the [Let's Encrypt]() project is out of beta.
+It looks like Let's Encrypt will run a service that issues free certs that are signed by a root cert that most browsers already trust.
+Let's Encrypt has a clever way to guarantee the owner of the domain is the operator of the server to which the domain resolves; I invite you to [read their description]() if you want to know the technical details.
 
-In this scenario, someone who installed the keybase.io root cert into their browser would not experience the identity warning I described at the top of this post, and any cert signed by keybase.io would work.
-In addition, the x.509 certificate holder could revoke the cert by either revoking their gpg key or issuing a revocation on the cert itself.
-Third, anyone could check the authenticity of the x.509 cert by checking the signature published on keybase.io.
-Finally, some amount of anonymity can be preserved in this way.
-This method just links the private key of an x.509 cert with a private gpg key -- if you trust the holder of the private gpg key, you can trust the holder of the x.509 cert.
+The issue of facilitating semi-anonymity still exists in this scenario because Marty/Mr. X and I still have to exchange communication (via cryptographically signed messages) for me to know his server can be reached at a particular domain.
+I think this problem could be solved by integrating Let's Encrypt and keybase.io:
+
+1. A keybase.io user could first [verify their domain]().
+2. Next, they would request a cert from Let's Encrypt.
+3. Let's Encrypt would note that the domain was verified on keybase.io and embed that information into the cert it issues.
+
+I'm not an expert at this kind of infrastructure, so a better implementation likely exists.
+
+At this point, there should be enough information in the cert held by Marty's server that I can cryptographically convince myself that:
+
+1. The connection is end-to-end secure.
+2. The identity of the server at the other end is what it should be (avoiding man-in-the-middle).
+3. This server actually belongs to Marty because his gpg signature appears in the cert.
+
+The third item could be implemented in the `keybase` command line client and also appear on a user's keybase.io profile page.
