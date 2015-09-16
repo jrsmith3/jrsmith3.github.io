@@ -27,7 +27,7 @@ Your computer sent some bits out over the network connection to the internet, an
 3. When you send a very private message to your spouse/significant other/child/best friend over this connection to this "Facebook", how do you know that some nefarious person isn't reading your very private messages by spoofing your Facebook page?
 4. Even if a nefarious person is not spoofing your Facebook page, how do you know that a nefarious person cannot intercept your very private message and read it as it makes its way to Facebook's server?
 
-The short answer is cryptography via a protocol called SSL/TLS, a.k.a. x.509.
+The short answer is cryptography via two protocols called [SSL/TLS](https://en.wikipedia.org/wiki/Transport_Layer_Security), and [x.509](https://en.wikipedia.org/wiki/X.509).
 
 A good implementation of the SSL/TLS protocol takes care of #4 in the above list because traffic over an SSL/TLS connection is encrypted using a special file on the server called a certificate, or cert for short.
 Thus, a man-in-the-middle listening to data from your computer to the server sees what appears to be random nonsense.
@@ -38,13 +38,13 @@ In this case, your data is encrypted as it travels to the spoofer; men-in-the-mi
 
 The solution to this problem requires broader coordination; you need some kind of assurance that the server to which you are connecting is the server you think it is.
 This assurance can either come from the operator of the server itself, or from some trusted third party.
-In the case of Marty and me, I had to get that assurance directly from Marty.
+In the case of Marty and I, I had to get that assurance directly from Marty.
 In the case of Facebook, Twitter, Google, GitHub, etc. that assurance comes from a trusted third party.
 
 The bottom line is the SSL/TLS protocol and careful security engineering on Facebook's part ensures that your browser can positively identify that the data coming from "facebook.com" indeed comes from Facebook the company and not someone spoofing their server.
-This system works because your browser ships with so-called "root certificates" issued by trusted third parties like Verisign.
-Organizations like Verisign are called Certificate Authorities, or CAs for short.
-These root certificates, along with audits by Verisign and similar companies, are used to verify the authenticity of the certificates Facebook (for example) uses to create the secure SSL/TLS connection.
+This system works because your browser ships with so-called "root certificates" issued by trusted third parties like VeriSign.
+Organizations like VeriSign are called Certificate Authorities, or CAs for short.
+These root certificates, along with audits by VeriSign and similar companies, are used to verify the authenticity of the certificates Facebook (for example) uses to create the secure SSL/TLS connection.
 These built-in root certs represent the broader coordination mentioned above: the CAs use the private component of their root cert to "sign" Facebook et.al.'s SSL/TLS cert.
 In addition, the public component of the CAs root certs come packaged with your browser.
 Your browser can therefore use the public component of the root certs it has to verify that a server is sending a cert that was signed by one of the root certs.
@@ -52,12 +52,12 @@ Your browser can therefore use the public component of the root certs it has to 
 
 Self-signed certs and the little guy
 ------------------------------------
-There is nothing special about the x.509 cert that Facebook holds other than Verisign, etc. helped issue it.
-You could generate your own x.509 certificate and the SSL/TLS protocol would work just as well.
+There is nothing special about the x.509 cert that Facebook holds other than VeriSign, etc. helped issue it.
+You could generate your own x.509 certificate and the end-to-end encryption of traffic over SSL/TLS protocol would work just as well.
 This practice is known as creating a self-signed certificate, and is common.
 There are a number of legitimate reasons why someone would want to issue a self-signed certificate.
 First, leaving the server identity issue aside, SSL/TLS ensures an encrypted connection; it is a good practice to encrypt all data across the internet.
-In fact, nowadays all major internet companies encrypt their data *by default* via SSL/TLS [1]; doing so is considered a best practice and you should be skeptical of any service that doesn't.
+In fact, nowadays all major internet companies encrypt their data *by default* via SSL/TLS; doing so is considered a best practice and you should be skeptical of any service that doesn't.
 Second, acquiring a signed certificate from a CA is expensive.
 There's no sense in spending money if all you want is to set up a little hobby server with a secure connection.
 Third, getting a cert from a CA requires the CA to perform some kind of background check.
@@ -77,7 +77,7 @@ When this many manual steps are required, security will end up suffering because
 
 
 Specifics: How did I verify the identity of Marty's server?
-==============================================================
+===========================================================
 This process was implemented over the following steps.
 The upshot is that I had an excuse to use the `openssl` command in the terminal; this exercise demystified a lot of the SSL/TLS framework for me.
 
@@ -169,7 +169,7 @@ BpVa0JvQPmeDyazF7wkv5ZqbE05lLsZVtDXqBnVuJgJi9Q==
 This data (e.g. the SHA1 fingerprint) matched what I saw when I connected to the server with Safari and examined the certificate.
 
 2. I copied the above data (especially the part between the "BEGIN CERTIFICATE" and "END CERTIFICATE") and pasted it into a textfile with an email message to Marty.
-I then signed this message with my [gpg key]() because it seemed like the crypto thing to do.
+I then signed this message with my [gpg key (200C61F9)](https://keybase.io/joshuarsmith/key.asc) because it seemed like the crypto thing to do.
 Also I wanted to indicate that I wanted Marty to sign whatever response he sent back because I wanted to be sure that I wasn't experiencing a sophisticated spoofing attack (super low probability, but no sense in half-assing this security exercise).
 
 3. Marty executed some commands on his hardware to verify the cert:
@@ -217,8 +217,3 @@ In addition, the x.509 certificate holder could revoke the cert by either revoki
 Third, anyone could check the authenticity of the x.509 cert by checking the signature published on keybase.io.
 Finally, some amount of anonymity can be preserved in this way.
 This method just links the private key of an x.509 cert with a private gpg key -- if you trust the holder of the private gpg key, you can trust the holder of the x.509 cert.
-
-
-Footnotes/bibliography
-======================
-[1] If you are interested, [this website]() has a good list of companies that use SSL/TLS by default and which don't.
