@@ -6,7 +6,7 @@ Summary: Adeventures in verifying the identity of an SSL/TLS connection which us
 
 tl;dr
 =====
-[Skip straight to the CLI commands]() to manually verify the identity of a server using its x.509 certificate.
+[Skip straight to the CLI commands](#specifics) to manually verify the identity of a server using its x.509 certificate.
 
 
 Motivation
@@ -76,11 +76,11 @@ For example, what happens if the CA itself doesn't have good internal security p
 Semi-anonymity
 --------------
 The most important issue that is not well addressed in the CA framework of SSL/TLS is semi-anonymity.
-Let's say you have an associate you know as [Mr. X]().
+Let's say you have an associate you know as [Mr. X](https://en.wikipedia.org/wiki/X_(The_X-Files)).
 You don't know X's identity, but there's some amount of trust you have in his work.
 Mr. X finds it unacceptable to divulge his identity to a corporate CA, but he needs to set up a website that employs both the encryption and identity features of SSL/TLS.
 Encryption is relatively easy: X sets up a self-signed x.509 cert.
-Identity is much more tedious because it looks like the [steps listed below]().
+Identity is much more tedious because it looks like the [steps listed below](#specifics).
 In my opinion, this issue of semi-anonymity is the edge case that needs a better solution.
 I may not know exactly who X is, but I automatically want to be sure that my browser is connecting to his server.
 
@@ -96,7 +96,7 @@ There were an unacceptably large number of manual steps in this scenario.
 When this many manual steps are required, security will end up suffering because nobody is going to take the time to do them all.
 
 
-Specifics: How did I verify the identity of Marty's server?
+<a name="specifics"></a>Specifics: How did I verify the identity of Marty's server?
 ===========================================================
 This process was implemented over the following steps.
 The upshot is that I had an excuse to use the `openssl` command in the terminal; this exercise demystified a lot of the SSL/TLS framework for me.
@@ -225,14 +225,14 @@ Pretty much the only reason I did them was out of boredom while waiting for my p
 The key problem that needs to be solved is identity: was the self-signed x.509 cert issued by someone with a key I already trust?
 Related, can the holder of that cert revoke it?
 
-Fortunately, it looks like some of these issues will be resolved when the [Let's Encrypt]() project is out of beta.
+Fortunately, it looks like some of these issues will be resolved when the [Let's Encrypt](https://letsencrypt.org) project is out of beta.
 It looks like Let's Encrypt will run a service that issues free certs that are signed by a root cert that most browsers already trust.
-Let's Encrypt has a clever way to guarantee the owner of the domain is the operator of the server to which the domain resolves; I invite you to [read their description]() if you want to know the technical details.
+Let's Encrypt has a clever way to guarantee the owner of the domain is the operator of the server to which the domain resolves; I invite you to [read their description](https://letsencrypt.org/howitworks/) if you want to know the technical details.
 
 The issue of facilitating semi-anonymity still exists in this scenario because Marty/Mr. X and I still have to exchange communication (via cryptographically signed messages) for me to know his server can be reached at a particular domain.
-I think this problem could be solved by integrating Let's Encrypt and keybase.io:
+I think this problem could be solved by integrating Let's Encrypt and [keybase.io](http://keybase.io):
 
-1. A keybase.io user could first [verify their domain]().
+1. A keybase.io user could first verify their domain.
 2. Next, they would request a cert from Let's Encrypt.
 3. Let's Encrypt would note that the domain was verified on keybase.io and embed that information into the cert it issues.
 
