@@ -4,7 +4,13 @@ Category: Blog
 Author: Joshua Ryan Smith
 Summary: Adeventures in verifying the identity of an SSL/TLS connection which uses a self-signed x.509 certificate.
 
+tl;dr
+=====
+[Skip straight to the CLI commands]() to manually verify the identity of a server using its x.509 certificate.
 
+
+Motivation
+==========
 A few months ago, my buddy Marty and I started a little side project for which we needed a few private repos on GitHub.
 In order to save money on the $25/month GitHub organizational plan, we recently moved these repos from GitHub to Marty's personal server running an instance of gitlab.
 For security, Marty deployed a self-signed x.509 certificate to encrypt the connection to the server over SSL/TLS.
