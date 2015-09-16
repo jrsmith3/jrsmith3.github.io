@@ -76,7 +76,7 @@ For example, what happens if the CA itself doesn't have good internal security p
 Semi-anonymity
 --------------
 The most important issue that is not well addressed in the CA framework of SSL/TLS is semi-anonymity.
-Let's say there is a person out there named [Mr. X]().
+Let's say you have an associate you know as [Mr. X]().
 You don't know X's identity, but there's some amount of trust you have in his work.
 Mr. X finds it unacceptable to divulge his identity to a corporate CA, but he needs to set up a website that employs both the encryption and identity features of SSL/TLS.
 Encryption is relatively easy: X sets up a self-signed x.509 cert.
