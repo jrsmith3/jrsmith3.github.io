@@ -19,7 +19,7 @@ Every time I tried to connect to the server, my browser would pop up a warning t
 The popup was annoying, but the annoyance wasn't a dealbreaker.
 The real issue was: how do I know that the server to which I'm connecting is actually Marty's server?
 Trying to address this issue led me to the more general question of: is there a framework outside the traditional certificate authority (CA) model in which this process is more automated and less error prone?
-Ultimately, I think the most important issue raised by this exercise was: how do we facilitate semi-anonymity while enjoying the encryption and verification benefits of SSL/TLS?
+Ultimately, I think the most important issue raised by this exercise was: how is semi-anonymity facilitated while enjoying the encryption and verification benefits of the SSL/TLS protocol?
 
 
 Background: How do I know my information is going to who I think its going to on the interweb?
