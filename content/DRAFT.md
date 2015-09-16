@@ -103,7 +103,7 @@ The upshot is that I had an excuse to use the `openssl` command in the terminal;
 
 1. Acquire Marty's cert and associated metadata
 
-```
+```text
 $ openssl s_client -showcerts -connect git.schmarty.net:443 | openssl x509 -text -fingerprint
 ```
 
@@ -113,7 +113,7 @@ The second `openssl` command is to manage the `x509` cert, returning it as `-tex
 
 The above command yielded the following data:
 
-```
+```text
 Certificate:
     Data:
         Version: 1 (0x0)
@@ -194,7 +194,7 @@ Also I wanted to indicate that I wanted Marty to sign whatever response he sent 
 
 3. Marty executed some commands on his hardware to verify the cert:
 
-```
+```text
 marty@dogeland:~$ openssl x509 -noout -modulus -in saved_certificate.txt | openssl sha256
 (stdin)= ef835bdf6080bfe6e73c8c81545e8088bf2169970a0a70ac3305a54267431a52
 marty@dogeland:~$ openssl rsa -noout -modulus -in /path/to/gitlab/server.key | openssl sha256
@@ -205,7 +205,7 @@ Note that `saved_certificate.txt` contained the stuff between "BEGIN CERTIFICATE
 
 For fun, he also compared this with the server certificate file used by his web server:
 
-```
+```text
 marty@dogeland:~$ openssl x509 -noout -modulus -in /path/to/gitlab/server.crt | openssl sha256
 (stdin)= ef835bdf6080bfe6e73c8c81545e8088bf2169970a0a70ac3305a54267431a52
 ```
