@@ -19,6 +19,7 @@ Ultimately, I think the most important issue raised by this exercise was: how do
 Background: How do I know my information is going to who I think its going to on the interweb?
 ==============================================================================================
 Before going into the details of how I verified Marty's server, I want to give a little background on internet security.
+Note that I am not an internet security expert, so take everything here with a grain of salt.
 Imagine you open your web browser and type in a URL like "facebook.com".
 You press the `Return` key and in a few milliseconds, your Facebook page pops up.
 Your computer sent some bits out over the network connection to the internet, and some bits representing your Facebook page came back.
