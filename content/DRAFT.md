@@ -1,5 +1,5 @@
 Title: Verifying a self-signed SSL cert
-Date: 2015-09-11
+Date: 2015-09-26
 Category: Blog
 Author: Joshua Ryan Smith
 Summary: Adeventures in verifying the identity of an SSL/TLS connection which uses a self-signed x.509 certificate.
