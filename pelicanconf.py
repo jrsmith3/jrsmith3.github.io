@@ -23,3 +23,8 @@ CONTACTS = SOCIAL
 
 DEFAULT_PAGINATION = False
 THEME = "cait"
+
+MARKUP = ('md', 'ipynb')
+
+PLUGIN_PATH = './plugins'
+PLUGINS = ['ipynb']
