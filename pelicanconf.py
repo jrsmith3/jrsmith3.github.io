@@ -26,6 +26,6 @@ THEME = "cait"
 
 # Settings affecting ipython/jupyter notebook markup
 MARKUP = ('md', 'ipynb')
-PLUGIN_PATH = './plugins'
+PLUGIN_PATHS = ['./plugins']
 PLUGINS = ['ipynb']
 IPYNB_USE_META_SUMMARY = True
