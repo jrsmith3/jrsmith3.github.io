@@ -13,14 +13,14 @@ The structure of this description should be:
 
 Testing a module you've written in python can easily spiral out of control, particularly one which simulates a physical phenomenon. You want to be sure that your tests are comprehensive, but its quite easy to fall down a rabbit hole of writing completely inane tests for edge cases that will never occur in practice. After writing and refactoring my [`tec`](https://github.com/jrsmith3/tec) module several times, I've gotten a sense of the various types of tests that need to be written and how to organize them. This post is the 0.2.0 version of the strategy I'm using to test `tec`. I intend this strategy to be along the lines of a "style guidelines" type document like [pep8](https://www.python.org/dev/peps/pep-0008/) or [Strunk and White](https://en.wikipedia.org/wiki/The_Elements_of_Style).
 
-These guidelines assume the reader has an understanding of testing python code and the `unittest` framework. For an excellent introduction to python testing, see Arbuckle (9781847198846).
+These guidelines assume the reader has an understanding of testing python code and the `unittest` framework. Resources for understanding testing with Python are given at the end of this essay.
 
 
 Overview
 ========
 Tests tend to fall into two categories: API tests and numerical tests. API tests test the interface of the module: ensuring proper return types of methods, ensuring exceptions are raised under appropriate conditions, methods that return units actually return the correct unit, etc. Numerical tests verify the numerical accuracy of the methods that return the results of the physical simulation.
 
-I've found that writing API tests tend to pose trickier programming problems than numerical tests, but performing the analysis to determine the correctness of a numerical output is highly nontrivial.
+I've found that writing API tests tend to pose trickier programming problems than numerical tests, but performing the analysis to determine the correctness of a numerical output can be quite challenging.
 
 You are probably reading this essay to learn how to determine if your calculator methods are returning the correct results. The short answer is: the precision of the physical constants is the limiting factor for your calculator methods. The longer answer is: the accuracy of the numerical results depends on the correct implementation of the model; the precision is determined by the algorithm used to calculate the result and the precision of the inputs (which includes physical constants) to the algorithm.
 
@@ -33,7 +33,7 @@ As a very simple example, say you wrote a method to calculate...
 
 Style guidelines for tests for python classes simulating physical phenomnea
 ===========================================================================
-Files containing tests for a python module should be located in a `test` directory in the root of the repo, as is pythonic (CITE). Each file in the `test` directory should contain tests for one and only one class/function defined in the module. Files containing tests should be named according to the rubric 
+Files containing tests for a python module should be located in a `test` directory in the root of the repo [for the sake of separation of concerns](http://pytest.org/latest/goodpractices.html?highlight=inline#choosing-a-test-layout-import-rules). Each file in the `test` directory should contain tests for one and only one class/function defined in the module. Files containing tests should be named according to the rubric 
 
     test_ClassName.py
 
@@ -48,7 +48,7 @@ I organize tests according to functionality by subclassing `Base` (and thus `uni
 * `MethodsInput` - test methods that take input. Includes passing data of the wrong type, data that's outside of a constraint, etc.
 * `MethodsReturnType` - test that methods return the proper type of data.
 * `MethodsReturnUnits` - test that methods return the proper units, assuming the method returns data of type `astropy.units.Unit`.
-* `MethodsReturnValues` - tests that the methods return appropriate values. These tests are particularly important for methods which actually implement the physical model; I call them "calculator methods." Testing the values of these methods is a whole other kettle of fish and will be discussed in a subsequent revision.
+* `MethodsReturnValues` - tests that the methods return appropriate values. These tests are particularly important for methods which actually implement the physical model; I call them "calculator methods."
 
 Each class contains methods that implement a test. These methods are named according to the rubric
 
@@ -56,15 +56,15 @@ Each class contains methods that implement a test. These methods are named accor
 
 Where "name" refers to the name of the attribute or method being tested and "condition" refers to the condition being tested. The name of the class which contains the attribute or method under test should not appear in the test method name, nor should the functionality of the test. For example, the following test names should not be used:
 
-    test_Metal_temp_less_than_zero
+    test_ClassName_temp_less_than_zero
     test_input_temp_less_than_zero
 
-The first example contains the name of the class (`Metal`) in which the attribute `temp` is found. The class name is superfluous in this case because this test is presumably located in a file named `test_Metal.py`.
+The first example contains the name of the class (`ClassName`) in which the attribute `temp` is found. The class name is superfluous in this case because this test is presumably located in a file named `test_ClassName.py`.
 
 The second example contains the name of the functionality being tested, i.e. "input." The functionality in this case is superfluous because the test is presumably a method of the class `Instantiation`
 .
 
-Docstrings should include the name of the class under test, the functionality being tested, the name of the attribute/method being tested, and the condition being tested. In this way, `nosetests` will display all the information required to locate the failed/erronious test within this classification scheme. The order is not strictly required; sometimes it is easier to write something like "Setting Metal.richardson < 0 is invalid." The docstrings should describe logically what the test method does. In other words, it should be clear from the docstring how the test is passed or failed.
+Docstrings should include the name of the class under test, the functionality being tested, the name of the attribute/method being tested, and the condition being tested. In this way, `nosetests` will display all the information required to locate the failed/erronious test within this classification scheme. The order is not strictly required; sometimes it is easier to write something like "Setting ClassName.strictly_positive_attribute < 0 is invalid." The docstrings should describe logically what the test method does. In other words, it should be clear from the docstring how the test is passed or failed.
 
 
 Remarks
@@ -230,3 +230,8 @@ class MethodsReturnValues(Base):
     """
     pass
 ```
+
+
+Resources
+=========
+For an excellent introduction to python testing, see Arbuckle (9781847198846).
