@@ -23,8 +23,8 @@ Tests tend to fall into two categories: API tests and numerical tests. API tests
 I've found that writing API tests tend to pose trickier programming problems than numerical tests, but performing the analysis to determine the correctness of a numerical output can be quite challenging.
 
 
-General testing style guidelines
-================================
+Organization of test files in the filesystem
+============================================
 Files containing tests for a python module should be located in a `test` directory in the root of the repo [for the sake of separation of concerns](http://pytest.org/latest/goodpractices.html?highlight=inline#choosing-a-test-layout-import-rules). Each file in the `test` directory should contain tests for one and only one class/function defined in the module. Files containing tests should be named according to the rubric 
 
     test_ClassName.py
