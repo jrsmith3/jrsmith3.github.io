@@ -23,3 +23,9 @@ CONTACTS = SOCIAL
 
 DEFAULT_PAGINATION = False
 THEME = "cait"
+
+# Settings affecting ipython/jupyter notebook markup
+MARKUP = ('md', 'ipynb')
+PLUGIN_PATHS = ['./plugins']
+PLUGINS = ['ipynb']
+IPYNB_USE_META_SUMMARY = True

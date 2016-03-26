@@ -4,3 +4,6 @@
 [submodule "cv"]
 	path = cv
 	url = git@github.com:jrsmith3/cv.git
+[submodule "plugins/ipynb"]
+	path = plugins/ipynb
+	url = git://github.com/danielfrg/pelican-ipynb.git
