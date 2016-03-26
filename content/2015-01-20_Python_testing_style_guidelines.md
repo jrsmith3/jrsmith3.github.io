@@ -22,17 +22,9 @@ Tests tend to fall into two categories: API tests and numerical tests. API tests
 
 I've found that writing API tests tend to pose trickier programming problems than numerical tests, but performing the analysis to determine the correctness of a numerical output can be quite challenging.
 
-You are probably reading this essay to learn how to determine if your calculator methods are returning the correct results. The short answer is: the precision of the physical constants is the limiting factor for your calculator methods. The longer answer is: the accuracy of the numerical results depends on the correct implementation of the model; the precision is determined by the algorithm used to calculate the result and the precision of the inputs (which includes physical constants) to the algorithm.
 
-Basic numerical testing strategy
-----------
-Soon I will get to the details of how to ensure your algorithms and understand uncertainty propagation, but first I want to discuss the basic strategy for testing calculator methods. The good news is that the testing strategy is very simple: compare the output of each method to a standard set of data. The standard set of data is simply a list of inputs required by the calculator method and the corresponding (accurate and precise) output value of the method.
-
-As a very simple example, say you wrote a method to calculate...
-
-
-Style guidelines for tests for python classes simulating physical phenomnea
-===========================================================================
+General testing style guidelines
+================================
 Files containing tests for a python module should be located in a `test` directory in the root of the repo [for the sake of separation of concerns](http://pytest.org/latest/goodpractices.html?highlight=inline#choosing-a-test-layout-import-rules). Each file in the `test` directory should contain tests for one and only one class/function defined in the module. Files containing tests should be named according to the rubric 
 
     test_ClassName.py
@@ -84,7 +76,7 @@ is just as easy to calculate as the product
 
     2.333690544228055 * 5.44073192976832565
 
-and the result is just as accurate. Most calculator methods are straightforward arithmetical operations, and the important task is to analyze the uncertainty propagation.
+and the result is just as accurate. Most calculator methods are straightforward arithmetical operations, and the important tasks are to analyze the uncertainty propagation and verify methods' return values do not change over time (regression testing).
 
 For every calculator method there is a tremendous number of combinations of input paramters. The problem isn't that it would take an unacceptably long time with unacceptably large computing resources to exhaustively calculate all of those combinations. The problem is that there's no reasonable way to check the resulting set of data.
 
@@ -129,6 +121,20 @@ This construction is a little silly, but it is what I am doing.
 The second source of error are the values of the physical constants I use. I will use the most precise values I can find, but these values are always reported to a certain precision with a particular uncertainty. I believe this precision is less than the machine precision and therefore will be the predominant source of uncertainty in a value returned by a calculator method.
 
 One final source of uncertainty, related to the uncertainty of physical constants, arises from the conversion of units. Converting cm^2 into m^2 doesn't change the relative uncertainty because there is an absolutely precise relationship between cm and m. In fact, Taylor mentions such a convention on p. 54. Converting other units like eV to J comes with an uncertainty because the conversion factor isn't absolutely precise -- in this case it is the value of the fundamental charge. The uncertainty of unit conversion of object data is noted in the docstring of the class.
+
+
+
+
+You are probably reading this essay to learn how to determine if your calculator methods are returning the correct results. The short answer is: the precision of the physical constants is the limiting factor for your calculator methods. The longer answer is: the accuracy of the numerical results depends on the correct implementation of the model; the precision is determined by the algorithm used to calculate the result and the precision of the inputs (which includes physical constants) to the algorithm.
+
+Basic numerical testing strategy
+----------
+Soon I will get to the details of how to ensure your algorithms and understand uncertainty propagation, but first I want to discuss the basic strategy for testing calculator methods. The good news is that the testing strategy is very simple: compare the output of each method to a standard set of data. The standard set of data is simply a list of inputs required by the calculator method and the corresponding (accurate and precise) output value of the method.
+
+As a very simple example, say you wrote a method to calculate...
+
+
+
 
 
 Miscellany
