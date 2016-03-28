@@ -61,7 +61,7 @@ Each calculator method requires the following items in order to be considered to
 * A unit listed in its docstring. No mention of unit indicates the quantity is unitless.
 * A value of uncertainty listed in its docstring.
 * An analysis of the method's uncertainty documented in that method's test's docstring.
-* A unit test that tests the method against control data.
+* A unit test that tests the method against standard data.
 * Additional unit tests that test any other special, edge, or corner cases.
 
 
