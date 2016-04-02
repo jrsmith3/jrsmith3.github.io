@@ -59,9 +59,14 @@
                     </header>
 
                     <section class="post-content">
-                        <p>Testing a module you've written in python can easily spiral out of control. You want to be sure that your tests are comprehensive, but its quite easy to fall down a rabbit hole of writing completely inane tests for edge cases that will never occur in practice. After writing and refactoring my <a href="https://github.com/jrsmith3/tec"><code>tec</code></a> module several times, I've gotten a sense of the various types of tests that need to be written and how to organize them. This post is the 0.1.0 version of the strategy I'm using to test <code>tec</code>. I intend this strategy to be along the lines of a "style guidelines" type document like <a href="https://www.python.org/dev/peps/pep-0008/">pep8</a> or <a href="https://en.wikipedia.org/wiki/The_Elements_of_Style">Strunk and White</a>.</p>
-<h1>Style guidelines for tests for python classes simulating physical phenomnea</h1>
-<p>Files containing tests for a python module should be located in a <code>test</code> directory in the root of the repo, as is pythonic (CITE). Each file in the <code>test</code> directory should contain tests for one and only one class/function defined in the module. Files containing tests should be named according to the rubric </p>
+                        <p>This post was updated on 2016-03-26 and is revision 0.2.0.</p>
+<p>Testing a module you've written in python can easily spiral out of control, particularly one which simulates a physical phenomenon. You want to be sure that your tests are comprehensive, but its quite easy to fall down a rabbit hole of writing completely inane tests for edge cases that will never occur in practice. After writing and refactoring my <a href="https://github.com/jrsmith3/tec"><code>tec</code></a> module several times, I've gotten a sense of the various types of tests that need to be written and how to organize them. I intend this strategy to be along the lines of a "style guidelines" type document like <a href="https://www.python.org/dev/peps/pep-0008/">pep8</a> or <a href="https://en.wikipedia.org/wiki/The_Elements_of_Style">Strunk and White</a>.</p>
+<p>These guidelines assume the reader has an understanding of testing python code and the <code>unittest</code> framework. Resources for testing code with Python are given at the end of this essay.</p>
+<h1>Overview</h1>
+<p>Tests tend to fall into two categories: API tests and numerical tests. API tests test the interface of the module: ensuring proper return types of methods, ensuring exceptions are raised under appropriate conditions, methods that return units actually return the correct unit, etc. Numerical tests verify the numerical accuracy of the methods that return the results of the physical simulation.</p>
+<h1>Test style guidelines</h1>
+<h2>Organization of test files in the filesystem</h2>
+<p>Files containing tests for a python module should be located in a <code>test</code> directory in the root of the repo <a href="http://pytest.org/latest/goodpractices.html?highlight=inline#choosing-a-test-layout-import-rules">for the sake of separation of concerns</a>. Each file in the <code>test</code> directory should contain tests for one and only one class/function defined in the module. Files containing tests should be named according to the rubric </p>
 <div class="highlight"><pre>test_ClassName.py
 </pre></div>
 
@@ -75,7 +80,7 @@
 <li><code>MethodsInput</code> - test methods that take input. Includes passing data of the wrong type, data that's outside of a constraint, etc.</li>
 <li><code>MethodsReturnType</code> - test that methods return the proper type of data.</li>
 <li><code>MethodsReturnUnits</code> - test that methods return the proper units, assuming the method returns data of type <code>astropy.units.Unit</code>.</li>
-<li><code>MethodsReturnValues</code> - tests that the methods return appropriate values. These tests are particularly important for methods which actually implement the physical model; I call them "calculator methods." Testing the values of these methods is a whole other kettle of fish and will be discussed in a subsequent revision.</li>
+<li><code>MethodsReturnValues</code> - tests that the methods return appropriate values. These tests are particularly important for methods which actually implement the physical model; I call them "calculator methods."</li>
 </ul>
 <p>Each class contains methods that implement a test. These methods are named according to the rubric</p>
 <div class="highlight"><pre>test_name_condition
@@ -83,27 +88,36 @@
 
 
 <p>Where "name" refers to the name of the attribute or method being tested and "condition" refers to the condition being tested. The name of the class which contains the attribute or method under test should not appear in the test method name, nor should the functionality of the test. For example, the following test names should not be used:</p>
-<div class="highlight"><pre>test_Metal_temp_less_than_zero
+<div class="highlight"><pre>test_ClassName_temp_less_than_zero
 test_input_temp_less_than_zero
 </pre></div>
 
 
-<p>The first example contains the name of the class (<code>Metal</code>) in which the attribute <code>temp</code> is found. The class name is superfluous in this case because this test is presumably located in a file named <code>test_Metal.py</code>.</p>
+<p>The first example contains the name of the class (<code>ClassName</code>) in which the attribute <code>temp</code> is found. The class name is superfluous in this case because this test is presumably located in a file named <code>test_ClassName.py</code>.</p>
 <p>The second example contains the name of the functionality being tested, i.e. "input." The functionality in this case is superfluous because the test is presumably a method of the class <code>Instantiation</code>
 .</p>
-<p>Docstrings should include the name of the class under test, the functionality being tested, the name of the attribute/method being tested, and the condition being tested. In this way, <code>nosetests</code> will display all the information required to locate the failed/erronious test within this classification scheme. The order is not strictly required; sometimes it is easier to write something like "Setting Metal.richardson &lt; 0 is invalid." The docstrings should describe logically what the test method does. In other words, it should be clear from the docstring how the test is passed or failed.</p>
-<h1>Remarks</h1>
+<p>Docstrings should include the name of the class under test, the functionality being tested, the name of the attribute/method being tested, and the condition being tested. In this way, <code>nosetests</code> will display all the information required to locate the failed/erronious test within this classification scheme. The order is not strictly required; sometimes it is easier to write something like "Setting ClassName.strictly_positive_attribute &lt; 0 is invalid." The docstrings should describe logically what the test method does. In other words, it should be clear from the docstring how the test is passed or failed.</p>
+<h2>Additional style guidelines for numerical tests</h2>
+<p>Each calculator method requires the following items in order to be considered to be fully tested.</p>
+<ul>
+<li>A unit listed in its docstring. No mention of unit indicates the quantity is unitless.</li>
+<li>A value of uncertainty listed in its docstring.</li>
+<li>An analysis of the method's uncertainty documented in that method's test's docstring.</li>
+<li>A unit test that tests the method against standard data.</li>
+<li>Additional unit tests that test any other special, edge, or corner cases.</li>
+</ul>
+<h2>Remarks</h2>
 <p>If a class has several methods that do similar things, many of the tests in a class will be very similar. I wrote a really dumb command line tool I call <a href="https://github.com/jrsmith3/testwriter"><code>testwriter</code></a> to automatically generate code for these tests.</p>
-<h1>Skeleton test file</h1>
-<div class="highlight"><pre><span class="c"># -*- coding: utf-8 -*-</span>
-<span class="c"># Import statements</span>
-<span class="c"># =================</span>
+<h1>Example/skeleton test file</h1>
+<div class="highlight"><pre><span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="c1"># Import statements</span>
+<span class="c1"># =================</span>
 
-<span class="c"># Common input parameters</span>
-<span class="c"># =======================</span>
+<span class="c1"># Common input parameters</span>
+<span class="c1"># =======================</span>
 
-<span class="c"># Base classes</span>
-<span class="c"># ============</span>
+<span class="c1"># Base classes</span>
+<span class="c1"># ============</span>
 <span class="k">class</span> <span class="nc">Base</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Base class for tests</span>
@@ -114,8 +128,8 @@ test_input_temp_less_than_zero
         <span class="k">pass</span>
 
 
-<span class="c"># Test classes</span>
-<span class="c"># ============</span>
+<span class="c1"># Test classes</span>
+<span class="c1"># ============</span>
 <span class="k">class</span> <span class="nc">Instantiation</span><span class="p">(</span><span class="n">Base</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Tests all aspects of instantiation</span>
@@ -124,11 +138,11 @@ test_input_temp_less_than_zero
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">pass</span>
 
-    <span class="c"># Input arguments wrong type</span>
-    <span class="c"># ==========================</span>
+    <span class="c1"># Input arguments wrong type</span>
+    <span class="c1"># ==========================</span>
 
-    <span class="c"># Input arguments outside constraints</span>
-    <span class="c"># ===================================</span>
+    <span class="c1"># Input arguments outside constraints</span>
+    <span class="c1"># ===================================</span>
 
 
 <span class="k">class</span> <span class="nc">Set</span><span class="p">(</span><span class="n">Base</span><span class="p">):</span>
@@ -139,11 +153,11 @@ test_input_temp_less_than_zero
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">pass</span>
 
-    <span class="c"># Set attribute wrong type</span>
-    <span class="c"># ========================</span>
+    <span class="c1"># Set attribute wrong type</span>
+    <span class="c1"># ========================</span>
 
-    <span class="c"># Set attribute outside constraint</span>
-    <span class="c"># ================================</span>
+    <span class="c1"># Set attribute outside constraint</span>
+    <span class="c1"># ================================</span>
 
 
 <span class="k">class</span> <span class="nc">MethodsInput</span><span class="p">(</span><span class="n">Base</span><span class="p">):</span>
@@ -175,6 +189,12 @@ test_input_temp_less_than_zero
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">pass</span>
 </pre></div>
+
+
+<h1>Resources</h1>
+<p><a href="http://www.amazon.com/dp/1847198848">Arbuckle (isbn 9781847198846)</a> gives an excellent, but slightly dated, introduction to python testing.
+The <a href="http://pythontesting.net">Python testing blog</a>.
+The <a href="http://pytest.org/latest/">py.test module</a>.</p>
                     </section>
                     <hr/>
                     <aside class="post-meta">

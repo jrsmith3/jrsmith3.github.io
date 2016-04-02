@@ -70,8 +70,10 @@
 .highlight .err { border: 1px solid #FF0000 } /* Error */
 .highlight .k { color: #008000; font-weight: bold } /* Keyword */
 .highlight .o { color: #666666 } /* Operator */
+.highlight .ch { color: #408080; font-style: italic } /* Comment.Hashbang */
 .highlight .cm { color: #408080; font-style: italic } /* Comment.Multiline */
 .highlight .cp { color: #BC7A00 } /* Comment.Preproc */
+.highlight .cpf { color: #408080; font-style: italic } /* Comment.PreprocFile */
 .highlight .c1 { color: #408080; font-style: italic } /* Comment.Single */
 .highlight .cs { color: #408080; font-style: italic } /* Comment.Special */
 .highlight .gd { color: #A00000 } /* Generic.Deleted */
@@ -153,7 +155,7 @@
 <div class="prompt input_prompt">In [1]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span class="c"># Initialize environment</span>
+<div class=" highlight hl-ipython2"><pre><span class="c1"># Initialize environment</span>
 <span class="o">%</span><span class="k">matplotlib</span> inline
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">json</span>
@@ -161,15 +163,15 @@
 <span class="kn">import</span> <span class="nn">minimum_sugar</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
 
-<span class="n">database_filename</span> <span class="o">=</span> <span class="s">"menu_data.sqlite3"</span>
+<span class="n">database_filename</span> <span class="o">=</span> <span class="s2">"menu_data.sqlite3"</span>
 
-<span class="c"># I want the names in the following order</span>
-<span class="n">restaurant_names</span> <span class="o">=</span> <span class="p">[</span><span class="s">"Wendy's"</span><span class="p">,</span>
-                    <span class="s">"McDonald's"</span><span class="p">,</span>
-                    <span class="s">"Five Guys"</span><span class="p">,</span>
-                    <span class="s">"Qdoba"</span><span class="p">,</span>
-                    <span class="s">"Taco Bell"</span><span class="p">,</span>
-                    <span class="s">"Chipotle"</span><span class="p">,]</span>
+<span class="c1"># I want the names in the following order</span>
+<span class="n">restaurant_names</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"Wendy's"</span><span class="p">,</span>
+                    <span class="s2">"McDonald's"</span><span class="p">,</span>
+                    <span class="s2">"Five Guys"</span><span class="p">,</span>
+                    <span class="s2">"Qdoba"</span><span class="p">,</span>
+                    <span class="s2">"Taco Bell"</span><span class="p">,</span>
+                    <span class="s2">"Chipotle"</span><span class="p">,]</span>
 </pre></div>
 </div>
 </div>
@@ -183,17 +185,17 @@
 <div class=" highlight hl-ipython2"><pre><span class="k">with</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">database_filename</span><span class="p">)</span> <span class="k">as</span> <span class="n">conn</span><span class="p">:</span>
     <span class="n">cursor</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
     
-    <span class="c"># Determine max sugar to properly scale plots</span>
-    <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s">"SELECT MAX(nf_sugars) FROM menu_data WHERE menu_category = 'entree'"</span><span class="p">)</span>
+    <span class="c1"># Determine max sugar to properly scale plots</span>
+    <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">"SELECT MAX(nf_sugars) FROM menu_data WHERE menu_category = 'entree'"</span><span class="p">)</span>
     <span class="n">sugar_max</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
     <span class="n">sugar_max</span> <span class="o">=</span> <span class="n">sugar_max</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
     
-    <span class="c"># Plot results</span>
+    <span class="c1"># Plot results</span>
     <span class="k">for</span> <span class="n">restaurant_name</span> <span class="ow">in</span> <span class="n">restaurant_names</span><span class="p">:</span>
-        <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s">"SELECT nf_sugars FROM menu_data WHERE menu_category = 'entree' AND brand_name = ?"</span><span class="p">,</span> <span class="p">(</span><span class="n">restaurant_name</span><span class="p">,))</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">"SELECT nf_sugars FROM menu_data WHERE menu_category = 'entree' AND brand_name = ?"</span><span class="p">,</span> <span class="p">(</span><span class="n">restaurant_name</span><span class="p">,))</span>
         <span class="n">sugars</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
         
-        <span class="n">fig</span> <span class="o">=</span> <span class="n">minimum_sugar</span><span class="o">.</span><span class="n">menu_histogram</span><span class="p">(</span><span class="n">sugars</span><span class="p">,</span> <span class="n">x_max</span><span class="o">=</span><span class="n">sugar_max</span><span class="p">,</span> <span class="n">param_name</span><span class="o">=</span><span class="s">"Sugar [g]"</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="n">restaurant_name</span><span class="p">)</span>
+        <span class="n">fig</span> <span class="o">=</span> <span class="n">minimum_sugar</span><span class="o">.</span><span class="n">menu_histogram</span><span class="p">(</span><span class="n">sugars</span><span class="p">,</span> <span class="n">x_max</span><span class="o">=</span><span class="n">sugar_max</span><span class="p">,</span> <span class="n">param_name</span><span class="o">=</span><span class="s2">"Sugar [g]"</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="n">restaurant_name</span><span class="p">)</span>
         <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -951,7 +953,7 @@ g2nOvzz0OQt5Cng58J4k008oP1/E30taViYBrUpNt8yDZzn3ReDhM5z6OfA7VXVn08X0cdO9ixgs
 <div class="prompt input_prompt">In [3]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span class="n">minimum_sugar</span><span class="o">.</span><span class="n">print_max_sugar_menu_item</span><span class="p">(</span><span class="n">database_filename</span><span class="p">,</span> <span class="s">"Wendy's"</span><span class="p">)</span>
+<div class=" highlight hl-ipython2"><pre><span class="n">minimum_sugar</span><span class="o">.</span><span class="n">print_max_sugar_menu_item</span><span class="p">(</span><span class="n">database_filename</span><span class="p">,</span> <span class="s2">"Wendy's"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -982,10 +984,10 @@ Item Name: Apple Pecan Chicken Salad, Full Size
 <div class="prompt input_prompt">In [4]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span class="n">mcd_txt</span> <span class="o">=</span> <span class="s">"Maximum sugar situation at McDonald's:"</span>
+<div class=" highlight hl-ipython2"><pre><span class="n">mcd_txt</span> <span class="o">=</span> <span class="s2">"Maximum sugar situation at McDonald's:"</span>
 <span class="k">print</span> <span class="n">mcd_txt</span>
-<span class="k">print</span> <span class="nb">len</span><span class="p">(</span><span class="n">mcd_txt</span><span class="p">)</span> <span class="o">*</span> <span class="s">"="</span>
-<span class="n">minimum_sugar</span><span class="o">.</span><span class="n">print_max_sugar_menu_item</span><span class="p">(</span><span class="n">database_filename</span><span class="p">,</span> <span class="s">"McDonald's"</span><span class="p">)</span>
+<span class="k">print</span> <span class="nb">len</span><span class="p">(</span><span class="n">mcd_txt</span><span class="p">)</span> <span class="o">*</span> <span class="s2">"="</span>
+<span class="n">minimum_sugar</span><span class="o">.</span><span class="n">print_max_sugar_menu_item</span><span class="p">(</span><span class="n">database_filename</span><span class="p">,</span> <span class="s2">"McDonald's"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1013,24 +1015,24 @@ Item Name: Big Breakfast With Hotcakes (Regular Size Biscuit)
 <div class="prompt input_prompt">In [5]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span class="n">wen_vs_mcd</span> <span class="o">=</span> <span class="s">"Wendy's menu items with more sugar than max. McDonald's item"</span>
+<div class=" highlight hl-ipython2"><pre><span class="n">wen_vs_mcd</span> <span class="o">=</span> <span class="s2">"Wendy's menu items with more sugar than max. McDonald's item"</span>
 <span class="k">print</span> <span class="n">wen_vs_mcd</span>
-<span class="k">print</span> <span class="nb">len</span><span class="p">(</span><span class="n">wen_vs_mcd</span><span class="p">)</span> <span class="o">*</span> <span class="s">"="</span>
+<span class="k">print</span> <span class="nb">len</span><span class="p">(</span><span class="n">wen_vs_mcd</span><span class="p">)</span> <span class="o">*</span> <span class="s2">"="</span>
 
 <span class="k">with</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">database_filename</span><span class="p">)</span> <span class="k">as</span> <span class="n">conn</span><span class="p">:</span>
-    <span class="n">select_txt</span> <span class="o">=</span> <span class="s">"""</span>
-<span class="s">        SELECT item_name, nf_sugars </span>
-<span class="s">            FROM menu_data </span>
-<span class="s">            WHERE nf_sugars &gt; 17 </span>
-<span class="s">                AND brand_name = 'Wendy''s' </span>
-<span class="s">                AND menu_category = 'entree'</span>
-<span class="s">            ORDER BY nf_sugars DESC</span>
-<span class="s">        """</span>
+    <span class="n">select_txt</span> <span class="o">=</span> <span class="s2">"""</span>
+<span class="s2">        SELECT item_name, nf_sugars </span>
+<span class="s2">            FROM menu_data </span>
+<span class="s2">            WHERE nf_sugars &gt; 17 </span>
+<span class="s2">                AND brand_name = 'Wendy''s' </span>
+<span class="s2">                AND menu_category = 'entree'</span>
+<span class="s2">            ORDER BY nf_sugars DESC</span>
+<span class="s2">        """</span>
     
     <span class="n">cursor</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>       
     <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">select_txt</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">return_txt</span> <span class="ow">in</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">():</span>
-        <span class="k">print</span> <span class="n">return_txt</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s">": "</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">return_txt</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+        <span class="k">print</span> <span class="n">return_txt</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s2">": "</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">return_txt</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -1070,7 +1072,7 @@ Asian Cashew Chicken Salad, Full Size: 18
 <div class="prompt input_prompt">In [6]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span class="n">minimum_sugar</span><span class="o">.</span><span class="n">print_max_sugar_menu_item</span><span class="p">(</span><span class="n">database_filename</span><span class="p">,</span> <span class="s">"Five Guys"</span><span class="p">)</span>
+<div class=" highlight hl-ipython2"><pre><span class="n">minimum_sugar</span><span class="o">.</span><span class="n">print_max_sugar_menu_item</span><span class="p">(</span><span class="n">database_filename</span><span class="p">,</span> <span class="s2">"Five Guys"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1103,7 +1105,7 @@ Item Name: Cheese Veggie Sandwich
 <div class="prompt input_prompt">In [7]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span class="n">minimum_sugar</span><span class="o">.</span><span class="n">print_max_sugar_menu_item</span><span class="p">(</span><span class="n">database_filename</span><span class="p">,</span> <span class="s">"Chipotle"</span><span class="p">)</span>
+<div class=" highlight hl-ipython2"><pre><span class="n">minimum_sugar</span><span class="o">.</span><span class="n">print_max_sugar_menu_item</span><span class="p">(</span><span class="n">database_filename</span><span class="p">,</span> <span class="s2">"Chipotle"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1146,7 +1148,7 @@ Item Name: Sofritas
 <div class="prompt input_prompt">In [8]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span class="n">minimum_sugar</span><span class="o">.</span><span class="n">print_max_sugar_menu_item</span><span class="p">(</span><span class="n">database_filename</span><span class="p">,</span> <span class="s">"Taco Bell"</span><span class="p">)</span>
+<div class=" highlight hl-ipython2"><pre><span class="n">minimum_sugar</span><span class="o">.</span><span class="n">print_max_sugar_menu_item</span><span class="p">(</span><span class="n">database_filename</span><span class="p">,</span> <span class="s2">"Taco Bell"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1195,18 +1197,18 @@ Item Name: Biscuit Taco - Egg &amp; Cheese
 <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="k">for</span> <span class="n">brand_name</span> <span class="ow">in</span> <span class="n">restaurant_names</span><span class="p">:</span>
     <span class="k">with</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">database_filename</span><span class="p">)</span> <span class="k">as</span> <span class="n">conn</span><span class="p">:</span>
-        <span class="n">select_txt</span> <span class="o">=</span> <span class="s">"""</span>
-<span class="s">            SELECT COUNT(item_name) </span>
-<span class="s">            FROM menu_data </span>
-<span class="s">            WHERE brand_name = ?</span>
-<span class="s">            AND menu_category = 'entree'</span>
-<span class="s">            AND nf_sugars &lt; 3</span>
-<span class="s">            """</span>
+        <span class="n">select_txt</span> <span class="o">=</span> <span class="s2">"""</span>
+<span class="s2">            SELECT COUNT(item_name) </span>
+<span class="s2">            FROM menu_data </span>
+<span class="s2">            WHERE brand_name = ?</span>
+<span class="s2">            AND menu_category = 'entree'</span>
+<span class="s2">            AND nf_sugars &lt; 3</span>
+<span class="s2">            """</span>
         <span class="n">cursor</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
         <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">select_txt</span><span class="p">,</span> <span class="p">(</span><span class="n">brand_name</span><span class="p">,</span> <span class="p">))</span>
         <span class="n">num_items</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchone</span><span class="p">()</span>
         
-        <span class="k">print</span> <span class="n">brand_name</span> <span class="o">+</span> <span class="s">": "</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">num_items</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="k">print</span> <span class="n">brand_name</span> <span class="o">+</span> <span class="s2">": "</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">num_items</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -1242,32 +1244,32 @@ Chipotle: 19
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="k">with</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">database_filename</span><span class="p">)</span> <span class="k">as</span> <span class="n">conn</span><span class="p">:</span>
-    <span class="c"># Uniformly scale the horizontal axis on all plots</span>
-    <span class="n">select_txt</span> <span class="o">=</span> <span class="s">"""</span>
-<span class="s">        SELECT MAX(nf_calories) </span>
-<span class="s">        FROM menu_data </span>
-<span class="s">        WHERE menu_category = 'entree'</span>
-<span class="s">        AND nf_sugars &lt; 3</span>
-<span class="s">        """</span>
+    <span class="c1"># Uniformly scale the horizontal axis on all plots</span>
+    <span class="n">select_txt</span> <span class="o">=</span> <span class="s2">"""</span>
+<span class="s2">        SELECT MAX(nf_calories) </span>
+<span class="s2">        FROM menu_data </span>
+<span class="s2">        WHERE menu_category = 'entree'</span>
+<span class="s2">        AND nf_sugars &lt; 3</span>
+<span class="s2">        """</span>
     <span class="n">cursor</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
     <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">select_txt</span><span class="p">)</span>
     
     <span class="n">calories_max</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchone</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
     
-    <span class="c"># Plot results</span>
-    <span class="n">select_txt</span> <span class="o">=</span> <span class="s">"""</span>
-<span class="s">        SELECT nf_calories</span>
-<span class="s">        FROM menu_data</span>
-<span class="s">        WHERE menu_category = 'entree'</span>
-<span class="s">        AND brand_name = ?</span>
-<span class="s">        AND nf_sugars &lt; 3</span>
-<span class="s">        """</span>
+    <span class="c1"># Plot results</span>
+    <span class="n">select_txt</span> <span class="o">=</span> <span class="s2">"""</span>
+<span class="s2">        SELECT nf_calories</span>
+<span class="s2">        FROM menu_data</span>
+<span class="s2">        WHERE menu_category = 'entree'</span>
+<span class="s2">        AND brand_name = ?</span>
+<span class="s2">        AND nf_sugars &lt; 3</span>
+<span class="s2">        """</span>
 
     <span class="k">for</span> <span class="n">restaurant_name</span> <span class="ow">in</span> <span class="n">restaurant_names</span><span class="p">:</span>
         <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">select_txt</span><span class="p">,</span> <span class="p">(</span><span class="n">restaurant_name</span><span class="p">,</span> <span class="p">))</span>
         <span class="n">calories</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
         
-        <span class="n">fig</span> <span class="o">=</span> <span class="n">minimum_sugar</span><span class="o">.</span><span class="n">menu_histogram</span><span class="p">(</span><span class="n">calories</span><span class="p">,</span> <span class="n">x_max</span><span class="o">=</span><span class="n">calories_max</span><span class="p">,</span> <span class="n">param_name</span><span class="o">=</span><span class="s">"Calories"</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="n">restaurant_name</span><span class="p">)</span>
+        <span class="n">fig</span> <span class="o">=</span> <span class="n">minimum_sugar</span><span class="o">.</span><span class="n">menu_histogram</span><span class="p">(</span><span class="n">calories</span><span class="p">,</span> <span class="n">x_max</span><span class="o">=</span><span class="n">calories_max</span><span class="p">,</span> <span class="n">param_name</span><span class="o">=</span><span class="s2">"Calories"</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="n">restaurant_name</span><span class="p">)</span>
         <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -2042,18 +2044,18 @@ HjMISFKPGQQkqcf+P7wPGQE2tD5rAAAAAElFTkSuQmCC
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="k">with</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">database_filename</span><span class="p">)</span> <span class="k">as</span> <span class="n">conn</span><span class="p">:</span>
-    <span class="n">select_txt</span> <span class="o">=</span> <span class="s">"""</span>
-<span class="s">        SELECT item_name, nf_calories </span>
-<span class="s">        FROM menu_data</span>
-<span class="s">        WHERE brand_name = 'McDonald''s'</span>
-<span class="s">        AND nf_sugars &lt; 3</span>
-<span class="s">        ORDER BY nf_calories DESC</span>
-<span class="s">        """</span>
+    <span class="n">select_txt</span> <span class="o">=</span> <span class="s2">"""</span>
+<span class="s2">        SELECT item_name, nf_calories </span>
+<span class="s2">        FROM menu_data</span>
+<span class="s2">        WHERE brand_name = 'McDonald''s'</span>
+<span class="s2">        AND nf_sugars &lt; 3</span>
+<span class="s2">        ORDER BY nf_calories DESC</span>
+<span class="s2">        """</span>
     <span class="n">cursor</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
     <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">select_txt</span><span class="p">)</span>
 
     <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()[:</span><span class="mi">2</span><span class="p">]:</span>
-        <span class="k">print</span> <span class="n">item</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s">": "</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">item</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+        <span class="k">print</span> <span class="n">item</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s2">": "</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">item</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -2085,24 +2087,24 @@ Chicken McNuggets (20 Piece): 940
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="k">with</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">database_filename</span><span class="p">)</span> <span class="k">as</span> <span class="n">conn</span><span class="p">:</span>
-    <span class="n">select_txt</span> <span class="o">=</span> <span class="s">"""</span>
-<span class="s">        SELECT item_name, nf_calories, nf_sugars</span>
-<span class="s">        FROM menu_data</span>
-<span class="s">        WHERE brand_name = ?</span>
-<span class="s">        AND menu_category = 'entree'</span>
-<span class="s">        AND nf_sugars &lt; 3</span>
-<span class="s">        ORDER BY nf_calories DESC</span>
-<span class="s">        """</span>
+    <span class="n">select_txt</span> <span class="o">=</span> <span class="s2">"""</span>
+<span class="s2">        SELECT item_name, nf_calories, nf_sugars</span>
+<span class="s2">        FROM menu_data</span>
+<span class="s2">        WHERE brand_name = ?</span>
+<span class="s2">        AND menu_category = 'entree'</span>
+<span class="s2">        AND nf_sugars &lt; 3</span>
+<span class="s2">        ORDER BY nf_calories DESC</span>
+<span class="s2">        """</span>
     <span class="n">cursor</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
     
     <span class="k">for</span> <span class="n">brand_name</span> <span class="ow">in</span> <span class="n">restaurant_names</span><span class="p">:</span>
         <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">select_txt</span><span class="p">,</span> <span class="p">(</span><span class="n">brand_name</span><span class="p">,</span> <span class="p">))</span>
         <span class="k">print</span> <span class="n">brand_name</span>
-        <span class="k">print</span> <span class="s">"="</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">brand_name</span><span class="p">)</span>
+        <span class="k">print</span> <span class="s2">"="</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">brand_name</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">():</span>
-            <span class="k">print</span> <span class="n">item</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s">": "</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">item</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">+</span> <span class="s">"cal, "</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">item</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span> <span class="o">+</span> <span class="s">"g sugar"</span>
+            <span class="k">print</span> <span class="n">item</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s2">": "</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">item</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">+</span> <span class="s2">"cal, "</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">item</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span> <span class="o">+</span> <span class="s2">"g sugar"</span>
             
-        <span class="k">print</span> <span class="s">"</span><span class="se">\r</span><span class="s">"</span>
+        <span class="k">print</span> <span class="s2">"</span><span class="se">\r</span><span class="s2">"</span>
 </pre></div>
 </div>
 </div>
@@ -2310,26 +2312,26 @@ Lettuce: 5cal, 0g sugar
 <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="k">with</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">database_filename</span><span class="p">)</span> <span class="k">as</span> <span class="n">conn</span><span class="p">:</span>
     <span class="n">cursor</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
-    <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s">"SELECT MAX(nf_sugars) FROM menu_data WHERE menu_category = 'beverage'"</span><span class="p">)</span>
+    <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">"SELECT MAX(nf_sugars) FROM menu_data WHERE menu_category = 'beverage'"</span><span class="p">)</span>
     <span class="n">sugar_max</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchone</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
     
-    <span class="n">select_txt</span> <span class="o">=</span> <span class="s">"""</span>
-<span class="s">        SELECT nf_sugars</span>
-<span class="s">        FROM menu_data</span>
-<span class="s">        WHERE menu_category = ?</span>
-<span class="s">        AND brand_name = ?</span>
-<span class="s">        """</span>
+    <span class="n">select_txt</span> <span class="o">=</span> <span class="s2">"""</span>
+<span class="s2">        SELECT nf_sugars</span>
+<span class="s2">        FROM menu_data</span>
+<span class="s2">        WHERE menu_category = ?</span>
+<span class="s2">        AND brand_name = ?</span>
+<span class="s2">        """</span>
     
     <span class="k">for</span> <span class="n">brand_name</span> <span class="ow">in</span> <span class="n">restaurant_names</span><span class="p">:</span>
-        <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">select_txt</span><span class="p">,</span> <span class="p">(</span><span class="s">"entree"</span><span class="p">,</span> <span class="n">brand_name</span><span class="p">,</span> <span class="p">))</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">select_txt</span><span class="p">,</span> <span class="p">(</span><span class="s2">"entree"</span><span class="p">,</span> <span class="n">brand_name</span><span class="p">,</span> <span class="p">))</span>
         <span class="n">entree_sugars</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
 
-        <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">select_txt</span><span class="p">,</span> <span class="p">(</span><span class="s">"beverage"</span><span class="p">,</span> <span class="n">brand_name</span><span class="p">,</span> <span class="p">))</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">select_txt</span><span class="p">,</span> <span class="p">(</span><span class="s2">"beverage"</span><span class="p">,</span> <span class="n">brand_name</span><span class="p">,</span> <span class="p">))</span>
         <span class="n">beverage_sugars</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
         
-        <span class="n">fig</span> <span class="o">=</span> <span class="n">minimum_sugar</span><span class="o">.</span><span class="n">menu_histogram</span><span class="p">(</span><span class="n">entree_sugars</span><span class="p">,</span> <span class="n">x_max</span><span class="o">=</span><span class="n">sugar_max</span><span class="p">,</span> <span class="n">param_name</span><span class="o">=</span><span class="s">"Sugar [g]"</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="n">brand_name</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">"Entree"</span><span class="p">)</span>
+        <span class="n">fig</span> <span class="o">=</span> <span class="n">minimum_sugar</span><span class="o">.</span><span class="n">menu_histogram</span><span class="p">(</span><span class="n">entree_sugars</span><span class="p">,</span> <span class="n">x_max</span><span class="o">=</span><span class="n">sugar_max</span><span class="p">,</span> <span class="n">param_name</span><span class="o">=</span><span class="s2">"Sugar [g]"</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="n">brand_name</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"Entree"</span><span class="p">)</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">beverage_sugars</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="n">fig</span> <span class="o">=</span> <span class="n">minimum_sugar</span><span class="o">.</span><span class="n">menu_histogram</span><span class="p">(</span><span class="n">beverage_sugars</span><span class="p">,</span> <span class="n">x_max</span><span class="o">=</span><span class="n">sugar_max</span><span class="p">,</span> <span class="n">param_name</span><span class="o">=</span><span class="s">"Sugar [g]"</span><span class="p">,</span> <span class="n">fig</span><span class="o">=</span><span class="n">fig</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">"Beverage"</span><span class="p">)</span>
+            <span class="n">fig</span> <span class="o">=</span> <span class="n">minimum_sugar</span><span class="o">.</span><span class="n">menu_histogram</span><span class="p">(</span><span class="n">beverage_sugars</span><span class="p">,</span> <span class="n">x_max</span><span class="o">=</span><span class="n">sugar_max</span><span class="p">,</span> <span class="n">param_name</span><span class="o">=</span><span class="s2">"Sugar [g]"</span><span class="p">,</span> <span class="n">fig</span><span class="o">=</span><span class="n">fig</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"Beverage"</span><span class="p">)</span>
         
         <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
         <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
@@ -3333,9 +3335,9 @@ mVnigmBmZoALgpmZJS4IZmYGuCCYmVnigmBmZgD8F9e6RNTBmpptAAAAAElFTkSuQmCC
 <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="k">with</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">database_filename</span><span class="p">)</span> <span class="k">as</span> <span class="n">conn</span><span class="p">:</span>
     <span class="n">cursor</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
-    <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s">"SELECT COUNT(item_name) FROM menu_data WHERE brand_name = 'McDonald''s' AND menu_category = 'entree'"</span><span class="p">)</span>
+    <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">"SELECT COUNT(item_name) FROM menu_data WHERE brand_name = 'McDonald''s' AND menu_category = 'entree'"</span><span class="p">)</span>
     
-    <span class="k">print</span> <span class="s">"Number of McDonald's entree menu items:"</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">cursor</span><span class="o">.</span><span class="n">fetchone</span><span class="p">()[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="k">print</span> <span class="s2">"Number of McDonald's entree menu items:"</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">cursor</span><span class="o">.</span><span class="n">fetchone</span><span class="p">()[</span><span class="mi">0</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>

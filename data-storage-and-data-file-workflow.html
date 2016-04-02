@@ -87,7 +87,7 @@
 <p>on older systems that do not support long filenames.</p>
 <p>Having a <code>data</code> directory filled with uniquely and descriptively named files is the next best thing to having a <a href="https://en.wikipedia.org/wiki/Uniform_resource_identifier">URI</a> for each file and having the files in some kind of relational database. In addition to the advantage of findability I mentioned above, uniquely naming files in a single <code>data</code> directory yields addressability. Cross-referencing a file in a <a href="http://jrsmith3.github.io/effective-lab-notebooks.html">lab notebook</a> or <a href="http://jrsmith3.github.io/sample-logs-the-secret-to-managing-multi-person-projects.html">sample log</a> is as simple as writing the filename. To find the cross-referenced file, simply look for it in <code>data</code>. </p>
 <p>Using metadata-rich filenames gives you another advantage: it is easy to perform searches for specific files or sets of files using filename search functions in your file browser or shell. More advanced searches can be done via simple python scripts. For example, lets say I wanted to find all the XPS data files I've taken</p>
-<div class="highlight"><pre>gamma:data jrsmith3<span class="nv">$ </span>ls <span class="p">|</span> grep -i jrs <span class="p">|</span> grep -i xps
+<div class="highlight"><pre>gamma:data jrsmith3$ ls <span class="p">|</span> grep -i jrs <span class="p">|</span> grep -i xps
 20100202-0844_xps_tfan25_jrs.dat
 20100202-0850_xps_tfan25_jrs.dat
 20100202-1008_xps_tfan25_jrs.dat
@@ -110,7 +110,7 @@
 
 <p>The same search can be performed from OSX Finder. I don't use Windows, but I would be happy to post instructions on the same search from powershell or Windows file Explorer, <a href="mailto:joshua.r.smith@gmail.com">email</a> me or pull request.</p>
 <p>Using the file naming scheme I suggest above gives one final advantage. File browsers and the shell will automatically list files in chronological order. In the bash shell:</p>
-<div class="highlight"><pre>gamma:data jrsmith3<span class="nv">$ </span>ls
+<div class="highlight"><pre>gamma:data jrsmith3$ ls
 20110520-1543_stm_jrs0075_jrs.sm4
 20110520-1614_stm_jrs0075_jrs.sm4
 20110520-1622_oscilloscope_jrs0075_jrs.txt
@@ -156,7 +156,7 @@
 <p>If you've been paying attention, you will have noticed a contradiction. According to my file naming rubric, short filenames are necessarily in a nested directory structure but I advocate a flat structure for <code>data</code>.</p>
 <p>The best case scenario would be to have some scripts for various platforms which would flatten the nested structure in <code>data</code>. I will post links to these scripts when they become available. In the meantime, the nested structure I suggest makes drag-and-drop additions to the <code>data</code> directory easy. To keep things in <code>data</code> clean, use a single subdirectory named <code>nested</code> to store all of the data in nested directories coming from computers constrained to short filenames. According to my nested directory naming scheme, the <code>nested</code> directory will contain subdirectories corresponding to each experimenter. Each experimenter's directory will end up having a series of <code>YYYYMMDD</code> subdirectories. In this way, everyone can simply drag-and-drop newly acquired data into a new <code>YYYYMMDD</code> subdirectory in their own directory.</p>
 <p>Here's a visualization:</p>
-<div class="highlight"><pre><span class="nv">$ </span>tree data/
+<div class="highlight"><pre>$ tree data/
 data/
 └── nested
     ├── jrs

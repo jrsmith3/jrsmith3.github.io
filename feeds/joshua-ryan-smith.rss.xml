@@ -10,8 +10,10 @@
 .highlight .err { border: 1px solid #FF0000 } /* Error */
 .highlight .k { color: #008000; font-weight: bold } /* Keyword */
 .highlight .o { color: #666666 } /* Operator */
+.highlight .ch { color: #408080; font-style: italic } /* Comment.Hashbang */
 .highlight .cm { color: #408080; font-style: italic } /* Comment.Multiline */
 .highlight .cp { color: #BC7A00 } /* Comment.Preproc */
+.highlight .cpf { color: #408080; font-style: italic } /* Comment.PreprocFile */
 .highlight .c1 { color: #408080; font-style: italic } /* Comment.Single */
 .highlight .cs { color: #408080; font-style: italic } /* Comment.Special */
 .highlight .gd { color: #A00000 } /* Generic.Deleted */
@@ -93,7 +95,7 @@
 &lt;div class="prompt input_prompt"&gt;In [1]:&lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="input_area"&gt;
-&lt;div class=" highlight hl-ipython2"&gt;&lt;pre&gt;&lt;span class="c"&gt;# Initialize environment&lt;/span&gt;
+&lt;div class=" highlight hl-ipython2"&gt;&lt;pre&gt;&lt;span class="c1"&gt;# Initialize environment&lt;/span&gt;
 &lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="k"&gt;matplotlib&lt;/span&gt; inline
 &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;matplotlib.pyplot&lt;/span&gt; &lt;span class="kn"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;plt&lt;/span&gt;
 &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;json&lt;/span&gt;
@@ -101,15 +103,15 @@
 &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;minimum_sugar&lt;/span&gt;
 &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;numpy&lt;/span&gt; &lt;span class="kn"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;np&lt;/span&gt;
 
-&lt;span class="n"&gt;database_filename&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;"menu_data.sqlite3"&lt;/span&gt;
+&lt;span class="n"&gt;database_filename&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;"menu_data.sqlite3"&lt;/span&gt;
 
-&lt;span class="c"&gt;# I want the names in the following order&lt;/span&gt;
-&lt;span class="n"&gt;restaurant_names&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;"Wendy's"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-                    &lt;span class="s"&gt;"McDonald's"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-                    &lt;span class="s"&gt;"Five Guys"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-                    &lt;span class="s"&gt;"Qdoba"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-                    &lt;span class="s"&gt;"Taco Bell"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-                    &lt;span class="s"&gt;"Chipotle"&lt;/span&gt;&lt;span class="p"&gt;,]&lt;/span&gt;
+&lt;span class="c1"&gt;# I want the names in the following order&lt;/span&gt;
+&lt;span class="n"&gt;restaurant_names&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;"Wendy's"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+                    &lt;span class="s2"&gt;"McDonald's"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+                    &lt;span class="s2"&gt;"Five Guys"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+                    &lt;span class="s2"&gt;"Qdoba"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+                    &lt;span class="s2"&gt;"Taco Bell"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+                    &lt;span class="s2"&gt;"Chipotle"&lt;/span&gt;&lt;span class="p"&gt;,]&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -123,17 +125,17 @@
 &lt;div class=" highlight hl-ipython2"&gt;&lt;pre&gt;&lt;span class="k"&gt;with&lt;/span&gt; &lt;span class="n"&gt;sqlite3&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;connect&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;database_filename&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="n"&gt;conn&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
     &lt;span class="n"&gt;cursor&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;conn&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;cursor&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
     
-    &lt;span class="c"&gt;# Determine max sugar to properly scale plots&lt;/span&gt;
-    &lt;span class="n"&gt;cursor&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;execute&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"SELECT MAX(nf_sugars) FROM menu_data WHERE menu_category = 'entree'"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="c1"&gt;# Determine max sugar to properly scale plots&lt;/span&gt;
+    &lt;span class="n"&gt;cursor&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;execute&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"SELECT MAX(nf_sugars) FROM menu_data WHERE menu_category = 'entree'"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
     &lt;span class="n"&gt;sugar_max&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;cursor&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;fetchall&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
     &lt;span class="n"&gt;sugar_max&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;sugar_max&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;][&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
     
-    &lt;span class="c"&gt;# Plot results&lt;/span&gt;
+    &lt;span class="c1"&gt;# Plot results&lt;/span&gt;
     &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;restaurant_name&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;restaurant_names&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-        &lt;span class="n"&gt;cursor&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;execute&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"SELECT nf_sugars FROM menu_data WHERE menu_category = 'entree' AND brand_name = ?"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;restaurant_name&lt;/span&gt;&lt;span class="p"&gt;,))&lt;/span&gt;
+        &lt;span class="n"&gt;cursor&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;execute&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"SELECT nf_sugars FROM menu_data WHERE menu_category = 'entree' AND brand_name = ?"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;restaurant_name&lt;/span&gt;&lt;span class="p"&gt;,))&lt;/span&gt;
         &lt;span class="n"&gt;sugars&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;cursor&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;fetchall&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
         
-        &lt;span class="n"&gt;fig&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;minimum_sugar&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;menu_histogram&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sugars&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;x_max&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;sugar_max&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;param_name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;"Sugar [g]"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;title&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;restaurant_name&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="n"&gt;fig&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;minimum_sugar&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;menu_histogram&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sugars&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;x_max&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;sugar_max&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;param_name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;"Sugar [g]"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;title&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;restaurant_name&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
         &lt;span class="n"&gt;plt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;show&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
@@ -891,7 +893,7 @@ g2nOvzz0OQt5Cng58J4k008oP1/E30taViYBrUpNt8yDZzn3ReDhM5z6OfA7VXVn08X0cdO9ixgs
 &lt;div class="prompt input_prompt"&gt;In [3]:&lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="input_area"&gt;
-&lt;div class=" highlight hl-ipython2"&gt;&lt;pre&gt;&lt;span class="n"&gt;minimum_sugar&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;print_max_sugar_menu_item&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;database_filename&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;"Wendy's"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;div class=" highlight hl-ipython2"&gt;&lt;pre&gt;&lt;span class="n"&gt;minimum_sugar&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;print_max_sugar_menu_item&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;database_filename&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;"Wendy's"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -922,10 +924,10 @@ Item Name: Apple Pecan Chicken Salad, Full Size
 &lt;div class="prompt input_prompt"&gt;In [4]:&lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="input_area"&gt;
-&lt;div class=" highlight hl-ipython2"&gt;&lt;pre&gt;&lt;span class="n"&gt;mcd_txt&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;"Maximum sugar situation at McDonald's:"&lt;/span&gt;
+&lt;div class=" highlight hl-ipython2"&gt;&lt;pre&gt;&lt;span class="n"&gt;mcd_txt&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;"Maximum sugar situation at McDonald's:"&lt;/span&gt;
 &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="n"&gt;mcd_txt&lt;/span&gt;
-&lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;mcd_txt&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="s"&gt;"="&lt;/span&gt;
-&lt;span class="n"&gt;minimum_sugar&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;print_max_sugar_menu_item&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;database_filename&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;"McDonald's"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;mcd_txt&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="s2"&gt;"="&lt;/span&gt;
+&lt;span class="n"&gt;minimum_sugar&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;print_max_sugar_menu_item&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;database_filename&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;"McDonald's"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -953,24 +955,24 @@ Item Name: Big Breakfast With Hotcakes (Regular Size Biscuit)
 &lt;div class="prompt input_prompt"&gt;In [5]:&lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="input_area"&gt;
-&lt;div class=" highlight hl-ipython2"&gt;&lt;pre&gt;&lt;span class="n"&gt;wen_vs_mcd&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;"Wendy's menu items with more sugar than max. McDonald's item"&lt;/span&gt;
+&lt;div class=" highlight hl-ipython2"&gt;&lt;pre&gt;&lt;span class="n"&gt;wen_vs_mcd&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;"Wendy's menu items with more sugar than max. McDonald's item"&lt;/span&gt;
 &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="n"&gt;wen_vs_mcd&lt;/span&gt;
-&lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;wen_vs_mcd&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="s"&gt;"="&lt;/span&gt;
+&lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;wen_vs_mcd&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="s2"&gt;"="&lt;/span&gt;
 
 &lt;span class="k"&gt;with&lt;/span&gt; &lt;span class="n"&gt;sqlite3&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;connect&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;database_filename&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="n"&gt;conn&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-    &lt;span class="n"&gt;select_txt&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;"""&lt;/span&gt;
-&lt;span class="s"&gt;        SELECT item_name, nf_sugars &lt;/span&gt;
-&lt;span class="s"&gt;            FROM menu_data &lt;/span&gt;
-&lt;span class="s"&gt;            WHERE nf_sugars &amp;gt; 17 &lt;/span&gt;
-&lt;span class="s"&gt;                AND brand_name = 'Wendy''s' &lt;/span&gt;
-&lt;span class="s"&gt;                AND menu_category = 'entree'&lt;/span&gt;
-&lt;span class="s"&gt;            ORDER BY nf_sugars DESC&lt;/span&gt;
-&lt;span class="s"&gt;        """&lt;/span&gt;
+    &lt;span class="n"&gt;select_txt&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;"""&lt;/span&gt;
+&lt;span class="s2"&gt;        SELECT item_name, nf_sugars &lt;/span&gt;
+&lt;span class="s2"&gt;            FROM menu_data &lt;/span&gt;
+&lt;span class="s2"&gt;            WHERE nf_sugars &amp;gt; 17 &lt;/span&gt;
+&lt;span class="s2"&gt;                AND brand_name = 'Wendy''s' &lt;/span&gt;
+&lt;span class="s2"&gt;                AND menu_category = 'entree'&lt;/span&gt;
+&lt;span class="s2"&gt;            ORDER BY nf_sugars DESC&lt;/span&gt;
+&lt;span class="s2"&gt;        """&lt;/span&gt;
     
     &lt;span class="n"&gt;cursor&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;conn&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;cursor&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;       
     &lt;span class="n"&gt;cursor&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;execute&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;select_txt&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
     &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;return_txt&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;cursor&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;fetchall&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
-        &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="n"&gt;return_txt&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s"&gt;": "&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;return_txt&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+        &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="n"&gt;return_txt&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s2"&gt;": "&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;return_txt&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -1010,7 +1012,7 @@ Asian Cashew Chicken Salad, Full Size: 18
 &lt;div class="prompt input_prompt"&gt;In [6]:&lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="input_area"&gt;
-&lt;div class=" highlight hl-ipython2"&gt;&lt;pre&gt;&lt;span class="n"&gt;minimum_sugar&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;print_max_sugar_menu_item&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;database_filename&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;"Five Guys"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;div class=" highlight hl-ipython2"&gt;&lt;pre&gt;&lt;span class="n"&gt;minimum_sugar&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;print_max_sugar_menu_item&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;database_filename&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;"Five Guys"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -1043,7 +1045,7 @@ Item Name: Cheese Veggie Sandwich
 &lt;div class="prompt input_prompt"&gt;In [7]:&lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="input_area"&gt;
-&lt;div class=" highlight hl-ipython2"&gt;&lt;pre&gt;&lt;span class="n"&gt;minimum_sugar&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;print_max_sugar_menu_item&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;database_filename&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;"Chipotle"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;div class=" highlight hl-ipython2"&gt;&lt;pre&gt;&lt;span class="n"&gt;minimum_sugar&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;print_max_sugar_menu_item&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;database_filename&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;"Chipotle"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -1086,7 +1088,7 @@ Item Name: Sofritas
 &lt;div class="prompt input_prompt"&gt;In [8]:&lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="input_area"&gt;
-&lt;div class=" highlight hl-ipython2"&gt;&lt;pre&gt;&lt;span class="n"&gt;minimum_sugar&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;print_max_sugar_menu_item&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;database_filename&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;"Taco Bell"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;div class=" highlight hl-ipython2"&gt;&lt;pre&gt;&lt;span class="n"&gt;minimum_sugar&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;print_max_sugar_menu_item&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;database_filename&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;"Taco Bell"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -1135,18 +1137,18 @@ Item Name: Biscuit Taco - Egg &amp;amp; Cheese
 &lt;div class="input_area"&gt;
 &lt;div class=" highlight hl-ipython2"&gt;&lt;pre&gt;&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;brand_name&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;restaurant_names&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
     &lt;span class="k"&gt;with&lt;/span&gt; &lt;span class="n"&gt;sqlite3&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;connect&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;database_filename&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="n"&gt;conn&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-        &lt;span class="n"&gt;select_txt&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;"""&lt;/span&gt;
-&lt;span class="s"&gt;            SELECT COUNT(item_name) &lt;/span&gt;
-&lt;span class="s"&gt;            FROM menu_data &lt;/span&gt;
-&lt;span class="s"&gt;            WHERE brand_name = ?&lt;/span&gt;
-&lt;span class="s"&gt;            AND menu_category = 'entree'&lt;/span&gt;
-&lt;span class="s"&gt;            AND nf_sugars &amp;lt; 3&lt;/span&gt;
-&lt;span class="s"&gt;            """&lt;/span&gt;
+        &lt;span class="n"&gt;select_txt&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;"""&lt;/span&gt;
+&lt;span class="s2"&gt;            SELECT COUNT(item_name) &lt;/span&gt;
+&lt;span class="s2"&gt;            FROM menu_data &lt;/span&gt;
+&lt;span class="s2"&gt;            WHERE brand_name = ?&lt;/span&gt;
+&lt;span class="s2"&gt;            AND menu_category = 'entree'&lt;/span&gt;
+&lt;span class="s2"&gt;            AND nf_sugars &amp;lt; 3&lt;/span&gt;
+&lt;span class="s2"&gt;            """&lt;/span&gt;
         &lt;span class="n"&gt;cursor&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;conn&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;cursor&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
         &lt;span class="n"&gt;cursor&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;execute&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;select_txt&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;brand_name&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;))&lt;/span&gt;
         &lt;span class="n"&gt;num_items&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;cursor&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;fetchone&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
         
-        &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="n"&gt;brand_name&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s"&gt;": "&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;num_items&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+        &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="n"&gt;brand_name&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s2"&gt;": "&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;num_items&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -1182,32 +1184,32 @@ Chipotle: 19
 &lt;div class="inner_cell"&gt;
 &lt;div class="input_area"&gt;
 &lt;div class=" highlight hl-ipython2"&gt;&lt;pre&gt;&lt;span class="k"&gt;with&lt;/span&gt; &lt;span class="n"&gt;sqlite3&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;connect&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;database_filename&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="n"&gt;conn&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-    &lt;span class="c"&gt;# Uniformly scale the horizontal axis on all plots&lt;/span&gt;
-    &lt;span class="n"&gt;select_txt&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;"""&lt;/span&gt;
-&lt;span class="s"&gt;        SELECT MAX(nf_calories) &lt;/span&gt;
-&lt;span class="s"&gt;        FROM menu_data &lt;/span&gt;
-&lt;span class="s"&gt;        WHERE menu_category = 'entree'&lt;/span&gt;
-&lt;span class="s"&gt;        AND nf_sugars &amp;lt; 3&lt;/span&gt;
-&lt;span class="s"&gt;        """&lt;/span&gt;
+    &lt;span class="c1"&gt;# Uniformly scale the horizontal axis on all plots&lt;/span&gt;
+    &lt;span class="n"&gt;select_txt&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;"""&lt;/span&gt;
+&lt;span class="s2"&gt;        SELECT MAX(nf_calories) &lt;/span&gt;
+&lt;span class="s2"&gt;        FROM menu_data &lt;/span&gt;
+&lt;span class="s2"&gt;        WHERE menu_category = 'entree'&lt;/span&gt;
+&lt;span class="s2"&gt;        AND nf_sugars &amp;lt; 3&lt;/span&gt;
+&lt;span class="s2"&gt;        """&lt;/span&gt;
     &lt;span class="n"&gt;cursor&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;conn&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;cursor&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
     &lt;span class="n"&gt;cursor&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;execute&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;select_txt&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
     
     &lt;span class="n"&gt;calories_max&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;cursor&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;fetchone&lt;/span&gt;&lt;span class="p"&gt;()[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
     
-    &lt;span class="c"&gt;# Plot results&lt;/span&gt;
-    &lt;span class="n"&gt;select_txt&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;"""&lt;/span&gt;
-&lt;span class="s"&gt;        SELECT nf_calories&lt;/span&gt;
-&lt;span class="s"&gt;        FROM menu_data&lt;/span&gt;
-&lt;span class="s"&gt;        WHERE menu_category = 'entree'&lt;/span&gt;
-&lt;span class="s"&gt;        AND brand_name = ?&lt;/span&gt;
-&lt;span class="s"&gt;        AND nf_sugars &amp;lt; 3&lt;/span&gt;
-&lt;span class="s"&gt;        """&lt;/span&gt;
+    &lt;span class="c1"&gt;# Plot results&lt;/span&gt;
+    &lt;span class="n"&gt;select_txt&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;"""&lt;/span&gt;
+&lt;span class="s2"&gt;        SELECT nf_calories&lt;/span&gt;
+&lt;span class="s2"&gt;        FROM menu_data&lt;/span&gt;
+&lt;span class="s2"&gt;        WHERE menu_category = 'entree'&lt;/span&gt;
+&lt;span class="s2"&gt;        AND brand_name = ?&lt;/span&gt;
+&lt;span class="s2"&gt;        AND nf_sugars &amp;lt; 3&lt;/span&gt;
+&lt;span class="s2"&gt;        """&lt;/span&gt;
 
     &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;restaurant_name&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;restaurant_names&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
         &lt;span class="n"&gt;cursor&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;execute&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;select_txt&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;restaurant_name&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;))&lt;/span&gt;
         &lt;span class="n"&gt;calories&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;cursor&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;fetchall&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
         
-        &lt;span class="n"&gt;fig&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;minimum_sugar&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;menu_histogram&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;calories&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;x_max&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;calories_max&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;param_name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;"Calories"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;title&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;restaurant_name&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="n"&gt;fig&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;minimum_sugar&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;menu_histogram&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;calories&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;x_max&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;calories_max&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;param_name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;"Calories"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;title&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;restaurant_name&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
         &lt;span class="n"&gt;plt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;show&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
@@ -1982,18 +1984,18 @@ HjMISFKPGQQkqcf+P7wPGQE2tD5rAAAAAElFTkSuQmCC
 &lt;div class="inner_cell"&gt;
 &lt;div class="input_area"&gt;
 &lt;div class=" highlight hl-ipython2"&gt;&lt;pre&gt;&lt;span class="k"&gt;with&lt;/span&gt; &lt;span class="n"&gt;sqlite3&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;connect&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;database_filename&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="n"&gt;conn&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-    &lt;span class="n"&gt;select_txt&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;"""&lt;/span&gt;
-&lt;span class="s"&gt;        SELECT item_name, nf_calories &lt;/span&gt;
-&lt;span class="s"&gt;        FROM menu_data&lt;/span&gt;
-&lt;span class="s"&gt;        WHERE brand_name = 'McDonald''s'&lt;/span&gt;
-&lt;span class="s"&gt;        AND nf_sugars &amp;lt; 3&lt;/span&gt;
-&lt;span class="s"&gt;        ORDER BY nf_calories DESC&lt;/span&gt;
-&lt;span class="s"&gt;        """&lt;/span&gt;
+    &lt;span class="n"&gt;select_txt&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;"""&lt;/span&gt;
+&lt;span class="s2"&gt;        SELECT item_name, nf_calories &lt;/span&gt;
+&lt;span class="s2"&gt;        FROM menu_data&lt;/span&gt;
+&lt;span class="s2"&gt;        WHERE brand_name = 'McDonald''s'&lt;/span&gt;
+&lt;span class="s2"&gt;        AND nf_sugars &amp;lt; 3&lt;/span&gt;
+&lt;span class="s2"&gt;        ORDER BY nf_calories DESC&lt;/span&gt;
+&lt;span class="s2"&gt;        """&lt;/span&gt;
     &lt;span class="n"&gt;cursor&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;conn&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;cursor&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
     &lt;span class="n"&gt;cursor&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;execute&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;select_txt&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 
     &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;item&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;cursor&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;fetchall&lt;/span&gt;&lt;span class="p"&gt;()[:&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;]:&lt;/span&gt;
-        &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="n"&gt;item&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s"&gt;": "&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;item&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+        &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="n"&gt;item&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s2"&gt;": "&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;item&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -2025,24 +2027,24 @@ Chicken McNuggets (20 Piece): 940
 &lt;div class="inner_cell"&gt;
 &lt;div class="input_area"&gt;
 &lt;div class=" highlight hl-ipython2"&gt;&lt;pre&gt;&lt;span class="k"&gt;with&lt;/span&gt; &lt;span class="n"&gt;sqlite3&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;connect&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;database_filename&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="n"&gt;conn&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-    &lt;span class="n"&gt;select_txt&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;"""&lt;/span&gt;
-&lt;span class="s"&gt;        SELECT item_name, nf_calories, nf_sugars&lt;/span&gt;
-&lt;span class="s"&gt;        FROM menu_data&lt;/span&gt;
-&lt;span class="s"&gt;        WHERE brand_name = ?&lt;/span&gt;
-&lt;span class="s"&gt;        AND menu_category = 'entree'&lt;/span&gt;
-&lt;span class="s"&gt;        AND nf_sugars &amp;lt; 3&lt;/span&gt;
-&lt;span class="s"&gt;        ORDER BY nf_calories DESC&lt;/span&gt;
-&lt;span class="s"&gt;        """&lt;/span&gt;
+    &lt;span class="n"&gt;select_txt&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;"""&lt;/span&gt;
+&lt;span class="s2"&gt;        SELECT item_name, nf_calories, nf_sugars&lt;/span&gt;
+&lt;span class="s2"&gt;        FROM menu_data&lt;/span&gt;
+&lt;span class="s2"&gt;        WHERE brand_name = ?&lt;/span&gt;
+&lt;span class="s2"&gt;        AND menu_category = 'entree'&lt;/span&gt;
+&lt;span class="s2"&gt;        AND nf_sugars &amp;lt; 3&lt;/span&gt;
+&lt;span class="s2"&gt;        ORDER BY nf_calories DESC&lt;/span&gt;
+&lt;span class="s2"&gt;        """&lt;/span&gt;
     &lt;span class="n"&gt;cursor&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;conn&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;cursor&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
     
     &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;brand_name&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;restaurant_names&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
         &lt;span class="n"&gt;cursor&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;execute&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;select_txt&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;brand_name&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;))&lt;/span&gt;
         &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="n"&gt;brand_name&lt;/span&gt;
-        &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s"&gt;"="&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;brand_name&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s2"&gt;"="&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;brand_name&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
         &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;item&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;cursor&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;fetchall&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
-            &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="n"&gt;item&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s"&gt;": "&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;item&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s"&gt;"cal, "&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;item&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s"&gt;"g sugar"&lt;/span&gt;
+            &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="n"&gt;item&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s2"&gt;": "&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;item&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s2"&gt;"cal, "&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;item&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s2"&gt;"g sugar"&lt;/span&gt;
             
-        &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s"&gt;"&lt;/span&gt;&lt;span class="se"&gt;\r&lt;/span&gt;&lt;span class="s"&gt;"&lt;/span&gt;
+        &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s2"&gt;"&lt;/span&gt;&lt;span class="se"&gt;\r&lt;/span&gt;&lt;span class="s2"&gt;"&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -2250,26 +2252,26 @@ Lettuce: 5cal, 0g sugar
 &lt;div class="input_area"&gt;
 &lt;div class=" highlight hl-ipython2"&gt;&lt;pre&gt;&lt;span class="k"&gt;with&lt;/span&gt; &lt;span class="n"&gt;sqlite3&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;connect&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;database_filename&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="n"&gt;conn&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
     &lt;span class="n"&gt;cursor&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;conn&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;cursor&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-    &lt;span class="n"&gt;cursor&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;execute&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"SELECT MAX(nf_sugars) FROM menu_data WHERE menu_category = 'beverage'"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;cursor&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;execute&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"SELECT MAX(nf_sugars) FROM menu_data WHERE menu_category = 'beverage'"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
     &lt;span class="n"&gt;sugar_max&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;cursor&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;fetchone&lt;/span&gt;&lt;span class="p"&gt;()[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
     
-    &lt;span class="n"&gt;select_txt&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;"""&lt;/span&gt;
-&lt;span class="s"&gt;        SELECT nf_sugars&lt;/span&gt;
-&lt;span class="s"&gt;        FROM menu_data&lt;/span&gt;
-&lt;span class="s"&gt;        WHERE menu_category = ?&lt;/span&gt;
-&lt;span class="s"&gt;        AND brand_name = ?&lt;/span&gt;
-&lt;span class="s"&gt;        """&lt;/span&gt;
+    &lt;span class="n"&gt;select_txt&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;"""&lt;/span&gt;
+&lt;span class="s2"&gt;        SELECT nf_sugars&lt;/span&gt;
+&lt;span class="s2"&gt;        FROM menu_data&lt;/span&gt;
+&lt;span class="s2"&gt;        WHERE menu_category = ?&lt;/span&gt;
+&lt;span class="s2"&gt;        AND brand_name = ?&lt;/span&gt;
+&lt;span class="s2"&gt;        """&lt;/span&gt;
     
     &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;brand_name&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;restaurant_names&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-        &lt;span class="n"&gt;cursor&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;execute&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;select_txt&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"entree"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;brand_name&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;))&lt;/span&gt;
+        &lt;span class="n"&gt;cursor&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;execute&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;select_txt&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"entree"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;brand_name&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;))&lt;/span&gt;
         &lt;span class="n"&gt;entree_sugars&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;cursor&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;fetchall&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
 
-        &lt;span class="n"&gt;cursor&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;execute&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;select_txt&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"beverage"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;brand_name&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;))&lt;/span&gt;
+        &lt;span class="n"&gt;cursor&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;execute&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;select_txt&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"beverage"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;brand_name&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;))&lt;/span&gt;
         &lt;span class="n"&gt;beverage_sugars&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;cursor&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;fetchall&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
         
-        &lt;span class="n"&gt;fig&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;minimum_sugar&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;menu_histogram&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;entree_sugars&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;x_max&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;sugar_max&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;param_name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;"Sugar [g]"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;title&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;brand_name&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;alpha&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mf"&gt;0.5&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;label&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;"Entree"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="n"&gt;fig&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;minimum_sugar&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;menu_histogram&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;entree_sugars&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;x_max&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;sugar_max&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;param_name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;"Sugar [g]"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;title&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;brand_name&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;alpha&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mf"&gt;0.5&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;label&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;"Entree"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
         &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;beverage_sugars&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-            &lt;span class="n"&gt;fig&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;minimum_sugar&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;menu_histogram&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;beverage_sugars&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;x_max&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;sugar_max&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;param_name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;"Sugar [g]"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;fig&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;fig&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;alpha&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mf"&gt;0.5&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;label&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;"Beverage"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+            &lt;span class="n"&gt;fig&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;minimum_sugar&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;menu_histogram&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;beverage_sugars&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;x_max&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;sugar_max&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;param_name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;"Sugar [g]"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;fig&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;fig&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;alpha&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mf"&gt;0.5&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;label&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;"Beverage"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
         
         &lt;span class="n"&gt;plt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;legend&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
         &lt;span class="n"&gt;plt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;show&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
@@ -3273,9 +3275,9 @@ mVnigmBmZoALgpmZJS4IZmYGuCCYmVnigmBmZgD8F9e6RNTBmpptAAAAAElFTkSuQmCC
 &lt;div class="input_area"&gt;
 &lt;div class=" highlight hl-ipython2"&gt;&lt;pre&gt;&lt;span class="k"&gt;with&lt;/span&gt; &lt;span class="n"&gt;sqlite3&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;connect&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;database_filename&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="n"&gt;conn&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
     &lt;span class="n"&gt;cursor&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;conn&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;cursor&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-    &lt;span class="n"&gt;cursor&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;execute&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"SELECT COUNT(item_name) FROM menu_data WHERE brand_name = 'McDonald''s' AND menu_category = 'entree'"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;cursor&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;execute&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"SELECT COUNT(item_name) FROM menu_data WHERE brand_name = 'McDonald''s' AND menu_category = 'entree'"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
     
-    &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s"&gt;"Number of McDonald's entree menu items:"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;cursor&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;fetchone&lt;/span&gt;&lt;span class="p"&gt;()[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+    &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s2"&gt;"Number of McDonald's entree menu items:"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;cursor&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;fetchone&lt;/span&gt;&lt;span class="p"&gt;()[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -3592,9 +3594,14 @@ I think this problem could be solved by integrating Let's Encrypt and &lt;a href
 
 
 &lt;p&gt;where "d" stands for "date," "e" stands for "experiment type," "s" stands for "sample," "p" stands for "person," and "sha256sum" is self-explanatory.&lt;/p&gt;
-&lt;p&gt;The plist style filename contains more characters, but retains many of the advantages of my &lt;a href="http://jrsmith3.github.io/naming-data-files.html"&gt;old suggestion&lt;/a&gt;.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Joshua Ryan Smith</dc:creator><pubDate>Sun, 22 Mar 2015 00:00:00 -0400</pubDate><guid>tag:jrsmith3.github.io,2015-03-22:naming-data-files-revisited.html</guid></item><item><title>Python testing style guidelines</title><link>https://jrsmith3.github.io/python-testing-style-guidelines.html</link><description>&lt;p&gt;Testing a module you've written in python can easily spiral out of control. You want to be sure that your tests are comprehensive, but its quite easy to fall down a rabbit hole of writing completely inane tests for edge cases that will never occur in practice. After writing and refactoring my &lt;a href="https://github.com/jrsmith3/tec"&gt;&lt;code&gt;tec&lt;/code&gt;&lt;/a&gt; module several times, I've gotten a sense of the various types of tests that need to be written and how to organize them. This post is the 0.1.0 version of the strategy I'm using to test &lt;code&gt;tec&lt;/code&gt;. I intend this strategy to be along the lines of a "style guidelines" type document like &lt;a href="https://www.python.org/dev/peps/pep-0008/"&gt;pep8&lt;/a&gt; or &lt;a href="https://en.wikipedia.org/wiki/The_Elements_of_Style"&gt;Strunk and White&lt;/a&gt;.&lt;/p&gt;
-&lt;h1&gt;Style guidelines for tests for python classes simulating physical phenomnea&lt;/h1&gt;
-&lt;p&gt;Files containing tests for a python module should be located in a &lt;code&gt;test&lt;/code&gt; directory in the root of the repo, as is pythonic (CITE). Each file in the &lt;code&gt;test&lt;/code&gt; directory should contain tests for one and only one class/function defined in the module. Files containing tests should be named according to the rubric &lt;/p&gt;
+&lt;p&gt;The plist style filename contains more characters, but retains many of the advantages of my &lt;a href="http://jrsmith3.github.io/naming-data-files.html"&gt;old suggestion&lt;/a&gt;.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Joshua Ryan Smith</dc:creator><pubDate>Sun, 22 Mar 2015 00:00:00 -0400</pubDate><guid>tag:jrsmith3.github.io,2015-03-22:naming-data-files-revisited.html</guid></item><item><title>Python testing style guidelines</title><link>https://jrsmith3.github.io/python-testing-style-guidelines.html</link><description>&lt;p&gt;This post was updated on 2016-03-26 and is revision 0.2.0.&lt;/p&gt;
+&lt;p&gt;Testing a module you've written in python can easily spiral out of control, particularly one which simulates a physical phenomenon. You want to be sure that your tests are comprehensive, but its quite easy to fall down a rabbit hole of writing completely inane tests for edge cases that will never occur in practice. After writing and refactoring my &lt;a href="https://github.com/jrsmith3/tec"&gt;&lt;code&gt;tec&lt;/code&gt;&lt;/a&gt; module several times, I've gotten a sense of the various types of tests that need to be written and how to organize them. I intend this strategy to be along the lines of a "style guidelines" type document like &lt;a href="https://www.python.org/dev/peps/pep-0008/"&gt;pep8&lt;/a&gt; or &lt;a href="https://en.wikipedia.org/wiki/The_Elements_of_Style"&gt;Strunk and White&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;These guidelines assume the reader has an understanding of testing python code and the &lt;code&gt;unittest&lt;/code&gt; framework. Resources for testing code with Python are given at the end of this essay.&lt;/p&gt;
+&lt;h1&gt;Overview&lt;/h1&gt;
+&lt;p&gt;Tests tend to fall into two categories: API tests and numerical tests. API tests test the interface of the module: ensuring proper return types of methods, ensuring exceptions are raised under appropriate conditions, methods that return units actually return the correct unit, etc. Numerical tests verify the numerical accuracy of the methods that return the results of the physical simulation.&lt;/p&gt;
+&lt;h1&gt;Test style guidelines&lt;/h1&gt;
+&lt;h2&gt;Organization of test files in the filesystem&lt;/h2&gt;
+&lt;p&gt;Files containing tests for a python module should be located in a &lt;code&gt;test&lt;/code&gt; directory in the root of the repo &lt;a href="http://pytest.org/latest/goodpractices.html?highlight=inline#choosing-a-test-layout-import-rules"&gt;for the sake of separation of concerns&lt;/a&gt;. Each file in the &lt;code&gt;test&lt;/code&gt; directory should contain tests for one and only one class/function defined in the module. Files containing tests should be named according to the rubric &lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;test_ClassName.py
 &lt;/pre&gt;&lt;/div&gt;
 
@@ -3608,7 +3615,7 @@ I think this problem could be solved by integrating Let's Encrypt and &lt;a href
 &lt;li&gt;&lt;code&gt;MethodsInput&lt;/code&gt; - test methods that take input. Includes passing data of the wrong type, data that's outside of a constraint, etc.&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;MethodsReturnType&lt;/code&gt; - test that methods return the proper type of data.&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;MethodsReturnUnits&lt;/code&gt; - test that methods return the proper units, assuming the method returns data of type &lt;code&gt;astropy.units.Unit&lt;/code&gt;.&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;MethodsReturnValues&lt;/code&gt; - tests that the methods return appropriate values. These tests are particularly important for methods which actually implement the physical model; I call them "calculator methods." Testing the values of these methods is a whole other kettle of fish and will be discussed in a subsequent revision.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;MethodsReturnValues&lt;/code&gt; - tests that the methods return appropriate values. These tests are particularly important for methods which actually implement the physical model; I call them "calculator methods."&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;Each class contains methods that implement a test. These methods are named according to the rubric&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;test_name_condition
@@ -3616,27 +3623,36 @@ I think this problem could be solved by integrating Let's Encrypt and &lt;a href
 
 
 &lt;p&gt;Where "name" refers to the name of the attribute or method being tested and "condition" refers to the condition being tested. The name of the class which contains the attribute or method under test should not appear in the test method name, nor should the functionality of the test. For example, the following test names should not be used:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;test_Metal_temp_less_than_zero
+&lt;div class="highlight"&gt;&lt;pre&gt;test_ClassName_temp_less_than_zero
 test_input_temp_less_than_zero
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;The first example contains the name of the class (&lt;code&gt;Metal&lt;/code&gt;) in which the attribute &lt;code&gt;temp&lt;/code&gt; is found. The class name is superfluous in this case because this test is presumably located in a file named &lt;code&gt;test_Metal.py&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;The first example contains the name of the class (&lt;code&gt;ClassName&lt;/code&gt;) in which the attribute &lt;code&gt;temp&lt;/code&gt; is found. The class name is superfluous in this case because this test is presumably located in a file named &lt;code&gt;test_ClassName.py&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;The second example contains the name of the functionality being tested, i.e. "input." The functionality in this case is superfluous because the test is presumably a method of the class &lt;code&gt;Instantiation&lt;/code&gt;
 .&lt;/p&gt;
-&lt;p&gt;Docstrings should include the name of the class under test, the functionality being tested, the name of the attribute/method being tested, and the condition being tested. In this way, &lt;code&gt;nosetests&lt;/code&gt; will display all the information required to locate the failed/erronious test within this classification scheme. The order is not strictly required; sometimes it is easier to write something like "Setting Metal.richardson &amp;lt; 0 is invalid." The docstrings should describe logically what the test method does. In other words, it should be clear from the docstring how the test is passed or failed.&lt;/p&gt;
-&lt;h1&gt;Remarks&lt;/h1&gt;
+&lt;p&gt;Docstrings should include the name of the class under test, the functionality being tested, the name of the attribute/method being tested, and the condition being tested. In this way, &lt;code&gt;nosetests&lt;/code&gt; will display all the information required to locate the failed/erronious test within this classification scheme. The order is not strictly required; sometimes it is easier to write something like "Setting ClassName.strictly_positive_attribute &amp;lt; 0 is invalid." The docstrings should describe logically what the test method does. In other words, it should be clear from the docstring how the test is passed or failed.&lt;/p&gt;
+&lt;h2&gt;Additional style guidelines for numerical tests&lt;/h2&gt;
+&lt;p&gt;Each calculator method requires the following items in order to be considered to be fully tested.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;A unit listed in its docstring. No mention of unit indicates the quantity is unitless.&lt;/li&gt;
+&lt;li&gt;A value of uncertainty listed in its docstring.&lt;/li&gt;
+&lt;li&gt;An analysis of the method's uncertainty documented in that method's test's docstring.&lt;/li&gt;
+&lt;li&gt;A unit test that tests the method against standard data.&lt;/li&gt;
+&lt;li&gt;Additional unit tests that test any other special, edge, or corner cases.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Remarks&lt;/h2&gt;
 &lt;p&gt;If a class has several methods that do similar things, many of the tests in a class will be very similar. I wrote a really dumb command line tool I call &lt;a href="https://github.com/jrsmith3/testwriter"&gt;&lt;code&gt;testwriter&lt;/code&gt;&lt;/a&gt; to automatically generate code for these tests.&lt;/p&gt;
-&lt;h1&gt;Skeleton test file&lt;/h1&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# -*- coding: utf-8 -*-&lt;/span&gt;
-&lt;span class="c"&gt;# Import statements&lt;/span&gt;
-&lt;span class="c"&gt;# =================&lt;/span&gt;
+&lt;h1&gt;Example/skeleton test file&lt;/h1&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c1"&gt;# -*- coding: utf-8 -*-&lt;/span&gt;
+&lt;span class="c1"&gt;# Import statements&lt;/span&gt;
+&lt;span class="c1"&gt;# =================&lt;/span&gt;
 
-&lt;span class="c"&gt;# Common input parameters&lt;/span&gt;
-&lt;span class="c"&gt;# =======================&lt;/span&gt;
+&lt;span class="c1"&gt;# Common input parameters&lt;/span&gt;
+&lt;span class="c1"&gt;# =======================&lt;/span&gt;
 
-&lt;span class="c"&gt;# Base classes&lt;/span&gt;
-&lt;span class="c"&gt;# ============&lt;/span&gt;
+&lt;span class="c1"&gt;# Base classes&lt;/span&gt;
+&lt;span class="c1"&gt;# ============&lt;/span&gt;
 &lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;Base&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;unittest&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;TestCase&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
     &lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
 &lt;span class="sd"&gt;    Base class for tests&lt;/span&gt;
@@ -3647,8 +3663,8 @@ test_input_temp_less_than_zero
         &lt;span class="k"&gt;pass&lt;/span&gt;
 
 
-&lt;span class="c"&gt;# Test classes&lt;/span&gt;
-&lt;span class="c"&gt;# ============&lt;/span&gt;
+&lt;span class="c1"&gt;# Test classes&lt;/span&gt;
+&lt;span class="c1"&gt;# ============&lt;/span&gt;
 &lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;Instantiation&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Base&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
     &lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
 &lt;span class="sd"&gt;    Tests all aspects of instantiation&lt;/span&gt;
@@ -3657,11 +3673,11 @@ test_input_temp_less_than_zero
 &lt;span class="sd"&gt;    &amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
     &lt;span class="k"&gt;pass&lt;/span&gt;
 
-    &lt;span class="c"&gt;# Input arguments wrong type&lt;/span&gt;
-    &lt;span class="c"&gt;# ==========================&lt;/span&gt;
+    &lt;span class="c1"&gt;# Input arguments wrong type&lt;/span&gt;
+    &lt;span class="c1"&gt;# ==========================&lt;/span&gt;
 
-    &lt;span class="c"&gt;# Input arguments outside constraints&lt;/span&gt;
-    &lt;span class="c"&gt;# ===================================&lt;/span&gt;
+    &lt;span class="c1"&gt;# Input arguments outside constraints&lt;/span&gt;
+    &lt;span class="c1"&gt;# ===================================&lt;/span&gt;
 
 
 &lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;Set&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Base&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
@@ -3672,11 +3688,11 @@ test_input_temp_less_than_zero
 &lt;span class="sd"&gt;    &amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
     &lt;span class="k"&gt;pass&lt;/span&gt;
 
-    &lt;span class="c"&gt;# Set attribute wrong type&lt;/span&gt;
-    &lt;span class="c"&gt;# ========================&lt;/span&gt;
+    &lt;span class="c1"&gt;# Set attribute wrong type&lt;/span&gt;
+    &lt;span class="c1"&gt;# ========================&lt;/span&gt;
 
-    &lt;span class="c"&gt;# Set attribute outside constraint&lt;/span&gt;
-    &lt;span class="c"&gt;# ================================&lt;/span&gt;
+    &lt;span class="c1"&gt;# Set attribute outside constraint&lt;/span&gt;
+    &lt;span class="c1"&gt;# ================================&lt;/span&gt;
 
 
 &lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;MethodsInput&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Base&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
@@ -3707,7 +3723,13 @@ test_input_temp_less_than_zero
 &lt;span class="sd"&gt;    Tests values of methods against known values&lt;/span&gt;
 &lt;span class="sd"&gt;    &amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
     &lt;span class="k"&gt;pass&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Joshua Ryan Smith</dc:creator><pubDate>Tue, 20 Jan 2015 00:00:00 -0500</pubDate><guid>tag:jrsmith3.github.io,2015-01-20:python-testing-style-guidelines.html</guid></item><item><title>My Fall 2014 Materials Research Society meeting poster is online</title><link>https://jrsmith3.github.io/my-fall-2014-materials-research-society-meeting-poster-is-online.html</link><description>&lt;p&gt;I am presenting a poster entitled, "Beta-enhanced thermoelectron emission and energy conversion" at the &lt;a href="http://www.mrs.org/fall2014/"&gt;2014 Materials Research Society Fall Meeting&lt;/a&gt;. The poster is number CC9.36 and will be on display Wednesday evening. You can download the &lt;a href="https://github.com/jrsmith3/conf-mrs_fall_2014_poster/releases/download/2014-12-03/poster.pdf"&gt;PDF&lt;/a&gt; or check out the &lt;a href="https://github.com/jrsmith3/conf-mrs_fall_2014_poster"&gt;repository&lt;/a&gt;.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Joshua Ryan Smith</dc:creator><pubDate>Wed, 03 Dec 2014 16:30:00 -0500</pubDate><guid>tag:jrsmith3.github.io,2014-12-03:my-fall-2014-materials-research-society-meeting-poster-is-online.html</guid></item><item><title>Merging a subdirectory from another repo via git-subtree</title><link>https://jrsmith3.github.io/merging-a-subdirectory-from-another-repo-via-git-subtree.html</link><description>&lt;p&gt;Greg Wilson &lt;a href="https://twitter.com/jiffyclub/status/519920529038262272"&gt;wanted to know&lt;/a&gt; how to move a directory from one git repo to another while preserving history. Ash Wilson posted a &lt;a href="https://gist.github.com/smashwilson/015e6a3abfbf7af73d31"&gt;gist&lt;/a&gt; demonstrating a merge and delete strategy. A similar result can be achieved using &lt;code&gt;git-subtree&lt;/code&gt;. The advantage of the &lt;code&gt;git-subtree&lt;/code&gt; approach is that &lt;code&gt;git-subtree&lt;/code&gt; creates a new branch containing only the commits pertaining to files located in a specified subdirectory. Like Ash's approach, &lt;code&gt;git-subtree&lt;/code&gt; will result in the final state of the target repo is such that changes to the target repo won't get pushed back upstream to the source.&lt;/p&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h1&gt;Resources&lt;/h1&gt;
+&lt;p&gt;&lt;a href="http://www.amazon.com/dp/1847198848"&gt;Arbuckle (isbn 9781847198846)&lt;/a&gt; gives an excellent, but slightly dated, introduction to python testing.
+The &lt;a href="http://pythontesting.net"&gt;Python testing blog&lt;/a&gt;.
+The &lt;a href="http://pytest.org/latest/"&gt;py.test module&lt;/a&gt;.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Joshua Ryan Smith</dc:creator><pubDate>Tue, 20 Jan 2015 00:00:00 -0500</pubDate><guid>tag:jrsmith3.github.io,2015-01-20:python-testing-style-guidelines.html</guid></item><item><title>My Fall 2014 Materials Research Society meeting poster is online</title><link>https://jrsmith3.github.io/my-fall-2014-materials-research-society-meeting-poster-is-online.html</link><description>&lt;p&gt;I am presenting a poster entitled, "Beta-enhanced thermoelectron emission and energy conversion" at the &lt;a href="http://www.mrs.org/fall2014/"&gt;2014 Materials Research Society Fall Meeting&lt;/a&gt;. The poster is number CC9.36 and will be on display Wednesday evening. You can download the &lt;a href="https://github.com/jrsmith3/conf-mrs_fall_2014_poster/releases/download/2014-12-03/poster.pdf"&gt;PDF&lt;/a&gt; or check out the &lt;a href="https://github.com/jrsmith3/conf-mrs_fall_2014_poster"&gt;repository&lt;/a&gt;.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Joshua Ryan Smith</dc:creator><pubDate>Wed, 03 Dec 2014 16:30:00 -0500</pubDate><guid>tag:jrsmith3.github.io,2014-12-03:my-fall-2014-materials-research-society-meeting-poster-is-online.html</guid></item><item><title>Merging a subdirectory from another repo via git-subtree</title><link>https://jrsmith3.github.io/merging-a-subdirectory-from-another-repo-via-git-subtree.html</link><description>&lt;p&gt;Greg Wilson &lt;a href="https://twitter.com/jiffyclub/status/519920529038262272"&gt;wanted to know&lt;/a&gt; how to move a directory from one git repo to another while preserving history. Ash Wilson posted a &lt;a href="https://gist.github.com/smashwilson/015e6a3abfbf7af73d31"&gt;gist&lt;/a&gt; demonstrating a merge and delete strategy. A similar result can be achieved using &lt;code&gt;git-subtree&lt;/code&gt;. The advantage of the &lt;code&gt;git-subtree&lt;/code&gt; approach is that &lt;code&gt;git-subtree&lt;/code&gt; creates a new branch containing only the commits pertaining to files located in a specified subdirectory. Like Ash's approach, &lt;code&gt;git-subtree&lt;/code&gt; will result in the final state of the target repo is such that changes to the target repo won't get pushed back upstream to the source.&lt;/p&gt;
 &lt;p&gt;If you want to carry &lt;em&gt;all&lt;/em&gt; of the commit history from another repo into the target repo, Ash's approach is probably the way to go. If you want only the commits pertaining to files within a subdirectory of the source repo, &lt;code&gt;git-subtree&lt;/code&gt; is the way to go.&lt;/p&gt;
 &lt;p&gt;The workflow with &lt;code&gt;git-subtree&lt;/code&gt; is pretty simple: you specify a subdirectory in a source repo which you want to break out, then you merge those commits into a subdirectory in a target repo.&lt;/p&gt;
 &lt;p&gt;I am modifying my example slightly from Ash's because it looks like the &lt;code&gt;/openstack-swift/&lt;/code&gt; directory has been removed from jclouds/jclouds-labs-openstack as of 2014-10-12. I will use &lt;code&gt;openstack-glance&lt;/code&gt; instead. Thus, we're moving the &lt;code&gt;/openstack-glance/&lt;/code&gt; directory from jclouds/jclouds-labs-openstack to &lt;code&gt;/apis/openstack-glance/&lt;/code&gt; in jclouds/jclouds. The two approaches begin in the same way.&lt;/p&gt;
@@ -3767,7 +3789,7 @@ git remote rm sourcerepo
 &lt;p&gt;on older systems that do not support long filenames.&lt;/p&gt;
 &lt;p&gt;Having a &lt;code&gt;data&lt;/code&gt; directory filled with uniquely and descriptively named files is the next best thing to having a &lt;a href="https://en.wikipedia.org/wiki/Uniform_resource_identifier"&gt;URI&lt;/a&gt; for each file and having the files in some kind of relational database. In addition to the advantage of findability I mentioned above, uniquely naming files in a single &lt;code&gt;data&lt;/code&gt; directory yields addressability. Cross-referencing a file in a &lt;a href="http://jrsmith3.github.io/effective-lab-notebooks.html"&gt;lab notebook&lt;/a&gt; or &lt;a href="http://jrsmith3.github.io/sample-logs-the-secret-to-managing-multi-person-projects.html"&gt;sample log&lt;/a&gt; is as simple as writing the filename. To find the cross-referenced file, simply look for it in &lt;code&gt;data&lt;/code&gt;. &lt;/p&gt;
 &lt;p&gt;Using metadata-rich filenames gives you another advantage: it is easy to perform searches for specific files or sets of files using filename search functions in your file browser or shell. More advanced searches can be done via simple python scripts. For example, lets say I wanted to find all the XPS data files I've taken&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;gamma:data jrsmith3&lt;span class="nv"&gt;$ &lt;/span&gt;ls &lt;span class="p"&gt;|&lt;/span&gt; grep -i jrs &lt;span class="p"&gt;|&lt;/span&gt; grep -i xps
+&lt;div class="highlight"&gt;&lt;pre&gt;gamma:data jrsmith3$ ls &lt;span class="p"&gt;|&lt;/span&gt; grep -i jrs &lt;span class="p"&gt;|&lt;/span&gt; grep -i xps
 20100202-0844_xps_tfan25_jrs.dat
 20100202-0850_xps_tfan25_jrs.dat
 20100202-1008_xps_tfan25_jrs.dat
@@ -3790,7 +3812,7 @@ git remote rm sourcerepo
 
 &lt;p&gt;The same search can be performed from OSX Finder. I don't use Windows, but I would be happy to post instructions on the same search from powershell or Windows file Explorer, &lt;a href="mailto:joshua.r.smith@gmail.com"&gt;email&lt;/a&gt; me or pull request.&lt;/p&gt;
 &lt;p&gt;Using the file naming scheme I suggest above gives one final advantage. File browsers and the shell will automatically list files in chronological order. In the bash shell:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;gamma:data jrsmith3&lt;span class="nv"&gt;$ &lt;/span&gt;ls
+&lt;div class="highlight"&gt;&lt;pre&gt;gamma:data jrsmith3$ ls
 20110520-1543_stm_jrs0075_jrs.sm4
 20110520-1614_stm_jrs0075_jrs.sm4
 20110520-1622_oscilloscope_jrs0075_jrs.txt
@@ -3836,7 +3858,7 @@ git remote rm sourcerepo
 &lt;p&gt;If you've been paying attention, you will have noticed a contradiction. According to my file naming rubric, short filenames are necessarily in a nested directory structure but I advocate a flat structure for &lt;code&gt;data&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;The best case scenario would be to have some scripts for various platforms which would flatten the nested structure in &lt;code&gt;data&lt;/code&gt;. I will post links to these scripts when they become available. In the meantime, the nested structure I suggest makes drag-and-drop additions to the &lt;code&gt;data&lt;/code&gt; directory easy. To keep things in &lt;code&gt;data&lt;/code&gt; clean, use a single subdirectory named &lt;code&gt;nested&lt;/code&gt; to store all of the data in nested directories coming from computers constrained to short filenames. According to my nested directory naming scheme, the &lt;code&gt;nested&lt;/code&gt; directory will contain subdirectories corresponding to each experimenter. Each experimenter's directory will end up having a series of &lt;code&gt;YYYYMMDD&lt;/code&gt; subdirectories. In this way, everyone can simply drag-and-drop newly acquired data into a new &lt;code&gt;YYYYMMDD&lt;/code&gt; subdirectory in their own directory.&lt;/p&gt;
 &lt;p&gt;Here's a visualization:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;tree data/
+&lt;div class="highlight"&gt;&lt;pre&gt;$ tree data/
 data/
 └── nested
     ├── jrs
