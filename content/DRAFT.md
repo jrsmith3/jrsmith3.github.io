@@ -9,75 +9,6 @@ Numerical testing
 =================
 Numerical tests evaluate the accuracy of the output of methods that return a quantitative value and provide assurance that calculations are being performed properly. The strategy for numerical testing is to evaluate the result of a calculator method against a known standard value and ensure the two values match to within an acceptable uncertainty.
 
-
-Assumptions
------------
-This entire testing strategy is based on the assumption that the computer can accurately and repeatably perform simple calculations. I assume that as far as the computer is concerned, the product
-
-    2 * 5
-  
-is just as easy to calculate as the product
-
-    2.333690544228055 * 5.44073192976832565
-
-and the result is just as accurate. Most calculator methods are straightforward arithmetical operations, and the important tasks are to analyze the uncertainty propagation and verify methods' return values do not change over time (regression testing).
-
-In the case of parameters used as inputs to methods (e.g. parameters like temperature or voltage) I assume the number has machine precision regardless of the number of decimals specified. For example, assuming there are 15 decimals worth of precision, if I specify a Schottky barrier as
-
-  1.4
-  
-I am effectively assuming it is 
-
-  1.40000000000000
-  
-
-Uncertainty analysis, uncertainty quantification, and units
------------------------------------------------------------
-Most calculator methods are straightforward mathematical operations like multiplication, division, addition, subtraction, and things like `exp()`. These calculator methods can be thought of as very simple algorithms; they are just a one-line calculation. I can very easily evaluate the uncertainty propagation through these calculators and determine what it means to pass these tests.
-
-In the calculator methods there are three sources of uncertainty. 
-
-One, the machine uses finite precision arithmetic.
-
-The second source of error are the values of the physical constants. I will use the most precise values I can find, but these values are always reported to a certain precision with a particular uncertainty. Physical constants' precision is less than the machine precision and therefore will be the predominant source of uncertainty in a value returned by a calculator method.
-
-One final source of uncertainty, related to the uncertainty of physical constants, arises from the conversion of units. Converting cm^2 into m^2 doesn't change the relative uncertainty because there is an absolutely precise relationship between cm and m (cf. [Taylor](https://openlibrary.org/books/OL8411964M/An_Introduction_to_Error_Analysis) p. 54). Converting other units like eV to J comes with an uncertainty because the conversion factor isn't absolutely precise -- in this case it is the value of the fundamental charge. The uncertainty of unit conversion of object data is noted in the docstring of the class.
-
-
-Reasonableness of test coverage
--------------------------------
-For every calculator method there is a tremendous number of combinations of input paramters. The problem isn't that it would take an unacceptably long time with unacceptably large computing resources to exhaustively calculate all of those combinations. The problem is that there's no reasonable way to check the resulting set of data.
-
-Since checking a comprehensive standard set of data is unreasonable, the next approach would be to have a much smaller set of standard data which is a subset of the comprehensive set of standard data. The question now becomes: how small does the subset need to be? If the subset gets too big, the problem of reasonably checking all the values re-emerges.
-
-Since we've already assumed that the computer accurately and repeatably calculates arithmatic operations, the subset of standard data can be quite small. Given that the human element is the limiting factor in terms of ease of performing a numerical calculation,  it is best to choose special case parameters so that humans can quickly spot-check all of the standard data.
-
-The foundation of this testing strategy is to check the uncertainty propagation of each algorithm to get a picture of the uncertainty of compound algorithms. The strategy of checking algorithms is much better than slavishly checking sets of standard data.
-
-
-Testing strategy
-----------------
-The typical strategy to test a calculator method has the following components. First, the uncertainty of the algorithm implemented by the calculator method is analyzed using uncertainty propagation theory. This analysis will appear in the docstring of the unit test which performs the numerical of that calculator method. Code will be written that generates easily checked-by-humans data. This code is used to generate the standard set of data for the calculator method. The standard set of data is generated over a range of input values which are reasonable (i.e. temperature will never approach 1e9K in a semiconductor simulation). The numerical accuracy unit test for the calculator method under test will compare the output of the calculator method to the (verified) output of the standard data. Each calculator method will usually only have one numerical accuracy unit test.
-
-
-
-
-
-
-
-
-
-
-Title: Testing values returned by functions
-Date: 2016-03-25
-
-I have encountered the following issue a number of times in a number of different contexts, and I need to address it.
-The issue is: testing the output values of functions in a program.
-I frequently (exclusively?) write programs that calculate and return a value.
-The approach to testing such functionality is simple: use standard data.
-
-The goal of this essay is to understand the parts of this testing workflow so that I can understand how to organize my test code.
-
 To be very pedantic about this issue: I want to test the relation of three things:
 
 1. standard abscissae
@@ -222,3 +153,73 @@ How should I store the data (i.e. in the directory tree? python pickles? a gzipp
 For now, I think I'm going to store data in a subdirectory `tests/data`.
 I am going to write standard data generators in the same file as the tests.
 Eventually, I think I will start seeing patterns emerge in how I'm using all of these components and I will move things around based on a better understanding of how the parts fit together.
+
+
+Assumptions
+-----------
+This entire testing strategy is based on the assumption that the computer can accurately and repeatably perform simple calculations. I assume that as far as the computer is concerned, the product
+
+    2 * 5
+  
+is just as easy to calculate as the product
+
+    2.333690544228055 * 5.44073192976832565
+
+and the result is just as accurate. Most calculator methods are straightforward arithmetical operations, and the important tasks are to analyze the uncertainty propagation and verify methods' return values do not change over time (regression testing).
+
+In the case of parameters used as inputs to methods (e.g. parameters like temperature or voltage) I assume the number has machine precision regardless of the number of decimals specified. For example, assuming there are 15 decimals worth of precision, if I specify a Schottky barrier as
+
+  1.4
+  
+I am effectively assuming it is 
+
+  1.40000000000000
+  
+
+Uncertainty analysis, uncertainty quantification, and units
+-----------------------------------------------------------
+Most calculator methods are straightforward mathematical operations like multiplication, division, addition, subtraction, and things like `exp()`. These calculator methods can be thought of as very simple algorithms; they are just a one-line calculation. I can very easily evaluate the uncertainty propagation through these calculators and determine what it means to pass these tests.
+
+In the calculator methods there are three sources of uncertainty. 
+
+One, the machine uses finite precision arithmetic.
+
+The second source of error are the values of the physical constants. I will use the most precise values I can find, but these values are always reported to a certain precision with a particular uncertainty. Physical constants' precision is less than the machine precision and therefore will be the predominant source of uncertainty in a value returned by a calculator method.
+
+One final source of uncertainty, related to the uncertainty of physical constants, arises from the conversion of units. Converting cm^2 into m^2 doesn't change the relative uncertainty because there is an absolutely precise relationship between cm and m (cf. [Taylor](https://openlibrary.org/books/OL8411964M/An_Introduction_to_Error_Analysis) p. 54). Converting other units like eV to J comes with an uncertainty because the conversion factor isn't absolutely precise -- in this case it is the value of the fundamental charge. The uncertainty of unit conversion of object data is noted in the docstring of the class.
+
+
+Reasonableness of test coverage
+-------------------------------
+For every calculator method there is a tremendous number of combinations of input paramters. The problem isn't that it would take an unacceptably long time with unacceptably large computing resources to exhaustively calculate all of those combinations. The problem is that there's no reasonable way to check the resulting set of data.
+
+Since checking a comprehensive standard set of data is unreasonable, the next approach would be to have a much smaller set of standard data which is a subset of the comprehensive set of standard data. The question now becomes: how small does the subset need to be? If the subset gets too big, the problem of reasonably checking all the values re-emerges.
+
+Since we've already assumed that the computer accurately and repeatably calculates arithmatic operations, the subset of standard data can be quite small. Given that the human element is the limiting factor in terms of ease of performing a numerical calculation,  it is best to choose special case parameters so that humans can quickly spot-check all of the standard data.
+
+The foundation of this testing strategy is to check the uncertainty propagation of each algorithm to get a picture of the uncertainty of compound algorithms. The strategy of checking algorithms is much better than slavishly checking sets of standard data.
+
+
+Testing strategy
+----------------
+The typical strategy to test a calculator method has the following components. First, the uncertainty of the algorithm implemented by the calculator method is analyzed using uncertainty propagation theory. This analysis will appear in the docstring of the unit test which performs the numerical of that calculator method. Code will be written that generates easily checked-by-humans data. This code is used to generate the standard set of data for the calculator method. The standard set of data is generated over a range of input values which are reasonable (i.e. temperature will never approach 1e9K in a semiconductor simulation). The numerical accuracy unit test for the calculator method under test will compare the output of the calculator method to the (verified) output of the standard data. Each calculator method will usually only have one numerical accuracy unit test.
+
+
+
+
+
+
+
+
+
+
+Title: Testing values returned by functions
+Date: 2016-03-25
+
+I have encountered the following issue a number of times in a number of different contexts, and I need to address it.
+The issue is: testing the output values of functions in a program.
+I frequently (exclusively?) write programs that calculate and return a value.
+The approach to testing such functionality is simple: use standard data.
+
+The goal of this essay is to understand the parts of this testing workflow so that I can understand how to organize my test code.
+
