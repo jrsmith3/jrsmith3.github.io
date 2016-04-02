@@ -1,5 +1,5 @@
-Title: 
-Date: 
+Title: Testing numerical software in python
+Date: 2016-04-02
 Category: Blog
 Author: Joshua Ryan Smith
 Summary: 
