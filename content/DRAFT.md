@@ -5,15 +5,26 @@ Author: Joshua Ryan Smith
 Summary: A strategy to test numerical software written in Python.
 
 
-Numerical testing
-=================
-Numerical tests evaluate the accuracy of the output of methods that return a quantitative value and provide assurance that calculations are being performed properly. The strategy for numerical testing is to evaluate the result of a calculator method against a known standard value and ensure the two values match to within an acceptable uncertainty.
+# Introduction
+When writing computational software, it is very important that numerical calculator functions return the correct results.
+Ideally, you want a suite of tests that check the accuracy of these kinds of functions so that you can be sure changes to the code do not change the results of your calculator methods.
 
-To be very pedantic about this issue: I want to test the relation of three things:
+It turns out that the overall strategy for numerical testing is quite simple: evaluate the result of a calculator method against a known standard value and ensure the two values match to within an acceptable uncertainty.
+Despite this simplicity, I've still gotten tripped up on some of the implementation details of these kinds of tests.
+My goal with this essay is to carefully describe all of the components of numerical testing, and develop a framework in which it is easy to think about and write effective numerical tests.
 
-1. standard abscissae
+This essay has the following structure: First I will clearly define the components of numerical tests and how they relate to one another. In this way it will be easier to categorize the test code you write and the data used in testing.
+
+
+
+
+
+# The key concept: testing output against standard data
+To be very pedantic about this issue: the goal is to test the relation of three things:
+
+1. standard abscissae (independent variables)
 2. an operation
-3. standard ordinates
+3. standard ordinates (dependent variables)
 
 The combination of "standard abscissae" and corresponding "standard ordinates" will be referred to as "standard data".
 The "operation" is the relationship between the standard abscissae and corresponding standard ordinates, in the most general of terms.
