@@ -30,10 +30,6 @@ The general form of the test is very simple:
 
 Most of the work in this workflow is defining and generating the appropriate standard data.
 
-The problems I am experiencing have to do with defining and generating the appropriate standard data.
-I am writing a lot of tests, and then I am defining the standard data in an ad-hoc fashion.
-I am applying no methodology to defining my standard data, my standard data is disorganized, and much of it is redundant or too specific when it could be generalized.
-
 
 # Properties of standard data
 You should aim to define and generate standard data with the following properties:
