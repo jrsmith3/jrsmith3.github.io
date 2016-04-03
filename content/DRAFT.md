@@ -19,7 +19,7 @@ The combination of "standard abscissae" and corresponding "standard ordinates" w
 The "operation" is the relationship between the standard abscissae and corresponding standard ordinates, in the most general of terms.
 The operation occurs on some abscissae and results in some ordinates.
 For example, an operation could be addition of two numbers or the determinant of a matrix, etc.
-A "function" is the particular implementation of the operation, and the "function under test" is the specific function I want to test.
+A "function" is the particular implementation of the operation, and the "function under test" is the specific function to test.
 "Function ordinates" are the outputs of the function.
 
 The general form of the test is very simple: 
@@ -72,14 +72,14 @@ Note that edge cases are not the same as "special cases" as defined above, nor a
 
 
 # Approaches to generating standard data
-standard data can be specified and generated at several different levels:
+Standard data can be specified and generated at several different levels:
 
 1. Write standard data directly into the test.
 2. Write a helper function that generates the standard data for the test at test runtime.
 3. Write a helper function that generates the standard data for the test and saves it to disk.
 
 
-## standard data within test
+## Standard data within test
 The advantages of this approach are simplicity.
 Combining the standard data with the test means everything is in the same location, and it is therefore easier to reason about what the test is doing.
 In addition, presumably the standard data is simple enough so that verification is trivial to easy.
@@ -199,23 +199,3 @@ The foundation of this testing strategy is to check the uncertainty propagation 
 Testing strategy
 ----------------
 The typical strategy to test a calculator method has the following components. First, the uncertainty of the algorithm implemented by the calculator method is analyzed using uncertainty propagation theory. This analysis will appear in the docstring of the unit test which performs the numerical of that calculator method. Code will be written that generates easily checked-by-humans data. This code is used to generate the standard set of data for the calculator method. The standard set of data is generated over a range of input values which are reasonable (i.e. temperature will never approach 1e9K in a semiconductor simulation). The numerical accuracy unit test for the calculator method under test will compare the output of the calculator method to the (verified) output of the standard data. Each calculator method will usually only have one numerical accuracy unit test.
-
-
-
-
-
-
-
-
-
-
-Title: Testing values returned by functions
-Date: 2016-03-25
-
-I have encountered the following issue a number of times in a number of different contexts, and I need to address it.
-The issue is: testing the output values of functions in a program.
-I frequently (exclusively?) write programs that calculate and return a value.
-The approach to testing such functionality is simple: use standard data.
-
-The goal of this essay is to understand the parts of this testing workflow so that I can understand how to organize my test code.
-
