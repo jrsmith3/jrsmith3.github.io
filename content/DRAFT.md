@@ -57,7 +57,7 @@ For example, consider a function that implements the pythagorean theorem.
 The pythagorean triple 3, 4, 5 is well known and easily verifiable with pen and paper.
 Therefore, the 3, 4, 5 triple is a good test case for the function.
 
-Note that although the triple 3, 4, 5 is sometimes referred to as a "special case" in the mathematical context, this case falls outside the scope of an "edge case" as defined below.
+Note that although the triple 3, 4, 5 is sometimes referred to as a "special case" in the mathematical context, I am making a distinction between "special case" and "edge case" as defined below.
 
 
 ## General
@@ -160,6 +160,10 @@ How should I store the data (i.e. in the directory tree? python pickles? a gzipp
 For now, I think I'm going to store data in a subdirectory `tests/data`.
 I am going to write standard data generators in the same file as the tests.
 Eventually, I think I will start seeing patterns emerge in how I'm using all of these components and I will move things around based on a better understanding of how the parts fit together.
+
+
+
+
 
 
 Assumptions
